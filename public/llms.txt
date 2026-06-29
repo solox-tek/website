@@ -1,0 +1,8 @@
+# Solox Tek
+
+> Solox Tek builds AI automation that survives production. A senior engineering team with over a decade of production experience: reliable, secure, and made to scale.
+
+## Links
+
+- [Website](https://solox-tek.com): One-page overview of Solox Tek and its services.
+- [Contact](mailto:hello@solox-tek.com): Book a free discovery call.
