@@ -5,4 +5,4 @@
 ## Links
 
 - [Website](https://solox-tek.com): One-page overview of Solox Tek and its services.
-- [Contact](mailto:hello@solox-tek.com): Book a free discovery call.
+- [Contact](mailto:contact@solox-tek.com): Book a free discovery call.
