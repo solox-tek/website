@@ -8,3 +8,8 @@ node_modules/
 *.log
 .env
 .env.*
+# local assets and tooling (not part of the site)
+.claude/
+*.pdf
+solox-tek-x-*.png
+solox-tek-linkedin-*.png

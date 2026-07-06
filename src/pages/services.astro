@@ -1,0 +1,166 @@
+---
+// Solox Tek — Services hub. Static, no framework runtime.
+import '@fontsource-variable/sora';
+import '@fontsource-variable/manrope';
+
+const engineering = [
+  {
+    name: 'AI Automation',
+    featured: true,
+    tagline: 'Automation that survives production. Workflows, LLM agents, and integrations you own.',
+    points: ['Workflow automation', 'LLM and AI agent integration', 'Systems and API integration', 'Reliability and monitoring built in'],
+  },
+  {
+    name: 'Product Engineering',
+    tagline: 'Web, mobile, and SaaS built by a team with a decade in production.',
+    points: ['Web and frontend', 'Mobile apps', 'SaaS products', 'Clean, maintainable code you own'],
+  },
+  {
+    name: 'DevOps and Infrastructure',
+    tagline: 'The part that keeps it running. Cloud, pipelines, and reliability.',
+    points: ['Cloud setup and management', 'CI/CD pipelines', 'Monitoring and reliability', 'Cost and performance tuning'],
+  },
+  {
+    name: 'Web3',
+    tagline: 'On-chain products and DeFi frontends with real production experience.',
+    points: ['DeFi and dApp frontends', 'Smart contract integration', 'Wallet and on-chain flows'],
+  },
+];
+
+const growth = [
+  {
+    name: 'Paid Media',
+    tagline: 'Full funnel campaigns on a transparent retainer. Meta, Google, and TikTok.',
+    points: ['Campaign strategy and setup', 'Creative and A/B testing', 'Conversion tracking', 'Transparent reporting'],
+    link: '/paid-media',
+    linkLabel: 'See pricing and packages',
+  },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services · Solox Tek</title>
+  <meta name="description" content="Solox Tek services: AI automation, product engineering, DevOps, and Web3, plus paid media. A senior engineering team that ships and runs real systems in production." />
+  <link rel="canonical" href="https://solox-tek.com/services" />
+  <link rel="icon" type="image/png" href="/logo-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://solox-tek.com/services" />
+  <meta property="og:title" content="Services · Solox Tek" />
+  <meta property="og:description" content="Solox Tek services: AI automation, product engineering, DevOps, and Web3, plus paid media. A senior engineering team that ships and runs real systems in production." />
+  <meta property="og:image" content="https://solox-tek.com/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style is:global>
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:#06121E;color:#EEF4FB;font-family:'Manrope Variable',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+::selection{background:rgba(54,169,230,0.32);color:#fff;}
+a{color:inherit;text-decoration:none;}
+@keyframes sxDrift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.12)}}
+@keyframes sxDrift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-46px,28px) scale(1.08)}}
+.hx0:hover{background:rgba(54,169,230,0.22) !important;box-shadow:0 0 26px rgba(54,169,230,0.4) !important;transform:translateY(-2px) !important;}
+.hx1:hover{transform:translateY(-3px) !important;box-shadow:0 0 0 1px rgba(143,224,255,0.4) inset,0 22px 56px rgba(27,124,192,0.62) !important;}
+.card{transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;}
+.card:hover{transform:translateY(-4px);border-color:rgba(143,224,255,0.4) !important;box-shadow:0 30px 60px rgba(0,0,0,0.32);}
+.slink{color:#8FE0FF;font-weight:600;transition:opacity .2s ease;}
+.slink:hover{opacity:.75;}
+  </style>
+</head>
+<body>
+<div style="position:relative;background:#06121E;overflow:hidden;--sx-accent:#36A9E6;">
+
+  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
+    <div style="position:absolute;top:-8%;left:-6%;width:52vw;height:52vw;max-width:720px;max-height:720px;border-radius:50%;background:radial-gradient(circle,rgba(54,169,230,0.30),transparent 64%);filter:blur(28px);animation:sxDrift1 21s ease-in-out infinite;"></div>
+    <div style="position:absolute;top:4%;right:-10%;width:46vw;height:46vw;max-width:640px;max-height:640px;border-radius:50%;background:radial-gradient(circle,rgba(47,200,200,0.18),transparent 66%);filter:blur(32px);animation:sxDrift2 25s ease-in-out infinite;"></div>
+  </div>
+  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(140,175,215,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(140,175,215,0.05) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(180deg,#000,#000 74%,transparent);-webkit-mask-image:linear-gradient(180deg,#000,#000 74%,transparent);"></div>
+
+  <!-- NAV -->
+  <nav style="position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(18px,5vw,48px);">
+    <a href="/" style="display:flex;align-items:center;gap:12px;">
+      <img src="/logo-icon.webp" alt="Solox Tek" width="30" height="30" style="display:block;width:30px;height:30px;">
+      <span style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16.5px;letter-spacing:0.16em;color:#EEF4FB;">SOLOX&nbsp;TEK</span>
+    </a>
+    <a href="https://cal.com/solox-tek" data-cal-link="solox-tek" data-cal-config='{"layout":"month_view"}' class="hx0" style="display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:999px;border:1px solid rgba(54,169,230,0.5);background:rgba(54,169,230,0.1);color:#DCECF8;font-family:'Sora Variable',sans-serif;font-weight:500;font-size:14px;transition:background .3s ease,box-shadow .3s ease,transform .3s ease;">Book a call</a>
+  </nav>
+
+  <!-- HERO -->
+  <header style="position:relative;z-index:2;text-align:center;padding:60px clamp(20px,5vw,48px) 30px;max-width:800px;margin:0 auto;">
+    <div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.24em;color:#8FE0FF;margin-bottom:16px;">SERVICES</div>
+    <h1 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(34px,5.2vw,58px);line-height:1.06;letter-spacing:-0.035em;margin:0 0 20px;color:#F6FAFE;">Built by senior engineers. <span style="font-weight:600;background:linear-gradient(110deg,#8FE0FF,var(--sx-accent) 60%,#5BC7C0);-webkit-background-clip:text;background-clip:text;color:transparent;">Run in production.</span></h1>
+    <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(15px,1.4vw,18px);line-height:1.65;color:#AEC4DC;margin:0 auto;max-width:58ch;">AI automation is our core. Around it we bring the full engineering stack to ship and operate real systems, plus paid media to grow them.</p>
+  </header>
+
+  <!-- ENGINEERING -->
+  <section style="position:relative;z-index:2;padding:40px clamp(20px,5vw,48px) 20px;max-width:1120px;margin:0 auto;">
+    <div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.2em;color:#7E97B4;margin:0 0 22px;">ENGINEERING</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;">
+      {engineering.map((s) => (
+        <div class="card" style={`display:flex;flex-direction:column;border-radius:18px;padding:26px 24px;background:${s.featured ? 'rgba(54,169,230,0.06)' : 'rgba(255,255,255,0.03)'};border:${s.featured ? '2px solid rgba(54,169,230,0.5)' : '1px solid rgba(150,180,215,0.16)'};`}>
+          <div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:19px;color:#F6FAFE;margin-bottom:10px;">{s.name}</div>
+          <div style="font-family:'Manrope Variable',sans-serif;font-size:14px;line-height:1.55;color:#AEC4DC;margin-bottom:18px;">{s.tagline}</div>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;">
+            {s.points.map((p) => (
+              <li style="display:flex;gap:10px;align-items:flex-start;font-family:'Manrope Variable',sans-serif;font-size:13.5px;line-height:1.45;color:#C4D6EA;">
+                <span style="color:#36A9E6;font-weight:700;flex:none;">✓</span><span>{p}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- GROWTH -->
+  <section style="position:relative;z-index:2;padding:36px clamp(20px,5vw,48px) 20px;max-width:1120px;margin:0 auto;">
+    <div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.2em;color:#7E97B4;margin:0 0 22px;">GROWTH</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;">
+      {growth.map((s) => (
+        <div class="card" style="display:flex;flex-direction:column;border-radius:18px;padding:26px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(150,180,215,0.16);">
+          <div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:19px;color:#F6FAFE;margin-bottom:10px;">{s.name}</div>
+          <div style="font-family:'Manrope Variable',sans-serif;font-size:14px;line-height:1.55;color:#AEC4DC;margin-bottom:18px;">{s.tagline}</div>
+          <ul style="list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:9px;">
+            {s.points.map((p) => (
+              <li style="display:flex;gap:10px;align-items:flex-start;font-family:'Manrope Variable',sans-serif;font-size:13.5px;line-height:1.45;color:#C4D6EA;">
+                <span style="color:#36A9E6;font-weight:700;flex:none;">✓</span><span>{p}</span>
+              </li>
+            ))}
+          </ul>
+          <a href={s.link} class="slink" style="margin-top:auto;font-family:'Sora Variable',sans-serif;font-size:14px;">{s.linkLabel} →</a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="position:relative;z-index:2;text-align:center;padding:60px clamp(20px,5vw,48px) 90px;max-width:720px;margin:0 auto;">
+    <h2 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(28px,4.4vw,48px);line-height:1.08;letter-spacing:-0.035em;margin:0 0 22px;color:#F6FAFE;">Not sure where to <span style="font-weight:600;background:linear-gradient(110deg,#8FE0FF,var(--sx-accent) 60%,#5BC7C0);-webkit-background-clip:text;background-clip:text;color:transparent;">start?</span></h2>
+    <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(15px,1.4vw,18px);line-height:1.6;color:#AEC4DC;margin:0 auto 34px;max-width:50ch;">Book a call and we'll find the highest impact first, then scope it.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:15px;justify-content:center;align-items:center;">
+      <a href="https://cal.com/solox-tek" data-cal-link="solox-tek" data-cal-config='{"layout":"month_view"}' class="hx1" style="display:inline-flex;align-items:center;gap:10px;padding:17px 36px;border-radius:14px;background:linear-gradient(180deg,var(--sx-accent),#1B7CC0);color:#fff;font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16.5px;box-shadow:0 0 0 1px rgba(143,224,255,0.25) inset,0 18px 50px rgba(27,124,192,0.5);transition:transform .25s ease,box-shadow .25s ease;">Book a free discovery call</a>
+      <span style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:13.5px;letter-spacing:0.08em;color:#7E97B4;">or <a href="mailto:contact@solox-tek.com?subject=Services" style="color:#8FE0FF;">contact@solox-tek.com</a></span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="position:relative;z-index:2;border-top:1px solid rgba(150,180,215,0.12);padding:36px clamp(20px,5vw,48px);">
+    <div style="max-width:1120px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;">
+      <a href="/" style="display:flex;align-items:center;gap:12px;">
+        <img src="/logo-icon.webp" alt="Solox Tek" width="26" height="26" style="display:block;width:26px;height:26px;opacity:.9;">
+        <span style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:14.5px;letter-spacing:0.15em;color:#C4D6EA;">SOLOX&nbsp;TEK</span>
+      </a>
+      <div style="font-family:'Sora Variable',sans-serif;font-weight:400;font-size:12.5px;letter-spacing:0.04em;color:#6F87A4;">© 2026 · AI automation that survives production</div>
+    </div>
+  </footer>
+
+</div>
+  <!-- Cal.com embed -->
+  <script is:inline>
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", { origin: "https://cal.com" });
+    Cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
+  </script>
+</body>
+</html>

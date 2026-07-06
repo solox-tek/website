@@ -61,11 +61,18 @@ a{color:inherit;text-decoration:none;}
 @keyframes sxBobB{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(8px);opacity:1}}
 @keyframes sxDash{to{stroke-dashoffset:-28}}
 .hx0:hover{background:rgba(54,169,230,0.22) !important;box-shadow:0 0 26px rgba(54,169,230,0.4) !important;transform:translateY(-2px) !important;}
+.navlink:hover{color:#EEF4FB !important;}
 .hx1:hover{transform:translateY(-3px) !important;box-shadow:0 0 0 1px rgba(143,224,255,0.4) inset,0 22px 56px rgba(27,124,192,0.62) !important;}
 .hx2:hover{border-color:rgba(143,224,255,0.55) !important;background:rgba(255,255,255,0.05) !important;transform:translateY(-3px) !important;}
 .hx3:hover{border-color:rgba(143,224,255,0.4) !important;transform:translateY(-4px) !important;box-shadow:0 30px 60px rgba(0,0,0,0.32) !important;}
 .hx4:hover{border-color:rgba(143,224,255,0.4) !important;transform:translateY(-4px) !important;box-shadow:0 30px 60px rgba(0,0,0,0.32) !important;}
 .hx5:hover{transform:translateY(-3px) !important;box-shadow:0 0 0 1px rgba(143,224,255,0.4) inset,0 24px 62px rgba(27,124,192,0.66) !important;}
+@media (max-width:560px){
+  #sb-nav{padding-left:16px !important;padding-right:16px !important;}
+  #sb-nav .sx-wordmark{font-size:14px !important;letter-spacing:0.1em !important;}
+  #sb-nav .navlink{font-size:13px !important;}
+  #sb-nav .hx0{padding:9px 15px !important;font-size:13px !important;}
+}
   </style>
 </head>
 <body>
@@ -85,9 +92,12 @@ a{color:inherit;text-decoration:none;}
   <nav id="sb-nav" style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:17px clamp(18px,5vw,48px);border-bottom:1px solid rgba(150,180,215,0);transition:background .35s ease,border-color .35s ease,backdrop-filter .35s ease;">
     <a href="#top" style="display:flex;align-items:center;gap:12px;">
       <img src="/logo-icon.webp" alt="Solox Tek" width="30" height="30" style="display:block;width:30px;height:30px;">
-      <span style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16.5px;letter-spacing:0.16em;color:#EEF4FB;">SOLOX&nbsp;TEK</span>
+      <span class="sx-wordmark" style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16.5px;letter-spacing:0.16em;color:#EEF4FB;">SOLOX&nbsp;TEK</span>
     </a>
-    <a href="https://cal.com/solox-tek" data-cal-link="solox-tek" data-cal-config='{"layout":"month_view"}' class="hx0" style="display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:999px;border:1px solid rgba(54,169,230,0.5);background:rgba(54,169,230,0.1);color:#DCECF8;font-family:'Sora Variable',sans-serif;font-weight:500;font-size:14px;letter-spacing:.01em;transition:background .3s ease,box-shadow .3s ease,transform .3s ease;">Book a call</a>
+    <div style="display:flex;align-items:center;gap:clamp(14px,3vw,26px);">
+      <a href="/services" class="navlink" style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:14px;letter-spacing:.02em;color:#C4D6EA;transition:color .25s ease;">Services</a>
+      <a href="https://cal.com/solox-tek" data-cal-link="solox-tek" data-cal-config='{"layout":"month_view"}' class="hx0" style="display:inline-flex;align-items:center;gap:8px;white-space:nowrap;padding:11px 22px;border-radius:999px;border:1px solid rgba(54,169,230,0.5);background:rgba(54,169,230,0.1);color:#DCECF8;font-family:'Sora Variable',sans-serif;font-weight:500;font-size:14px;letter-spacing:.01em;transition:background .3s ease,box-shadow .3s ease,transform .3s ease;">Book a call</a>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -108,8 +118,8 @@ a{color:inherit;text-decoration:none;}
         <span style="color:#A6BDD6;">You own the code</span>
       </div>
     </div>
-    <div aria-hidden="true" style="position:absolute;left:50%;bottom:28px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-family:'Sora Variable',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.34em;color:#5E7895;animation:sxBobB 2.6s ease-in-out infinite;">
-      <span>SCROLL</span>
+    <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:28px;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:'Sora Variable',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.34em;color:#5E7895;animation:sxBobB 2.6s ease-in-out infinite;">
+      <span style="padding-left:0.34em;">SCROLL</span>
       <span style="width:1px;height:26px;background:linear-gradient(#5E7895,transparent);"></span>
     </div>
   </header>
@@ -243,7 +253,7 @@ a{color:inherit;text-decoration:none;}
   </section>
 
   <!-- WHAT YOU GET -->
-  <section id="get" style="position:relative;padding:0 clamp(20px,5vw,48px) var(--sx-pad,clamp(84px,11vw,160px));">
+  <section id="get" style="position:relative;padding:0 clamp(20px,5vw,48px) clamp(36px,4.5vw,60px);">
     <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(36px,5vw,72px);align-items:center;">
       <div data-reveal>
         <h2 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(30px,4.6vw,56px);line-height:1.07;letter-spacing:-0.03em;margin:0;color:#F5FAFE;">What you <span style="font-weight:600;">walk away with.</span></h2>
@@ -259,7 +269,7 @@ a{color:inherit;text-decoration:none;}
   </section>
 
   <!-- CTA -->
-  <section id="contact" style="position:relative;padding:var(--sx-pad,clamp(84px,11vw,160px)) clamp(20px,5vw,48px) clamp(72px,8vw,120px);">
+  <section id="contact" style="position:relative;padding:clamp(36px,4.5vw,60px) clamp(20px,5vw,48px) clamp(72px,8vw,120px);">
     <div data-reveal style="position:relative;max-width:880px;margin:0 auto;text-align:center;">
       <h2 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(34px,5.4vw,70px);line-height:1.04;letter-spacing:-0.035em;margin:0 0 24px;color:#F6FAFE;">Let's find one process <span style="font-weight:600;background:linear-gradient(110deg,#8FE0FF,var(--sx-accent,#36A9E6) 60%,#5BC7C0);-webkit-background-clip:text;background-clip:text;color:transparent;">worth automating.</span></h2>
       <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(16px,1.4vw,20px);line-height:1.65;color:#AEC4DC;margin:0 auto 42px;max-width:54ch;">Book a free 30 minute discovery call. We'll pick the workflow with the biggest payoff and scope a pilot.</p>
@@ -276,6 +286,10 @@ a{color:inherit;text-decoration:none;}
       <div style="display:flex;align-items:center;gap:12px;">
         <img src="/logo-icon.webp" alt="Solox Tek" width="26" height="26" style="display:block;width:26px;height:26px;opacity:.9;">
         <span style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:14.5px;letter-spacing:0.15em;color:#C4D6EA;">SOLOX&nbsp;TEK</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:24px;font-family:'Sora Variable',sans-serif;font-size:13.5px;letter-spacing:0.03em;">
+        <a href="/services" style="color:#AEC4DC;">Services</a>
+        <a href="/paid-media" style="color:#AEC4DC;">Paid Media</a>
       </div>
       <div style="font-family:'Sora Variable',sans-serif;font-weight:400;font-size:12.5px;letter-spacing:0.04em;color:#6F87A4;">© 2026 · AI automation that survives production</div>
     </div>
