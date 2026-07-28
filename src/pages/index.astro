@@ -74,7 +74,6 @@ const faqs = [
   <style is:global>
 @keyframes sxDrift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(24px,34px) scale(1.15)}}
 @keyframes sxFloatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes sxPulseB{0%,100%{opacity:.35}50%{opacity:1}}
 @keyframes sxBobB{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(8px);opacity:1}}
 @keyframes sxDash{to{stroke-dashoffset:-28}}
 .hx1:hover{transform:translateY(-3px) !important;box-shadow:0 0 0 1px rgba(143,224,255,0.4) inset,0 22px 56px rgba(27,124,192,0.62) !important;}
@@ -86,7 +85,7 @@ const faqs = [
 .faq summary::-webkit-details-marker{display:none;}
 .faq details[open] .faq-x{transform:rotate(45deg);}
   </style>
-<div id="sb-root" data-screen-label="Solox Tek" style="--sx-accent:#36A9E6;--sx-aurora:1;--sx-pad:clamp(84px,11vw,160px);--sx-grid:1;position:relative;background:#06121E;overflow:hidden;">
+<div id="sb-root" style="--sx-accent:#36A9E6;--sx-aurora:1;--sx-pad:clamp(84px,11vw,160px);--sx-grid:1;position:relative;background:#06121E;overflow:hidden;">
 
   <!-- aurora field -->
   <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;opacity:var(--sx-aurora,1);overflow:hidden;">
@@ -327,9 +326,8 @@ const faqs = [
   <script is:inline>
 (function(){
   function init(){
-    let _cleanup; let rafStat;
+    let rafStat;
 
-    _cleanup = [];
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // ---- Scroll reveals (fade + rise + slight scale) ----
@@ -350,7 +348,6 @@ const faqs = [
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
       reveals.forEach(el => io.observe(el));
-      _cleanup.push(() => io.disconnect());
     }
 
     // ---- Stat counter ----
@@ -374,7 +371,6 @@ const faqs = [
         ents.forEach(e => { if (e.isIntersecting) { run(); io2.unobserve(e.target); } });
       }, { threshold: 0.6 });
       io2.observe(stat);
-      _cleanup.push(() => io2.disconnect());
     }
 
     // ---- Parallax (mouse in hero + scroll) on aurora orbs ----
@@ -397,7 +393,6 @@ const faqs = [
       const onScr = () => { sy = window.scrollY; req(); };
       window.addEventListener('pointermove', onMove, { passive: true });
       window.addEventListener('scroll', onScr, { passive: true });
-      _cleanup.push(() => { window.removeEventListener('pointermove', onMove); window.removeEventListener('scroll', onScr); });
     }
 
     // ---- Hero node network ----
@@ -487,12 +482,10 @@ const faqs = [
           ents.forEach(e => { if (e.isIntersecting) start(); else stop(); });
         }, { threshold: 0 });
         heroIO.observe(wrap);
-        _cleanup.push(() => heroIO.disconnect());
       }
       let rt;
       const onR = () => { clearTimeout(rt); rt = setTimeout(() => { resize(); init(); if (reduce) draw(); }, 180); };
       window.addEventListener('resize', onR);
-      _cleanup.push(() => { stop(); clearTimeout(rt); window.removeEventListener('resize', onR); });
     }
   
   }
