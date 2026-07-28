@@ -1,28 +1,43 @@
 ---
-// Solox Tek — one-page site. Static, no framework runtime.
-// Self-hosted fonts (bundled by Astro) — replaces render-blocking Google Fonts.
-import '@fontsource-variable/sora';
-import '@fontsource-variable/manrope';
+// Solox Tek — homepage. Static, no framework runtime.
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+// Rendered in the FAQ section and mirrored verbatim into FAQPage JSON-LD.
+const faqs = [
+  {
+    q: 'What does an AI automation agency do?',
+    a: 'An AI automation agency connects your tools, automates repetitive processes, and adds AI where it removes real work. We do that as engineers: we build, integrate, and run automation you fully own, from document processing to sales pipelines.',
+  },
+  {
+    q: 'How much does an AI automation project cost?',
+    a: 'Every build is fixed scope and fixed price, set after a short paid audit of the workflow, so you know the full cost before we write a line of code. The free discovery call comes first and tells you what the audit would cover.',
+  },
+  {
+    q: 'How long until something is live?',
+    a: 'A first workflow is usually in production within a few weeks, not months. We start with one process, prove it, and expand from there.',
+  },
+  {
+    q: 'Is our data safe if AI touches it?',
+    a: 'Yes. Your data stays in your accounts, a model receives only the minimum it needs, and we apply the same security discipline we use in our DeFi work.',
+  },
+  {
+    q: 'Do we need our own developers to maintain it?',
+    a: 'No. We monitor and support what we build, and if you have a team we hand over clean, documented code they can run without us.',
+  },
+  {
+    q: 'What actually happens on the discovery call?',
+    a: 'It is a free 30 minute call where we map your workflows and pick the process with the biggest payoff. If automation is not the right fix yet, we tell you honestly.',
+  },
+];
 ---
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Solox Tek · AI automation that survives production</title>
-  <meta name="description" content="Solox Tek builds AI automation that survives production. A senior engineering team with over a decade of production experience: reliable, secure, and made to scale." />
-  <link rel="canonical" href="https://solox-tek.com/" />
-  <link rel="icon" type="image/png" href="/logo-icon.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://solox-tek.com/" />
-  <meta property="og:title" content="Solox Tek · AI automation that survives production" />
-  <meta property="og:description" content="Solox Tek builds AI automation that survives production. A senior engineering team with over a decade of production experience: reliable, secure, and made to scale." />
-  <meta property="og:image" content="https://solox-tek.com/og.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Solox Tek · AI automation that survives production" />
-  <meta name="twitter:description" content="Solox Tek builds AI automation that survives production. A senior engineering team with over a decade of production experience: reliable, secure, and made to scale." />
-  <meta name="twitter:image" content="https://solox-tek.com/og.png" />
-  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+<Layout
+  title="Solox Tek · AI automation agency. Built to survive production."
+  description="Solox Tek is a senior AI automation agency. We build automation that survives production: reliable, secure, and made to scale, with over a decade of production experience."
+  path="/"
+>
+  <script type="application/ld+json" is:inline slot="head" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -31,7 +46,7 @@ import '@fontsource-variable/manrope';
         "name": "Solox Tek",
         "url": "https://solox-tek.com/",
         "logo": "https://solox-tek.com/logo-512.png",
-        "description": "Solox Tek builds AI automation that survives production. A senior engineering team with over a decade of production experience: reliable, secure, and made to scale.",
+        "description": "Solox Tek is a senior AI automation agency. We build automation that survives production: reliable, secure, and made to scale, with over a decade of production experience.",
         "email": "contact@solox-tek.com",
         "sameAs": [
           "https://www.linkedin.com/company/solox-tek",
@@ -44,62 +59,48 @@ import '@fontsource-variable/manrope';
         "name": "Solox Tek",
         "url": "https://solox-tek.com/",
         "publisher": { "@id": "https://solox-tek.com/#organization" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://solox-tek.com/#faq",
+        "mainEntity": faqs.map((f) => ({
+          "@type": "Question",
+          "name": f.q,
+          "acceptedAnswer": { "@type": "Answer", "text": f.a }
+        }))
       }
     ]
   })} />
   <style is:global>
-*{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{margin:0;background:#06121E;color:#EEF4FB;font-family:'Manrope Variable',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
-::selection{background:rgba(54,169,230,0.32);color:#fff;}
-a{color:inherit;text-decoration:none;}
-@keyframes sxDrift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.12)}}
-@keyframes sxDrift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-46px,28px) scale(1.08)}}
 @keyframes sxDrift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(24px,34px) scale(1.15)}}
 @keyframes sxFloatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes sxPulseB{0%,100%{opacity:.35}50%{opacity:1}}
 @keyframes sxBobB{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(8px);opacity:1}}
 @keyframes sxDash{to{stroke-dashoffset:-28}}
-.hx0:hover{background:rgba(54,169,230,0.22) !important;box-shadow:0 0 26px rgba(54,169,230,0.4) !important;transform:translateY(-2px) !important;}
-.navlink:hover{color:#EEF4FB !important;}
 .hx1:hover{transform:translateY(-3px) !important;box-shadow:0 0 0 1px rgba(143,224,255,0.4) inset,0 22px 56px rgba(27,124,192,0.62) !important;}
 .hx2:hover{border-color:rgba(143,224,255,0.55) !important;background:rgba(255,255,255,0.05) !important;transform:translateY(-3px) !important;}
 .hx3:hover{border-color:rgba(143,224,255,0.4) !important;transform:translateY(-4px) !important;box-shadow:0 30px 60px rgba(0,0,0,0.32) !important;}
 .hx4:hover{border-color:rgba(143,224,255,0.4) !important;transform:translateY(-4px) !important;box-shadow:0 30px 60px rgba(0,0,0,0.32) !important;}
 .hx5:hover{transform:translateY(-3px) !important;box-shadow:0 0 0 1px rgba(143,224,255,0.4) inset,0 24px 62px rgba(27,124,192,0.66) !important;}
-@media (max-width:560px){
-  #sb-nav{padding-left:16px !important;padding-right:16px !important;}
-  #sb-nav .sx-wordmark{font-size:14px !important;letter-spacing:0.1em !important;}
-  #sb-nav .navlink{font-size:13px !important;}
-  #sb-nav .hx0{padding:9px 15px !important;font-size:13px !important;}
-}
+.faq summary{list-style:none;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq details[open] .faq-x{transform:rotate(45deg);}
   </style>
-</head>
-<body>
-<div id="sb-root" data-screen-label="Solox Tek" style="--sx-accent:#36A9E6;--sx-aurora:1;--sx-pad:clamp(84px,11vw,160px);--sx-grid:1;position:relative;background:#06121E;overflow:hidden;">
+<div id="sb-root" style="--sx-accent:#36A9E6;--sx-aurora:1;--sx-pad:clamp(84px,11vw,160px);--sx-grid:1;position:relative;background:#06121E;overflow:hidden;">
 
   <!-- aurora field -->
   <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;opacity:var(--sx-aurora,1);overflow:hidden;">
-    <div data-orb="0.12" style="position:absolute;top:-8%;left:-6%;width:52vw;height:52vw;max-width:720px;max-height:720px;border-radius:50%;background:radial-gradient(circle,rgba(54,169,230,0.34),transparent 64%);filter:blur(26px);animation:sxDrift1 19s ease-in-out infinite;"></div>
-    <div data-orb="0.2" style="position:absolute;top:2%;right:-10%;width:46vw;height:46vw;max-width:640px;max-height:640px;border-radius:50%;background:radial-gradient(circle,rgba(47,200,200,0.22),transparent 66%);filter:blur(30px);animation:sxDrift2 23s ease-in-out infinite;"></div>
-    <div data-orb="0.16" style="position:absolute;top:46%;left:30%;width:50vw;height:50vw;max-width:680px;max-height:680px;border-radius:50%;background:radial-gradient(circle,rgba(70,120,235,0.2),transparent 65%);filter:blur(34px);animation:sxDrift3 27s ease-in-out infinite;"></div>
+    <div data-orb="0.12" style="position:absolute;top:-8%;left:-6%;width:52vw;height:52vw;max-width:720px;max-height:720px;will-change:transform;"><div style="width:100%;height:100%;border-radius:50%;background:radial-gradient(circle,rgba(54,169,230,0.34),transparent 64%);filter:blur(26px);animation:sxDrift1 19s ease-in-out infinite;"></div></div>
+    <div data-orb="0.2" style="position:absolute;top:2%;right:-10%;width:46vw;height:46vw;max-width:640px;max-height:640px;will-change:transform;"><div style="width:100%;height:100%;border-radius:50%;background:radial-gradient(circle,rgba(47,200,200,0.22),transparent 66%);filter:blur(30px);animation:sxDrift2 23s ease-in-out infinite;"></div></div>
+    <div data-orb="0.16" style="position:absolute;top:46%;left:30%;width:50vw;height:50vw;max-width:680px;max-height:680px;will-change:transform;"><div style="width:100%;height:100%;border-radius:50%;background:radial-gradient(circle,rgba(70,120,235,0.2),transparent 65%);filter:blur(34px);animation:sxDrift3 27s ease-in-out infinite;"></div></div>
   </div>
 
   <!-- blueprint grid -->
   <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;opacity:var(--sx-grid,1);background-image:linear-gradient(rgba(140,175,215,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(140,175,215,0.05) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(180deg,#000,#000 68%,transparent);-webkit-mask-image:linear-gradient(180deg,#000,#000 68%,transparent);"></div>
 
   <!-- NAV -->
-  <nav id="sb-nav" style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:17px clamp(18px,5vw,48px);border-bottom:1px solid rgba(150,180,215,0);transition:background .35s ease,border-color .35s ease,backdrop-filter .35s ease;">
-    <a href="#top" style="display:flex;align-items:center;gap:12px;">
-      <img src="/logo-icon.webp" alt="Solox Tek" width="30" height="30" style="display:block;width:30px;height:30px;">
-      <span class="sx-wordmark" style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16.5px;letter-spacing:0.16em;color:#EEF4FB;">SOLOX&nbsp;TEK</span>
-    </a>
-    <div style="display:flex;align-items:center;gap:clamp(14px,3vw,26px);">
-      <a href="/services" class="navlink" style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:14px;letter-spacing:.02em;color:#C4D6EA;transition:color .25s ease;">Services</a>
-      <a href="https://cal.com/solox-tek" data-cal-link="solox-tek" data-cal-config='{"layout":"month_view"}' class="hx0" style="display:inline-flex;align-items:center;gap:8px;white-space:nowrap;padding:11px 22px;border-radius:999px;border:1px solid rgba(54,169,230,0.5);background:rgba(54,169,230,0.1);color:#DCECF8;font-family:'Sora Variable',sans-serif;font-weight:500;font-size:14px;letter-spacing:.01em;transition:background .3s ease,box-shadow .3s ease,transform .3s ease;">Book a call</a>
-    </div>
-  </nav>
+  <Nav fixed={true} logoHref="#top" />
 
+  <main>
   <!-- HERO -->
   <header id="top" style="position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px clamp(20px,5vw,48px) 100px;">
     <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;mask-image:radial-gradient(120% 95% at 50% 42%,#000 42%,transparent 82%);-webkit-mask-image:radial-gradient(120% 95% at 50% 42%,#000 42%,transparent 82%);opacity:.7;">
@@ -109,7 +110,7 @@ a{color:inherit;text-decoration:none;}
       <h1 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(42px,7.6vw,96px);line-height:1.04;letter-spacing:-0.035em;margin:0 0 30px;color:#F5FAFE;">AI automation that<br><span style="font-weight:600;background:linear-gradient(110deg,#8FE0FF,var(--sx-accent,#36A9E6) 55%,#5BC7C0);-webkit-background-clip:text;background-clip:text;color:transparent;">survives production.</span></h1>
       <p style="font-family:'Manrope Variable',sans-serif;font-weight:400;font-size:clamp(17px,1.55vw,21px);line-height:1.66;color:#AEC4DC;max-width:60ch;margin:0 auto 42px;">A senior engineering team with over a decade of production experience. We build automation you actually own: reliable, secure, and made to scale. Not a black box that breaks the moment your business changes.</p>
       <div style="display:flex;flex-wrap:wrap;gap:15px;justify-content:center;">
-        <a href="https://cal.com/solox-tek" data-cal-link="solox-tek" data-cal-config='{"layout":"month_view"}' class="hx1" style="display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:14px;background:linear-gradient(180deg,var(--sx-accent,#36A9E6),#1B7CC0);color:#fff;font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16px;box-shadow:0 0 0 1px rgba(143,224,255,0.25) inset,0 16px 44px rgba(27,124,192,0.46);transition:transform .25s ease,box-shadow .25s ease;">Book a free discovery call</a>
+        <a href="https://cal.com/solox-tek" data-cal-link="solox-tek" data-cal-config='{"layout":"month_view"}' class="hx1" style="display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:14px;background:linear-gradient(180deg,#1B76B8,#146199);color:#fff;font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16px;box-shadow:0 0 0 1px rgba(143,224,255,0.25) inset,0 16px 44px rgba(27,124,192,0.46);transition:transform .25s ease,box-shadow .25s ease;">Book a free discovery call</a>
         <a href="#process" class="hx2" style="display:inline-flex;align-items:center;gap:9px;padding:16px 28px;border-radius:14px;border:1px solid rgba(150,180,215,0.26);background:rgba(255,255,255,0.02);color:#D6E4F2;font-family:'Sora Variable',sans-serif;font-weight:500;font-size:16px;transition:border-color .25s ease,background .25s ease,transform .25s ease;">See how we work <span style="color:var(--sx-accent,#36A9E6);">→</span></a>
       </div>
       <div style="margin-top:54px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px 26px;font-family:'Sora Variable',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.04em;color:#7E97B4;">
@@ -118,9 +119,9 @@ a{color:inherit;text-decoration:none;}
         <span style="color:#A6BDD6;">You own the code</span>
       </div>
     </div>
-    <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:28px;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:'Sora Variable',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.34em;color:#5E7895;animation:sxBobB 2.6s ease-in-out infinite;">
+    <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:28px;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:'Sora Variable',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.34em;color:#6F87A4;animation:sxBobB 2.6s ease-in-out infinite;">
       <span style="padding-left:0.34em;">SCROLL</span>
-      <span style="width:1px;height:26px;background:linear-gradient(#5E7895,transparent);"></span>
+      <span style="width:1px;height:26px;background:linear-gradient(#6F87A4,transparent);"></span>
     </div>
   </header>
 
@@ -155,10 +156,10 @@ a{color:inherit;text-decoration:none;}
   <section id="cost" style="position:relative;padding:0 clamp(20px,5vw,48px) var(--sx-pad,clamp(84px,11vw,160px));">
     <div data-reveal style="max-width:1120px;margin:0 auto;text-align:center;">
       <div style="display:flex;align-items:baseline;justify-content:center;gap:4px;line-height:1;">
-        <span id="sb-stat" data-target="20" style="font-family:'Sora Variable',sans-serif;font-weight:700;font-size:clamp(96px,18vw,228px);letter-spacing:-0.05em;background:linear-gradient(180deg,#F6C775,#E6A23C);-webkit-background-clip:text;background-clip:text;color:transparent;">20</span>
+        <span id="sb-stat" data-target="20" style="display:inline-block;min-width:2ch;text-align:right;font-variant-numeric:tabular-nums;font-family:'Sora Variable',sans-serif;font-weight:700;font-size:clamp(96px,18vw,228px);letter-spacing:-0.05em;background:linear-gradient(180deg,#F6C775,#E6A23C);-webkit-background-clip:text;background-clip:text;color:transparent;">20</span>
         <span style="font-family:'Sora Variable',sans-serif;font-weight:700;font-size:clamp(44px,8vw,104px);color:#E6A23C;letter-spacing:-0.03em;">%+</span>
       </div>
-      <div style="font-family:'Sora Variable',sans-serif;font-weight:400;font-size:clamp(15px,1.4vw,19px);letter-spacing:0.02em;color:#B9C9DC;margin:6px 0 30px;">of every work week lost to repetitive manual tasks</div>
+      <div style="font-family:'Sora Variable',sans-serif;font-weight:400;font-size:clamp(15px,1.4vw,19px);letter-spacing:0.02em;color:#B9C9DC;margin:6px 0 30px;">of the work week goes to repetitive manual tasks in the teams we audit</div>
       <h2 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(26px,3.6vw,46px);line-height:1.1;letter-spacing:-0.025em;margin:0 auto 20px;color:#F5FAFE;max-width:20ch;">Manual work quietly <span style="font-weight:600;">eats your week.</span></h2>
       <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(16px,1.3vw,18.5px);line-height:1.72;color:#A6BCD6;margin:0 auto;max-width:62ch;">On top of that come the errors that reach customers and the automations someone still has to babysit. That's real time and money walking out the door, and it scales your problems, not your output.</p>
     </div>
@@ -171,7 +172,7 @@ a{color:inherit;text-decoration:none;}
         <h2 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(30px,4.6vw,56px);line-height:1.07;letter-spacing:-0.03em;margin:0;color:#F5FAFE;">Scalable AI automation that <span style="font-weight:600;">holds up in production.</span></h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
-        <div data-reveal class="hx3" style="border-radius:24px;border:1px solid rgba(150,180,215,0.12);background:linear-gradient(120deg,rgba(20,42,68,0.45),rgba(10,22,38,0.2));padding:clamp(30px,3.5vw,44px);transition:border-color .35s ease,transform .35s ease,box-shadow .35s ease;">
+        <a href="/services" data-reveal class="hx3" style="display:block;border-radius:24px;border:1px solid rgba(150,180,215,0.12);background:linear-gradient(120deg,rgba(20,42,68,0.45),rgba(10,22,38,0.2));padding:clamp(30px,3.5vw,44px);transition:border-color .35s ease,transform .35s ease,box-shadow .35s ease;">
           <div style="display:flex;gap:5px;margin-bottom:24px;">
             <span style="width:11px;height:11px;border-radius:3px;background:var(--sx-accent,#36A9E6);"></span>
             <span style="width:11px;height:11px;border-radius:3px;background:rgba(143,224,255,0.45);"></span>
@@ -179,18 +180,18 @@ a{color:inherit;text-decoration:none;}
           </div>
           <h3 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(21px,2.1vw,28px);letter-spacing:-0.01em;margin:0 0 14px;color:#F5FAFE;">Ops &amp; document automation</h3>
           <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(15.5px,1.3vw,18px);line-height:1.68;color:#A6BCD6;margin:0;">We connect your tools, automate repetitive processes, and add AI where it removes real work: document processing, data extraction, routing, and reporting.</p>
-        </div>
-        <div data-reveal class="hx4" style="border-radius:24px;border:1px solid rgba(150,180,215,0.12);background:linear-gradient(120deg,rgba(20,42,68,0.45),rgba(10,22,38,0.2));padding:clamp(30px,3.5vw,44px);transition:border-color .35s ease,transform .35s ease,box-shadow .35s ease;">
+        </a>
+        <a href="/services" data-reveal class="hx4" style="display:block;border-radius:24px;border:1px solid rgba(150,180,215,0.12);background:linear-gradient(120deg,rgba(20,42,68,0.45),rgba(10,22,38,0.2));padding:clamp(30px,3.5vw,44px);transition:border-color .35s ease,transform .35s ease,box-shadow .35s ease;">
           <div style="display:flex;gap:5px;margin-bottom:24px;">
             <span style="width:11px;height:11px;border-radius:3px;background:var(--sx-accent,#36A9E6);"></span>
             <span style="width:11px;height:11px;border-radius:3px;background:rgba(143,224,255,0.45);"></span>
             <span style="width:11px;height:11px;border-radius:3px;background:rgba(143,224,255,0.2);"></span>
           </div>
           <h3 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(21px,2.1vw,28px);letter-spacing:-0.01em;margin:0 0 14px;color:#F5FAFE;">GTM &amp; revenue automation</h3>
-          <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(15.5px,1.3vw,18px);line-height:1.68;color:#A6BCD6;margin:0;">We automate your pipeline end to end: capturing leads, enrichment, scoring, personalized outreach, CRM sync, and follow up, with our GTM specialists shaping the strategy.</p>
-        </div>
+          <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(15.5px,1.3vw,18px);line-height:1.68;color:#A6BCD6;margin:0;">We automate your pipeline end to end: lead capture, enrichment, scoring, personalized outreach, CRM sync, and follow up, with our GTM specialists shaping the strategy.</p>
+        </a>
       </div>
-      <p data-reveal style="text-align:center;font-family:'Manrope Variable',sans-serif;font-size:clamp(15px,1.3vw,18px);line-height:1.6;color:#92A9C6;margin:30px auto 0;max-width:70ch;">Built like real software. Owned end to end, and made to scale.</p>
+      <p data-reveal style="text-align:center;font-family:'Manrope Variable',sans-serif;font-size:clamp(15px,1.3vw,18px);line-height:1.6;color:#92A9C6;margin:30px auto 0;max-width:70ch;">Built like real software. Owned end to end, and made to scale. <a href="/services" style="color:#8FE0FF;font-weight:600;">See all AI automation services →</a></p>
     </div>
   </section>
 
@@ -199,7 +200,7 @@ a{color:inherit;text-decoration:none;}
     <div style="max-width:1120px;margin:0 auto;">
       <div data-reveal style="max-width:820px;margin:0 auto clamp(44px,5vw,66px);text-align:center;">
         <h2 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(30px,4.6vw,56px);line-height:1.07;letter-spacing:-0.03em;margin:0 0 22px;color:#F5FAFE;">Engineered, <span style="font-weight:600;">not vibe coded.</span></h2>
-        <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(16px,1.3vw,18.5px);line-height:1.72;color:#A6BCD6;margin:0 auto;max-width:64ch;">Most AI automation out there is held together with duct tape and falls apart under load. We're a senior engineering team with over a decade of production experience. Code you own, instead of a black box that breaks the moment your business changes.</p>
+        <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(16px,1.3vw,18.5px);line-height:1.72;color:#A6BCD6;margin:0 auto;max-width:64ch;">Most AI automation out there is held together with duct tape and falls apart under load. We're a senior AI automation agency that builds like a software team: real error handling, monitoring, and testing before anything touches your business. Everything we ship is documented, maintainable, and fully yours.</p>
       </div>
       <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border-top:1px solid rgba(150,180,215,0.14);">
         <div style="padding:34px clamp(18px,2.5vw,34px);border-right:1px solid rgba(150,180,215,0.1);">
@@ -210,12 +211,28 @@ a{color:inherit;text-decoration:none;}
         <div style="padding:34px clamp(18px,2.5vw,34px);border-right:1px solid rgba(150,180,215,0.1);">
           <div style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--sx-accent,#36A9E6);margin-bottom:18px;">02</div>
           <h3 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(20px,2vw,25px);margin:0 0 12px;color:#F5FAFE;">Security</h3>
-          <p style="font-family:'Manrope Variable',sans-serif;font-size:16px;line-height:1.62;color:#9FB6D0;margin:0;">Safe by design, drawn from our DeFi work.</p>
+          <p style="font-family:'Manrope Variable',sans-serif;font-size:16px;line-height:1.62;color:#9FB6D0;margin:0;">Discipline from our DeFi work, where a bug costs real money.</p>
         </div>
         <div style="padding:34px clamp(18px,2.5vw,34px);">
           <div style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--sx-accent,#36A9E6);margin-bottom:18px;">03</div>
           <h3 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(20px,2vw,25px);margin:0 0 12px;color:#F5FAFE;">You own the code</h3>
           <p style="font-family:'Manrope Variable',sans-serif;font-size:16px;line-height:1.62;color:#9FB6D0;margin:0;">No black box, nothing locked in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY -->
+  <section id="work" style="position:relative;padding:0 clamp(20px,5vw,48px);">
+    <div data-reveal style="max-width:1120px;margin:0 auto;">
+      <div style="border-radius:26px;border:1px solid rgba(150,180,215,0.14);background:linear-gradient(140deg,rgba(20,42,68,0.5),rgba(10,22,38,0.24));padding:clamp(30px,4vw,52px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,3.5vw,48px);align-items:center;">
+        <div>
+          <div style="font-family:'Sora Variable',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8FA9C6;margin-bottom:16px;">Case study</div>
+          <h2 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(24px,3vw,38px);line-height:1.14;letter-spacing:-0.02em;margin:0;color:#F5FAFE;">Limo Mont, a family transport business, <span style="font-weight:600;">modernized end to end.</span></h2>
+        </div>
+        <div>
+          <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(15.5px,1.3vw,18px);line-height:1.7;color:#A6BCD6;margin:0 0 18px;">We digitalized their bookkeeping, automated the internal processes around it, and built an AI agent that answers pricing and service questions straight from their own data. Day to day operations now run with far less manual work, and everything we built is theirs.</p>
+          <a href="https://limomont.rs" target="_blank" rel="noopener" style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:14px;color:#8FE0FF;">limomont.rs ↗</a>
         </div>
       </div>
     </div>
@@ -229,22 +246,22 @@ a{color:inherit;text-decoration:none;}
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(34px,5vw,64px);">
         <div data-reveal>
-          <div style="font-family:'Sora Variable',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8FA9C6;margin-bottom:28px;">Our process</div>
+          <h3 style="font-family:'Sora Variable',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8FA9C6;margin:0 0 28px;">Our process</h3>
           <div style="position:relative;padding-left:30px;display:flex;flex-direction:column;gap:26px;">
             <div style="position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,var(--sx-accent,#36A9E6),rgba(54,169,230,0.1));"></div>
-            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin-bottom:5px;">Discovery &amp; audit</div><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">We map your workflows and find the bottleneck with the biggest payoff.</div></div>
-            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin-bottom:5px;">Design</div><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">The right architecture and tools for your case.</div></div>
-            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin-bottom:5px;">Build &amp; integrate</div><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">Tested, reliable, and wired into your stack.</div></div>
-            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin-bottom:5px;">Support &amp; iterate</div><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">Monitoring, ownership, and improvements over time.</div></div>
+            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><h4 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin:0 0 5px;">Discovery &amp; audit</h4><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">We map your workflows and find the bottleneck with the biggest payoff.</div></div>
+            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><h4 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin:0 0 5px;">Design</h4><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">The right architecture and tools for your case.</div></div>
+            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><h4 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin:0 0 5px;">Build &amp; integrate</h4><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">Tested, reliable, and wired into your stack.</div></div>
+            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><h4 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin:0 0 5px;">Support &amp; iterate</h4><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">Monitoring, ownership, and improvements over time.</div></div>
           </div>
         </div>
         <div data-reveal>
-          <div style="font-family:'Sora Variable',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8FA9C6;margin-bottom:28px;">Engagement model</div>
+          <h3 style="font-family:'Sora Variable',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8FA9C6;margin:0 0 28px;">Engagement model</h3>
           <div style="position:relative;padding-left:30px;display:flex;flex-direction:column;gap:26px;">
             <div style="position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,rgba(150,180,215,0.4),rgba(150,180,215,0.08));"></div>
-            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:#9FB6D0;"></span><div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin-bottom:5px;">Discovery &amp; roadmap</div><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">A paid, focused audit of one workflow, with a plan scored by ROI.</div></div>
-            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:#9FB6D0;"></span><div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin-bottom:5px;">Build</div><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">A fixed scope and a fixed price, so you know the cost before we start.</div></div>
-            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:#9FB6D0;"></span><div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin-bottom:5px;">Support &amp; iteration</div><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">Ongoing monitoring, ownership, and new builds, month to month.</div></div>
+            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:#9FB6D0;"></span><h4 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin:0 0 5px;">Audit &amp; roadmap</h4><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">After the free call, a paid and focused audit of one workflow, with a plan ranked by ROI.</div></div>
+            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:#9FB6D0;"></span><h4 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin:0 0 5px;">Build</h4><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">A fixed scope and a fixed price, so you know the cost before we start.</div></div>
+            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:#9FB6D0;"></span><h4 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin:0 0 5px;">Support &amp; iteration</h4><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">Ongoing monitoring, ownership, and new builds, month to month.</div></div>
           </div>
         </div>
       </div>
@@ -268,55 +285,50 @@ a{color:inherit;text-decoration:none;}
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section id="faq" style="position:relative;padding:clamp(36px,4.5vw,60px) clamp(20px,5vw,48px);">
+    <div style="max-width:880px;margin:0 auto;">
+      <div data-reveal style="text-align:center;margin:0 0 clamp(30px,3.5vw,46px);">
+        <h2 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(28px,4.2vw,50px);line-height:1.08;letter-spacing:-0.03em;margin:0;color:#F5FAFE;">Frequently asked <span style="font-weight:600;">questions.</span></h2>
+      </div>
+      <div data-reveal class="faq" style="display:flex;flex-direction:column;border-top:1px solid rgba(150,180,215,0.12);">
+        {faqs.map((f) => (
+          <details style="border-bottom:1px solid rgba(150,180,215,0.12);">
+            <summary style="display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 4px;font-family:'Sora Variable',sans-serif;font-weight:500;font-size:clamp(16px,1.5vw,19px);color:#E4EEF8;cursor:pointer;">
+              <span>{f.q}</span>
+              <span class="faq-x" aria-hidden="true" style="flex:none;color:var(--sx-accent,#36A9E6);font-weight:600;font-size:22px;line-height:1;transition:transform .25s ease;">+</span>
+            </summary>
+            <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(15px,1.3vw,17.5px);line-height:1.7;color:#A6BCD6;margin:0;padding:0 4px 22px;max-width:70ch;">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section id="contact" style="position:relative;padding:clamp(36px,4.5vw,60px) clamp(20px,5vw,48px) clamp(72px,8vw,120px);">
     <div data-reveal style="position:relative;max-width:880px;margin:0 auto;text-align:center;">
       <h2 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(34px,5.4vw,70px);line-height:1.04;letter-spacing:-0.035em;margin:0 0 24px;color:#F6FAFE;">Let's find one process <span style="font-weight:600;background:linear-gradient(110deg,#8FE0FF,var(--sx-accent,#36A9E6) 60%,#5BC7C0);-webkit-background-clip:text;background-clip:text;color:transparent;">worth automating.</span></h2>
       <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(16px,1.4vw,20px);line-height:1.65;color:#AEC4DC;margin:0 auto 42px;max-width:54ch;">Book a free 30 minute discovery call. We'll pick the workflow with the biggest payoff and scope a pilot.</p>
       <div style="display:flex;flex-wrap:wrap;gap:15px;justify-content:center;align-items:center;">
-        <a href="https://cal.com/solox-tek" data-cal-link="solox-tek" data-cal-config='{"layout":"month_view"}' class="hx5" style="display:inline-flex;align-items:center;gap:10px;padding:17px 36px;border-radius:14px;background:linear-gradient(180deg,var(--sx-accent,#36A9E6),#1B7CC0);color:#fff;font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16.5px;box-shadow:0 0 0 1px rgba(143,224,255,0.25) inset,0 18px 50px rgba(27,124,192,0.5);transition:transform .25s ease,box-shadow .25s ease;">Book a discovery call</a>
+        <a href="https://cal.com/solox-tek" data-cal-link="solox-tek" data-cal-config='{"layout":"month_view"}' class="hx5" style="display:inline-flex;align-items:center;gap:10px;padding:17px 36px;border-radius:14px;background:linear-gradient(180deg,#1B76B8,#146199);color:#fff;font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16.5px;box-shadow:0 0 0 1px rgba(143,224,255,0.25) inset,0 18px 50px rgba(27,124,192,0.5);transition:transform .25s ease,box-shadow .25s ease;">Book a free discovery call</a>
         <span style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:13.5px;letter-spacing:0.08em;color:#7E97B4;">or <a href="mailto:contact@solox-tek.com?subject=Free%20discovery%20call" style="color:#8FE0FF;">contact@solox-tek.com</a></span>
       </div>
+      <p style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.04em;color:#7E97B4;margin:20px 0 0;">Your call is with a senior engineer, not a sales rep.</p>
     </div>
   </section>
+  </main>
 
   <!-- FOOTER -->
-  <footer style="position:relative;border-top:1px solid rgba(150,180,215,0.12);padding:36px clamp(20px,5vw,48px);">
-    <div style="max-width:1120px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <img src="/logo-icon.webp" alt="Solox Tek" width="26" height="26" style="display:block;width:26px;height:26px;opacity:.9;">
-        <span style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:14.5px;letter-spacing:0.15em;color:#C4D6EA;">SOLOX&nbsp;TEK</span>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:24px;font-family:'Sora Variable',sans-serif;font-size:13.5px;letter-spacing:0.03em;">
-        <a href="/services" style="color:#AEC4DC;">Services</a>
-        <a href="/paid-media" style="color:#AEC4DC;">Paid Media</a>
-      </div>
-      <div style="font-family:'Sora Variable',sans-serif;font-weight:400;font-size:12.5px;letter-spacing:0.04em;color:#6F87A4;">© 2026 · AI automation that survives production</div>
-    </div>
-  </footer>
+  <Footer />
 
 </div>
   <script is:inline>
 (function(){
   function init(){
-    let _cleanup; let rafStat;
+    let rafStat;
 
-    _cleanup = [];
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // ---- Nav scroll state ----
-    const nav = document.getElementById('sb-nav');
-    const onScroll = () => {
-      if (!nav) return;
-      const s = window.scrollY > 24;
-      nav.style.background = s ? 'rgba(6,18,30,0.78)' : 'rgba(6,18,30,0)';
-      nav.style.borderBottomColor = s ? 'rgba(150,180,215,0.13)' : 'rgba(150,180,215,0)';
-      nav.style.backdropFilter = s ? 'blur(16px)' : 'none';
-      nav.style.webkitBackdropFilter = s ? 'blur(16px)' : 'none';
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    _cleanup.push(() => window.removeEventListener('scroll', onScroll));
 
     // ---- Scroll reveals (fade + rise + slight scale) ----
     if (!reduce && 'IntersectionObserver' in window) {
@@ -336,7 +348,6 @@ a{color:inherit;text-decoration:none;}
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
       reveals.forEach(el => io.observe(el));
-      _cleanup.push(() => io.disconnect());
     }
 
     // ---- Stat counter ----
@@ -360,7 +371,6 @@ a{color:inherit;text-decoration:none;}
         ents.forEach(e => { if (e.isIntersecting) { run(); io2.unobserve(e.target); } });
       }, { threshold: 0.6 });
       io2.observe(stat);
-      _cleanup.push(() => io2.disconnect());
     }
 
     // ---- Parallax (mouse in hero + scroll) on aurora orbs ----
@@ -371,8 +381,7 @@ a{color:inherit;text-decoration:none;}
         ticking = false;
         orbs.forEach(o => {
           const k = parseFloat(o.getAttribute('data-orb')) || 0.1;
-          o.style.marginLeft = (mx * k * 60) + 'px';
-          o.style.marginTop = ((my * k * 60) + (sy * k * 0.25)) + 'px';
+          o.style.transform = 'translate3d(' + (mx * k * 60) + 'px,' + ((my * k * 60) + (sy * k * 0.25)) + 'px,0)';
         });
       };
       const req = () => { if (!ticking) { ticking = true; requestAnimationFrame(apply); } };
@@ -384,7 +393,6 @@ a{color:inherit;text-decoration:none;}
       const onScr = () => { sy = window.scrollY; req(); };
       window.addEventListener('pointermove', onMove, { passive: true });
       window.addEventListener('scroll', onScr, { passive: true });
-      _cleanup.push(() => { window.removeEventListener('pointermove', onMove); window.removeEventListener('scroll', onScr); });
     }
 
     // ---- Hero node network ----
@@ -452,7 +460,9 @@ a{color:inherit;text-decoration:none;}
           ctx.beginPath(); ctx.arc(x, y, 7, 0, Math.PI*2); ctx.fill();
         }
       };
+      let running = false;
       const step = () => {
+        if (!running) return;
         for (const nd of nodes) {
           nd.x += nd.vx; nd.y += nd.vy;
           if (nd.x < 0 || nd.x > w) nd.vx *= -1;
@@ -462,12 +472,20 @@ a{color:inherit;text-decoration:none;}
         draw();
         raf = requestAnimationFrame(step);
       };
+      const start = () => { if (running || reduce) return; running = true; raf = requestAnimationFrame(step); };
+      const stop = () => { running = false; cancelAnimationFrame(raf); };
       resize(); init();
-      if (reduce) draw(); else step();
+      if (reduce) draw(); else start();
+      // Pause the loop while the hero is off screen.
+      if (!reduce && 'IntersectionObserver' in window) {
+        const heroIO = new IntersectionObserver((ents) => {
+          ents.forEach(e => { if (e.isIntersecting) start(); else stop(); });
+        }, { threshold: 0 });
+        heroIO.observe(wrap);
+      }
       let rt;
       const onR = () => { clearTimeout(rt); rt = setTimeout(() => { resize(); init(); if (reduce) draw(); }, 180); };
       window.addEventListener('resize', onR);
-      _cleanup.push(() => { cancelAnimationFrame(raf); clearTimeout(rt); window.removeEventListener('resize', onR); });
     }
   
   }
@@ -475,11 +493,4 @@ a{color:inherit;text-decoration:none;}
   else document.addEventListener('DOMContentLoaded', init);
 })();
   </script>
-  <!-- Cal.com embed: turns any [data-cal-link] element into a booking popup -->
-  <script is:inline>
-    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-    Cal("init", { origin: "https://cal.com" });
-    Cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
-  </script>
-</body>
-</html>
+</Layout>

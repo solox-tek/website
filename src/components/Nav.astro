@@ -1,0 +1,45 @@
+---
+// Shared site nav. `fixed` = overlay header used on the homepage (transparent
+// until scroll, with its own scroll-state script); otherwise a sticky solid
+// header for inner pages. Sticky requires ancestors without overflow:hidden;
+// page wrappers use overflow:clip instead.
+const { fixed = false, logoHref = '/' } = Astro.props;
+const navStyle = fixed
+  ? "position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:17px clamp(18px,5vw,48px);border-bottom:1px solid rgba(150,180,215,0);transition:background .35s ease,border-color .35s ease,backdrop-filter .35s ease;"
+  : "position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:17px clamp(18px,5vw,48px);background:rgba(6,18,30,0.78);border-bottom:1px solid rgba(150,180,215,0.13);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);";
+---
+<nav id="sb-nav" style={navStyle}>
+  <a href={logoHref} style="display:flex;align-items:center;gap:12px;">
+    <img src="/logo-icon.webp" alt="" width="30" height="30" style="display:block;width:30px;height:30px;">
+    <span class="sx-wordmark" style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16.5px;letter-spacing:0.16em;color:#EEF4FB;">SOLOX&nbsp;TEK</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:clamp(14px,3vw,26px);">
+    <a href="/services" class="navlink" style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:14px;letter-spacing:.02em;color:#C4D6EA;transition:color .25s ease;">Services</a>
+    <a href="https://cal.com/solox-tek" data-cal-link="solox-tek" data-cal-config='{"layout":"month_view"}' class="hx0" style="display:inline-flex;align-items:center;gap:8px;white-space:nowrap;padding:11px 22px;border-radius:999px;border:1px solid rgba(54,169,230,0.5);background:rgba(54,169,230,0.1);color:#DCECF8;font-family:'Sora Variable',sans-serif;font-weight:500;font-size:14px;letter-spacing:.01em;transition:background .3s ease,box-shadow .3s ease,transform .3s ease;">Book a call</a>
+  </div>
+</nav>
+{fixed && <script is:inline>
+(function(){
+  var nav = document.getElementById('sb-nav');
+  var onScroll = function () {
+    if (!nav) return;
+    var s = window.scrollY > 24;
+    nav.style.background = s ? 'rgba(6,18,30,0.78)' : 'rgba(6,18,30,0)';
+    nav.style.borderBottomColor = s ? 'rgba(150,180,215,0.13)' : 'rgba(150,180,215,0)';
+    nav.style.backdropFilter = s ? 'blur(16px)' : 'none';
+    nav.style.webkitBackdropFilter = s ? 'blur(16px)' : 'none';
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>}
+<style is:global>
+.hx0:hover{background:rgba(54,169,230,0.22) !important;box-shadow:0 0 26px rgba(54,169,230,0.4) !important;transform:translateY(-2px) !important;}
+.navlink:hover{color:#EEF4FB !important;}
+@media (max-width:560px){
+  #sb-nav{padding-left:16px !important;padding-right:16px !important;}
+  #sb-nav .sx-wordmark{font-size:14px !important;letter-spacing:0.1em !important;}
+  #sb-nav .navlink{font-size:13px !important;}
+  #sb-nav .hx0{padding:9px 15px !important;font-size:13px !important;}
+}
+</style>
