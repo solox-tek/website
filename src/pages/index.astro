@@ -101,6 +101,7 @@ const faqs = [
   <!-- NAV -->
   <Nav fixed={true} logoHref="#top" />
 
+  <main>
   <!-- HERO -->
   <header id="top" style="position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px clamp(20px,5vw,48px) 100px;">
     <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;mask-image:radial-gradient(120% 95% at 50% 42%,#000 42%,transparent 82%);-webkit-mask-image:radial-gradient(120% 95% at 50% 42%,#000 42%,transparent 82%);opacity:.7;">
@@ -230,22 +231,22 @@ const faqs = [
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(34px,5vw,64px);">
         <div data-reveal>
-          <div style="font-family:'Sora Variable',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8FA9C6;margin-bottom:28px;">Our process</div>
+          <h3 style="font-family:'Sora Variable',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8FA9C6;margin:0 0 28px;">Our process</h3>
           <div style="position:relative;padding-left:30px;display:flex;flex-direction:column;gap:26px;">
             <div style="position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,var(--sx-accent,#36A9E6),rgba(54,169,230,0.1));"></div>
-            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin-bottom:5px;">Discovery &amp; audit</div><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">We map your workflows and find the bottleneck with the biggest payoff.</div></div>
-            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin-bottom:5px;">Design</div><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">The right architecture and tools for your case.</div></div>
-            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin-bottom:5px;">Build &amp; integrate</div><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">Tested, reliable, and wired into your stack.</div></div>
-            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin-bottom:5px;">Support &amp; iterate</div><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">Monitoring, ownership, and improvements over time.</div></div>
+            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><h4 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin:0 0 5px;">Discovery &amp; audit</h4><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">We map your workflows and find the bottleneck with the biggest payoff.</div></div>
+            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><h4 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin:0 0 5px;">Design</h4><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">The right architecture and tools for your case.</div></div>
+            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><h4 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin:0 0 5px;">Build &amp; integrate</h4><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">Tested, reliable, and wired into your stack.</div></div>
+            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--sx-accent,#36A9E6);box-shadow:0 0 12px var(--sx-accent,#36A9E6);"></span><h4 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin:0 0 5px;">Support &amp; iterate</h4><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">Monitoring, ownership, and improvements over time.</div></div>
           </div>
         </div>
         <div data-reveal>
-          <div style="font-family:'Sora Variable',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8FA9C6;margin-bottom:28px;">Engagement model</div>
+          <h3 style="font-family:'Sora Variable',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8FA9C6;margin:0 0 28px;">Engagement model</h3>
           <div style="position:relative;padding-left:30px;display:flex;flex-direction:column;gap:26px;">
             <div style="position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,rgba(150,180,215,0.4),rgba(150,180,215,0.08));"></div>
-            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:#9FB6D0;"></span><div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin-bottom:5px;">Audit &amp; roadmap</div><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">After the free call, a paid and focused audit of one workflow, with a plan ranked by ROI.</div></div>
-            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:#9FB6D0;"></span><div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin-bottom:5px;">Build</div><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">A fixed scope and a fixed price, so you know the cost before we start.</div></div>
-            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:#9FB6D0;"></span><div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin-bottom:5px;">Support &amp; iteration</div><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">Ongoing monitoring, ownership, and new builds, month to month.</div></div>
+            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:#9FB6D0;"></span><h4 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin:0 0 5px;">Audit &amp; roadmap</h4><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">After the free call, a paid and focused audit of one workflow, with a plan ranked by ROI.</div></div>
+            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:#9FB6D0;"></span><h4 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin:0 0 5px;">Build</h4><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">A fixed scope and a fixed price, so you know the cost before we start.</div></div>
+            <div style="position:relative;"><span style="position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:#9FB6D0;"></span><h4 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:18px;color:#EEF4FB;margin:0 0 5px;">Support &amp; iteration</h4><div style="font-family:'Manrope Variable',sans-serif;font-size:15px;line-height:1.55;color:#92A9C6;">Ongoing monitoring, ownership, and new builds, month to month.</div></div>
           </div>
         </div>
       </div>
@@ -300,6 +301,7 @@ const faqs = [
       </div>
     </div>
   </section>
+  </main>
 
   <!-- FOOTER -->
   <Footer />

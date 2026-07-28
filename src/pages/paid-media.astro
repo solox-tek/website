@@ -153,6 +153,7 @@ const steps = [
   <!-- NAV -->
   <Nav logoHref="/" />
 
+  <main>
   <!-- HERO -->
   <header style="position:relative;z-index:2;text-align:center;padding:60px clamp(20px,5vw,48px) 40px;max-width:760px;margin:0 auto;">
     <div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.24em;color:#8FE0FF;margin-bottom:16px;">PAID MEDIA MANAGEMENT</div>
@@ -162,13 +163,14 @@ const steps = [
 
   <!-- PRICING -->
   <section style="position:relative;z-index:2;padding:20px clamp(20px,5vw,48px) 20px;max-width:1080px;margin:0 auto;">
+    <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;margin:0;">Pricing and packages</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;">
       {tiers.map((t) => (
         <div class="tier" style={`display:flex;flex-direction:column;border-radius:18px;padding:28px 24px;position:relative;background:${t.featured ? 'rgba(54,169,230,0.06)' : 'rgba(255,255,255,0.03)'};border:${t.featured ? '2px solid rgba(54,169,230,0.55)' : '1px solid rgba(150,180,215,0.16)'};`}>
           {t.featured && (
             <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(180deg,#36A9E6,#1B7CC0);color:#fff;font-family:'Sora Variable',sans-serif;font-weight:600;font-size:10.5px;letter-spacing:0.14em;padding:5px 14px;border-radius:999px;white-space:nowrap;">MOST POPULAR</div>
           )}
-          <div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16px;letter-spacing:0.14em;color:#EEF4FB;">{t.name}</div>
+          <h3 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16px;letter-spacing:0.14em;color:#EEF4FB;margin:0;">{t.name}</h3>
           <div style="font-size:13px;color:#7E97B4;margin:5px 0 18px;">{t.sub}</div>
           <div style={`font-family:'Sora Variable',sans-serif;font-weight:600;font-size:38px;color:${t.featured ? '#8FE0FF' : '#F6FAFE'};line-height:1;`}>{t.price}</div>
           <div style="font-size:13px;color:#7E97B4;margin:6px 0 4px;">per month</div>
@@ -197,7 +199,7 @@ const steps = [
       {steps.map((s) => (
         <div class="step" style="border:1px solid rgba(150,180,215,0.16);border-radius:16px;padding:24px 22px;background:rgba(255,255,255,0.02);">
           <div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:26px;color:#36A9E6;margin-bottom:12px;">{s.n}</div>
-          <div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16px;color:#EEF4FB;margin-bottom:8px;">{s.title}</div>
+          <h3 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16px;color:#EEF4FB;margin:0 0 8px;">{s.title}</h3>
           <div style="font-family:'Manrope Variable',sans-serif;font-size:13.5px;line-height:1.55;color:#AEC4DC;">{s.body}</div>
         </div>
       ))}
@@ -229,6 +231,7 @@ const steps = [
       <span style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:13.5px;letter-spacing:0.08em;color:#7E97B4;">or <a href="mailto:contact@solox-tek.com?subject=Paid%20Media" style="color:#8FE0FF;">contact@solox-tek.com</a></span>
     </div>
   </section>
+  </main>
 
   <!-- FOOTER -->
   <Footer />
