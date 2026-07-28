@@ -43,6 +43,30 @@ const growth = [
   description="Solox Tek services: AI automation, product engineering, DevOps, and Web3, plus paid media. A senior engineering team that ships and runs real systems in production."
   path="/services/"
 >
+  <script type="application/ld+json" is:inline slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://solox-tek.com/services/#breadcrumbs",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://solox-tek.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://solox-tek.com/services/" }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://solox-tek.com/services/#services",
+        "name": "Solox Tek services",
+        "itemListElement": [...engineering, ...growth].map((s, i) => ({
+          "@type": "ListItem",
+          "position": i + 1,
+          "name": s.name,
+          "description": s.tagline
+        }))
+      }
+    ]
+  })} />
   <style is:global>
 .hx1:hover{transform:translateY(-3px) !important;box-shadow:0 0 0 1px rgba(143,224,255,0.4) inset,0 22px 56px rgba(27,124,192,0.62) !important;}
 .card{transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;}
