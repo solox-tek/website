@@ -3,6 +3,34 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+
+// Rendered in the FAQ section and mirrored verbatim into FAQPage JSON-LD.
+const faqs = [
+  {
+    q: 'What does an AI automation agency do?',
+    a: 'An AI automation agency connects your tools, automates repetitive processes, and adds AI where it removes real work. We do that as engineers: we build, integrate, and run automation you fully own, from document processing to sales pipelines.',
+  },
+  {
+    q: 'How much does an AI automation project cost?',
+    a: 'Every build is fixed scope and fixed price, set after a short paid audit of the workflow, so you know the full cost before we write a line of code. The free discovery call comes first and tells you what the audit would cover.',
+  },
+  {
+    q: 'How long until something is live?',
+    a: 'A first workflow is usually in production within a few weeks, not months. We start with one process, prove it, and expand from there.',
+  },
+  {
+    q: 'Is our data safe if AI touches it?',
+    a: 'Yes. Your data stays in your accounts, a model receives only the minimum it needs, and we apply the same security discipline we use in our DeFi work.',
+  },
+  {
+    q: 'Do we need our own developers to maintain it?',
+    a: 'No. We monitor and support what we build, and if you have a team we hand over clean, documented code they can run without us.',
+  },
+  {
+    q: 'What actually happens on the discovery call?',
+    a: 'It is a free 30 minute call where we map your workflows and pick the process with the biggest payoff. If automation is not the right fix yet, we tell you honestly.',
+  },
+];
 ---
 <Layout
   title="Solox Tek · AI automation that survives production"
@@ -31,6 +59,15 @@ import Footer from '../components/Footer.astro';
         "name": "Solox Tek",
         "url": "https://solox-tek.com/",
         "publisher": { "@id": "https://solox-tek.com/#organization" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://solox-tek.com/#faq",
+        "mainEntity": faqs.map((f) => ({
+          "@type": "Question",
+          "name": f.q,
+          "acceptedAnswer": { "@type": "Answer", "text": f.a }
+        }))
       }
     ]
   })} />
@@ -45,6 +82,9 @@ import Footer from '../components/Footer.astro';
 .hx3:hover{border-color:rgba(143,224,255,0.4) !important;transform:translateY(-4px) !important;box-shadow:0 30px 60px rgba(0,0,0,0.32) !important;}
 .hx4:hover{border-color:rgba(143,224,255,0.4) !important;transform:translateY(-4px) !important;box-shadow:0 30px 60px rgba(0,0,0,0.32) !important;}
 .hx5:hover{transform:translateY(-3px) !important;box-shadow:0 0 0 1px rgba(143,224,255,0.4) inset,0 24px 62px rgba(27,124,192,0.66) !important;}
+.faq summary{list-style:none;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq details[open] .faq-x{transform:rotate(45deg);}
   </style>
 <div id="sb-root" data-screen-label="Solox Tek" style="--sx-accent:#36A9E6;--sx-aurora:1;--sx-pad:clamp(84px,11vw,160px);--sx-grid:1;position:relative;background:#06121E;overflow:hidden;">
 
@@ -225,6 +265,26 @@ import Footer from '../components/Footer.astro';
         <div style="display:flex;align-items:center;gap:16px;padding:18px 4px;border-bottom:1px solid rgba(150,180,215,0.12);"><span style="flex:none;width:22px;height:22px;border-radius:6px;background:rgba(54,169,230,0.14);border:1px solid rgba(143,224,255,0.4);position:relative;"><span style="position:absolute;left:7px;top:3px;width:5px;height:10px;border-right:2px solid var(--sx-accent,#36A9E6);border-bottom:2px solid var(--sx-accent,#36A9E6);transform:rotate(40deg);"></span></span><span style="font-family:'Manrope Variable',sans-serif;font-size:clamp(16px,1.4vw,19px);font-weight:500;color:#E4EEF8;">Fewer errors</span></div>
         <div style="display:flex;align-items:center;gap:16px;padding:18px 4px;border-bottom:1px solid rgba(150,180,215,0.12);"><span style="flex:none;width:22px;height:22px;border-radius:6px;background:rgba(54,169,230,0.14);border:1px solid rgba(143,224,255,0.4);position:relative;"><span style="position:absolute;left:7px;top:3px;width:5px;height:10px;border-right:2px solid var(--sx-accent,#36A9E6);border-bottom:2px solid var(--sx-accent,#36A9E6);transform:rotate(40deg);"></span></span><span style="font-family:'Manrope Variable',sans-serif;font-size:clamp(16px,1.4vw,19px);font-weight:500;color:#E4EEF8;">Systems that scale with you</span></div>
         <div style="display:flex;align-items:center;gap:16px;padding:18px 4px;"><span style="flex:none;width:22px;height:22px;border-radius:6px;background:rgba(54,169,230,0.14);border:1px solid rgba(143,224,255,0.4);position:relative;"><span style="position:absolute;left:7px;top:3px;width:5px;height:10px;border-right:2px solid var(--sx-accent,#36A9E6);border-bottom:2px solid var(--sx-accent,#36A9E6);transform:rotate(40deg);"></span></span><span style="font-family:'Manrope Variable',sans-serif;font-size:clamp(16px,1.4vw,19px);font-weight:500;color:#E4EEF8;">Full ownership of the code, nothing locked to a vendor</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="position:relative;padding:clamp(36px,4.5vw,60px) clamp(20px,5vw,48px);">
+    <div style="max-width:880px;margin:0 auto;">
+      <div data-reveal style="text-align:center;margin:0 0 clamp(30px,3.5vw,46px);">
+        <h2 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(28px,4.2vw,50px);line-height:1.08;letter-spacing:-0.03em;margin:0;color:#F5FAFE;">Frequently asked <span style="font-weight:600;">questions.</span></h2>
+      </div>
+      <div data-reveal class="faq" style="display:flex;flex-direction:column;border-top:1px solid rgba(150,180,215,0.12);">
+        {faqs.map((f) => (
+          <details style="border-bottom:1px solid rgba(150,180,215,0.12);">
+            <summary style="display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 4px;font-family:'Sora Variable',sans-serif;font-weight:500;font-size:clamp(16px,1.5vw,19px);color:#E4EEF8;cursor:pointer;">
+              <span>{f.q}</span>
+              <span class="faq-x" aria-hidden="true" style="flex:none;color:var(--sx-accent,#36A9E6);font-weight:600;font-size:22px;line-height:1;transition:transform .25s ease;">+</span>
+            </summary>
+            <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(15px,1.3vw,17.5px);line-height:1.7;color:#A6BCD6;margin:0;padding:0 4px 22px;max-width:70ch;">{f.a}</p>
+          </details>
+        ))}
       </div>
     </div>
   </section>
