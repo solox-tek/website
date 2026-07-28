@@ -1,8 +1,22 @@
 # Solox Tek
 
-> Solox Tek builds AI automation that survives production. A senior engineering team with over a decade of production experience: reliable, secure, and made to scale.
+> Solox Tek is a senior AI automation agency. We build automation that survives production: reliable, secure, and made to scale, with over a decade of production experience. Alongside AI automation we offer product engineering, DevOps, Web3 development, and paid media management. Booking a free discovery call is the primary way to start.
 
-## Links
+## Pages
 
-- [Website](https://solox-tek.com): One-page overview of Solox Tek and its services.
-- [Contact](mailto:contact@solox-tek.com): Book a free discovery call.
+- [Home](https://solox-tek.com/): What we build, how an engagement runs (free discovery call, then a paid audit with a fixed price plan), and answers to common questions about cost, timelines, data safety, and code ownership.
+- [Services](https://solox-tek.com/services/): The full service catalog: AI automation, product engineering, DevOps and infrastructure, Web3, and paid media.
+- [Paid Media](https://solox-tek.com/paid-media/): Performance marketing on a transparent monthly retainer, from 1,300 to 3,300 EUR per month by ad spend tier, month to month, cancel anytime. Meta certified, covering Meta, Google, and TikTok.
+
+## Frequently asked questions
+
+- What does an AI automation agency do? We connect your tools, automate repetitive processes, and add AI where it removes real work. Everything we build is owned by the client.
+- How much does an AI automation project cost? Every build is fixed scope and fixed price, set after a short paid audit. The free discovery call comes first.
+- How long until something is live? A first workflow is usually in production within a few weeks.
+- Is client data safe? Data stays in the client's accounts and a model receives only the minimum it needs.
+- Who maintains what is built? Solox Tek monitors and supports its builds, and hands over clean documented code.
+
+## Contact
+
+- [Book a free discovery call](https://cal.com/solox-tek)
+- [Email](mailto:contact@solox-tek.com)
