@@ -90,9 +90,9 @@ const faqs = [
 
   <!-- aurora field -->
   <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;opacity:var(--sx-aurora,1);overflow:hidden;">
-    <div data-orb="0.12" style="position:absolute;top:-8%;left:-6%;width:52vw;height:52vw;max-width:720px;max-height:720px;border-radius:50%;background:radial-gradient(circle,rgba(54,169,230,0.34),transparent 64%);filter:blur(26px);animation:sxDrift1 19s ease-in-out infinite;"></div>
-    <div data-orb="0.2" style="position:absolute;top:2%;right:-10%;width:46vw;height:46vw;max-width:640px;max-height:640px;border-radius:50%;background:radial-gradient(circle,rgba(47,200,200,0.22),transparent 66%);filter:blur(30px);animation:sxDrift2 23s ease-in-out infinite;"></div>
-    <div data-orb="0.16" style="position:absolute;top:46%;left:30%;width:50vw;height:50vw;max-width:680px;max-height:680px;border-radius:50%;background:radial-gradient(circle,rgba(70,120,235,0.2),transparent 65%);filter:blur(34px);animation:sxDrift3 27s ease-in-out infinite;"></div>
+    <div data-orb="0.12" style="position:absolute;top:-8%;left:-6%;width:52vw;height:52vw;max-width:720px;max-height:720px;will-change:transform;"><div style="width:100%;height:100%;border-radius:50%;background:radial-gradient(circle,rgba(54,169,230,0.34),transparent 64%);filter:blur(26px);animation:sxDrift1 19s ease-in-out infinite;"></div></div>
+    <div data-orb="0.2" style="position:absolute;top:2%;right:-10%;width:46vw;height:46vw;max-width:640px;max-height:640px;will-change:transform;"><div style="width:100%;height:100%;border-radius:50%;background:radial-gradient(circle,rgba(47,200,200,0.22),transparent 66%);filter:blur(30px);animation:sxDrift2 23s ease-in-out infinite;"></div></div>
+    <div data-orb="0.16" style="position:absolute;top:46%;left:30%;width:50vw;height:50vw;max-width:680px;max-height:680px;will-change:transform;"><div style="width:100%;height:100%;border-radius:50%;background:radial-gradient(circle,rgba(70,120,235,0.2),transparent 65%);filter:blur(34px);animation:sxDrift3 27s ease-in-out infinite;"></div></div>
   </div>
 
   <!-- blueprint grid -->
@@ -157,7 +157,7 @@ const faqs = [
   <section id="cost" style="position:relative;padding:0 clamp(20px,5vw,48px) var(--sx-pad,clamp(84px,11vw,160px));">
     <div data-reveal style="max-width:1120px;margin:0 auto;text-align:center;">
       <div style="display:flex;align-items:baseline;justify-content:center;gap:4px;line-height:1;">
-        <span id="sb-stat" data-target="20" style="font-family:'Sora Variable',sans-serif;font-weight:700;font-size:clamp(96px,18vw,228px);letter-spacing:-0.05em;background:linear-gradient(180deg,#F6C775,#E6A23C);-webkit-background-clip:text;background-clip:text;color:transparent;">20</span>
+        <span id="sb-stat" data-target="20" style="display:inline-block;min-width:2ch;text-align:right;font-variant-numeric:tabular-nums;font-family:'Sora Variable',sans-serif;font-weight:700;font-size:clamp(96px,18vw,228px);letter-spacing:-0.05em;background:linear-gradient(180deg,#F6C775,#E6A23C);-webkit-background-clip:text;background-clip:text;color:transparent;">20</span>
         <span style="font-family:'Sora Variable',sans-serif;font-weight:700;font-size:clamp(44px,8vw,104px);color:#E6A23C;letter-spacing:-0.03em;">%+</span>
       </div>
       <div style="font-family:'Sora Variable',sans-serif;font-weight:400;font-size:clamp(15px,1.4vw,19px);letter-spacing:0.02em;color:#B9C9DC;margin:6px 0 30px;">of the work week goes to repetitive manual tasks in the teams we audit</div>
@@ -368,8 +368,7 @@ const faqs = [
         ticking = false;
         orbs.forEach(o => {
           const k = parseFloat(o.getAttribute('data-orb')) || 0.1;
-          o.style.marginLeft = (mx * k * 60) + 'px';
-          o.style.marginTop = ((my * k * 60) + (sy * k * 0.25)) + 'px';
+          o.style.transform = 'translate3d(' + (mx * k * 60) + 'px,' + ((my * k * 60) + (sy * k * 0.25)) + 'px,0)';
         });
       };
       const req = () => { if (!ticking) { ticking = true; requestAnimationFrame(apply); } };
@@ -449,7 +448,9 @@ const faqs = [
           ctx.beginPath(); ctx.arc(x, y, 7, 0, Math.PI*2); ctx.fill();
         }
       };
+      let running = false;
       const step = () => {
+        if (!running) return;
         for (const nd of nodes) {
           nd.x += nd.vx; nd.y += nd.vy;
           if (nd.x < 0 || nd.x > w) nd.vx *= -1;
@@ -459,12 +460,22 @@ const faqs = [
         draw();
         raf = requestAnimationFrame(step);
       };
+      const start = () => { if (running || reduce) return; running = true; raf = requestAnimationFrame(step); };
+      const stop = () => { running = false; cancelAnimationFrame(raf); };
       resize(); init();
-      if (reduce) draw(); else step();
+      if (reduce) draw(); else start();
+      // Pause the loop while the hero is off screen.
+      if (!reduce && 'IntersectionObserver' in window) {
+        const heroIO = new IntersectionObserver((ents) => {
+          ents.forEach(e => { if (e.isIntersecting) start(); else stop(); });
+        }, { threshold: 0 });
+        heroIO.observe(wrap);
+        _cleanup.push(() => heroIO.disconnect());
+      }
       let rt;
       const onR = () => { clearTimeout(rt); rt = setTimeout(() => { resize(); init(); if (reduce) draw(); }, 180); };
       window.addEventListener('resize', onR);
-      _cleanup.push(() => { cancelAnimationFrame(raf); clearTimeout(rt); window.removeEventListener('resize', onR); });
+      _cleanup.push(() => { stop(); clearTimeout(rt); window.removeEventListener('resize', onR); });
     }
   
   }
