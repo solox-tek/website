@@ -253,20 +253,6 @@ import Footer from '../components/Footer.astro';
     _cleanup = [];
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // ---- Nav scroll state ----
-    const nav = document.getElementById('sb-nav');
-    const onScroll = () => {
-      if (!nav) return;
-      const s = window.scrollY > 24;
-      nav.style.background = s ? 'rgba(6,18,30,0.78)' : 'rgba(6,18,30,0)';
-      nav.style.borderBottomColor = s ? 'rgba(150,180,215,0.13)' : 'rgba(150,180,215,0)';
-      nav.style.backdropFilter = s ? 'blur(16px)' : 'none';
-      nav.style.webkitBackdropFilter = s ? 'blur(16px)' : 'none';
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    _cleanup.push(() => window.removeEventListener('scroll', onScroll));
-
     // ---- Scroll reveals (fade + rise + slight scale) ----
     if (!reduce && 'IntersectionObserver' in window) {
       const reveals = [...document.querySelectorAll('[data-reveal]')];
