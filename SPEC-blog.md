@@ -62,6 +62,8 @@ Match the existing idiom: semantic tag, inline style attribute, hover rules and 
 
 Content collection schema follows the existing content as data convention: copy lives in typed frontmatter and is read once, then mirrored into both the rendered DOM and the JSON-LD from the same source, exactly as `index.astro` already does for `faqs`.
 
+**Post page measurements are in pixels, never `ch`.** The first version gave the header and the article the same declared `max-width:70ch`, which looked correct and was not, because `ch` resolves against each element's own font size. The header renders at 46px and the article at 17px, so the identical declaration produced an 880 and a 683 pixel column, leaving the title block visibly narrower than the body text under it. The header is now 880px and the prose 700px, both explicit, so the relationship is stated rather than emergent. Any future shared measure on this page uses pixels for the same reason.
+
 Copy rules from `SPEC.md` apply unchanged and bind post bodies: no em dashes, no en dashes, no hyphens used as asides in visible text. US English. This is the rule most likely to be violated by generated text, so the dash grep gate over `dist/` is mandatory before every commit that touches content.
 
 ## Work Items

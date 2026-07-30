@@ -94,10 +94,10 @@ const fmtDate = (d) => d.toLocaleDateString('en-US', { month: 'long', day: 'nume
 
   <main>
   <!-- POST HEADER -->
-  <header style="position:relative;z-index:2;padding:60px clamp(20px,5vw,48px) 10px;max-width:70ch;margin:0 auto;">
+  <header style="position:relative;z-index:2;padding:clamp(50px,6vw,76px) clamp(20px,5vw,48px) 0;max-width:880px;margin:0 auto;">
     <div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.24em;color:#8FE0FF;margin-bottom:16px;"><a href="/blog/" style="color:#8FE0FF;">BLOG</a></div>
-    <h1 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(30px,4.4vw,48px);line-height:1.12;letter-spacing:-0.03em;margin:0 0 18px;color:#F6FAFE;">{post.data.title}</h1>
-    <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(15.5px,1.4vw,19px);line-height:1.6;color:#C4D6EA;margin:0 0 18px;">{post.data.description}</p>
+    <h1 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(31px,4.5vw,46px);line-height:1.14;letter-spacing:-0.03em;margin:0 0 22px;color:#F6FAFE;">{post.data.title}</h1>
+    <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(17.5px,1.9vw,23px);line-height:1.52;color:#C4D6EA;margin:0 0 30px;max-width:62ch;">{post.data.description}</p>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;font-family:'Sora Variable',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.05em;color:#7E97B4;">
       <span>{fmtDate(post.data.publishDate)}</span>
       {post.data.tags.length > 0 && (
@@ -108,11 +108,12 @@ const fmtDate = (d) => d.toLocaleDateString('en-US', { month: 'long', day: 'nume
         </span>
       )}
     </div>
+    <div aria-hidden="true" style="margin-top:clamp(28px,3.5vw,38px);border-top:1px solid rgba(150,180,215,0.14);"></div>
   </header>
 
   <!-- POST BODY -->
-  <section style="position:relative;z-index:2;padding:26px clamp(20px,5vw,48px) 10px;">
-    <article class="px" style="max-width:70ch;margin:0 auto;">
+  <section style="position:relative;z-index:2;padding:clamp(40px,5.5vw,68px) clamp(20px,5vw,48px) 10px;">
+    <article class="px" style="max-width:700px;margin:0 auto;">
       <Content />
     </article>
   </section>
