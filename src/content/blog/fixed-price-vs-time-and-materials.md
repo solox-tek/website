@@ -70,4 +70,4 @@ Who owns the result? The code, the infrastructure, the credentials, the document
 
 What did the estimate assume? The assumptions are where the risk lives, and a vendor who cannot list them has not thought about them.
 
-If you are weighing this for a specific build and want a straight read on which model fits and what the unknowns actually are, a short discovery call is the fastest way to get one.
+If you are weighing this for a specific build and want a straight read on which model fits and where the unknowns actually are, that is what the discovery call is for. It is free, it runs 30 minutes, and it comes before any audit or quote. If the honest answer is that you do not need us, you get that too.
