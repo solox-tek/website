@@ -1,6 +1,12 @@
 # Spec: Blog revision, validation advice and first comparison post
 
-Status: draft, awaiting owner approval. Nothing here is implemented.
+Status: bucket R and S implemented and verified. **Bucket T cancelled** on July 30, 2026: it rested on a factual error, described below. Replaced by bucket V.
+
+**Correction, and it invalidates part of this spec.** Every version of this document before this note described Solox Tek as a one person agency. The owner never said that. It was an assumption introduced during the July 30 SEO research, and it propagated unchallenged into two specs, the live validation prompt in n8n, and a finished draft post. The owner confirmed Solox Tek is a team, which is what the live site has said all along on three pages plus `llms.txt`.
+
+What that cost: the entire premise of bucket T, and two drafts written against it (executions 430 and 432). What it did not cost: buckets R and S, which are about advice quality and wiring and hold regardless of headcount.
+
+The lesson is recorded in the Decision Log as entry 7, and a rule was added to the validation prompt forbidding the node from assuming company size at all.
 
 Fourth spec in the series. `SPEC.md` covers the shipped site. `SPEC-blog.md` covers the blog pages, feed, and seed post. `SPEC-blog-writer.md` covers the n8n Blog Writer workflow and its validation step. This one covers two coupled fixes that came out of independently verifying the validation node's first real output. Work items continue from 65.
 
@@ -79,7 +85,24 @@ The zero dash rule from `SPEC.md` binds every piece of new text, including the v
 69. Extend the `Draft Post with Claude` user message to include the assessment via `$("Validate Topic").item.json.merged_response`, labeled as SERP context, with a `??` fallback so a failed validation node cannot break the prompt. Instruct the drafter to follow the `Angle` line, and to treat a `narrow it` verdict as an instruction to write the narrowed version rather than the original topic.
 70. Verify by manual execution that the draft visibly reflects the assessment's angle. This is the whole point of the change and it is the one thing a passing build cannot tell us.
 
-### T. Post rewrite
+### T. Post rewrite, CANCELLED
+
+Items 71 through 74 are cancelled. They specified a post positioning Solox Tek as a one person operation, with sections on bus factor of one, absence of peer review, and no bench. Solox Tek is a team, so that post would have published a false claim about the company and contradicted three pages of live site copy. The two drafts written against it are discarded. Replaced by bucket V.
+
+71. ~~Write `senior-freelancer-vs-agency-vs-in-house.md` with Solox Tek in a redefined senior freelancer slot.~~ Cancelled, false premise.
+72. ~~Structure with limits after the positive case.~~ Carried into item 78 unchanged, since the ordering rule was sound and is independent of the premise.
+73. ~~Replace the subcontracted overflow mitigation.~~ Cancelled, only existed because of the solo framing.
+74. ~~Soften absolute claims about the agency industry.~~ Carried into item 78.
+
+### V. Replacement post
+
+75. Write `src/content/blog/fixed-price-vs-time-and-materials.md`, taking the next topic from the backlog. Chosen because it is headcount neutral, so no assumption about company structure can poison it, and because it maps directly onto the one engagement claim the site already makes publicly: a short paid audit first, then fixed scope and fixed price.
+76. Angle, from a live search of the query: the SERP is saturated with agency written posts that all resolve to the same pros and cons table and then hand the decision back to the reader. The unoccupied and honest position is that the choice is really about who absorbs the cost of what nobody knows yet, and that the fix for unpriceable scope is not a different pricing model but removing the unknown before pricing. That is Solox Tek's actual model, so the differentiated angle and the true one are the same thing.
+77. Structure, applying the ordering rule from cancelled item 72: what the choice actually is, then when each model is right, then where fixed price genuinely fails, then the audit step that resolves it, then questions to ask, then the CTA. Limits sit in the middle and never in the lead.
+78. Keep every Solox Tek claim to what is already public on solox-tek.com. The post makes exactly two: the audit comes before the quote, and the build is then fixed scope and fixed price. No invented prices, no client names, no risk premium percentages, even though search surfaced a commonly repeated figure, because it traces to vendor blogs rather than a primary source.
+79. Update `public/llms.txt` with a line for the new post.
+
+### U. Backlog
 
 71. Write `src/content/blog/senior-freelancer-vs-agency-vs-in-house.md`. Three way frame: senior freelancer, development agency, in house hire, with Solox Tek positioned inside a redefined senior freelancer slot. Do not use "one person agency" as a category label anywhere in the post.
 72. Structure, in this order: decision criteria first, then the positive case for each option, then honest limits in the middle, then fit guidance, then the Cal.com CTA. Limits belong in the post and not at the top of it.
@@ -89,8 +112,8 @@ The zero dash rule from `SPEC.md` binds every piece of new text, including the v
 
 ### U. Backlog
 
-76. Edit the backlog row: topic becomes the in house framing, notes record why the one person agency framing was dropped and that the success metric is sales enablement rather than ranking, status returns to `queued`.
-77. Clear the four pending Telegram approvals from testing before any of this, since the timeout path writes `skipped` and would otherwise clobber a later status. Owner action, see Open Questions.
+80. Retire the `one person agency` backlog row. **No action needed and none possible from here:** the n8n MCP surface exposes row insert but no row update or delete, and six pending approvals from testing all resolve to `Mark Topic Skipped` on their 12 hour timeout, so the row retires itself the same evening. Recorded because the absence of a row update tool is a real constraint on any future backlog maintenance.
+81. **Open papercut, owner action.** The row for the fixed price topic is still `queued`, and item 75 wrote that post by hand. The next scheduled run will therefore draft a duplicate. The drafting node does receive the published feed with an instruction not to duplicate existing posts, so it will probably reframe rather than repeat, but the row should be set to `drafted` in the n8n data table UI to be certain. Cannot be done from here for the reason in item 80.
 
 ## Testing Strategy
 
@@ -130,6 +153,8 @@ No test framework, gates instead.
 4. **Comparable customers, cost, and ROI deliberately not attempted.** It is the strongest verified recommendation and it needs real data only the owner has. Recorded as blocked rather than satisfied with invented material, because the Never list forbids the alternative.
 5. **Execution 430's draft discarded.** Changing the third category changes the spine. Patching would leave the old framing's bones visible.
 6. **Post judged on sales enablement, not ranking, and this is written down.** Otherwise it looks like a failure at month six for reasons that were known and accepted at month zero.
+7. **An unverified fact about the client propagated through four artifacts before anyone checked it.** "One person agency" entered as convenient shorthand in a research prompt, was never questioned, and ended up in two specs, a live production prompt, and a finished post, while the live site said the opposite on three pages the whole time. It was caught only because writing the post forced a claim about the company into visible copy. Two rules come out of it: any claim about the client that will appear in public copy gets checked against the site before it is written down anywhere, and the validation node is now forbidden from assuming company size at all, since it demonstrated it will guess.
+8. **Replacement topic chosen for premise independence, not just for being next in the queue.** Fixed price versus time and materials cannot be poisoned by a wrong assumption about headcount, which is a property worth preferring while trust in the surrounding assumptions is still being rebuilt.
 
 ## Open Questions
 

@@ -70,14 +70,25 @@ Items 41 to 65 shipped earlier the same day. Items 66 to 77 are from SPEC-blog-r
 - [x] Item 69: assessment wired into the drafting prompt
 - [x] Item 70: verified by manual execution 432. Found and fixed a second bug on the way: maxTokens 1024 truncated the response before the Verdict line could be generated, now 2048
 
-### Post rewrite (SPEC-blog-revision.md) — BLOCKED
-- [ ] Item 71: write the comparison post
-- [ ] Item 72: structure with limits after the positive case
-- [ ] Item 73: replace the subcontracted overflow mitigation with checkable commitments
-- [ ] Item 74: soften absolute claims about the agency industry
-- [ ] Item 75: llms.txt line for the new post
-- [ ] Item 76: new backlog row with the corrected framing
+### Post rewrite (SPEC-blog-revision.md) — CANCELLED, false premise
+- [-] Items 71 to 74: cancelled. The post positioned Solox Tek as one person. The owner
+      confirmed it is a team, which the live site has said all along. Both drafts discarded.
+      The ordering rule from item 72 and the softening rule from item 74 carried into item 78.
 
-Blocked on two owner decisions, see SPEC-blog-revision.md Open Questions 4 and 5:
-1. The post's premise is that Solox Tek is one person. The live site says "senior engineering team" in three places plus llms.txt. Both cannot be true on the same domain.
-2. Which framing: the spec's freelancer vs agency vs in-house, or the sharper one the fixed workflow produced on its own, solo developer vs agency narrowed to AI automation.
+### Correction sweep (unplanned, from the same finding)
+- [x] Removed the one person claim from the live validation prompt in n8n, where it was
+      shaping every assessment, and added a rule forbidding the node from assuming company size
+- [x] Corrected the claim in SPEC-blog.md and SPEC-blog-writer.md
+- [x] Recorded the propagation path and two preventive rules in SPEC-blog-revision.md Decision Log 7
+
+### Replacement post (SPEC-blog-revision.md bucket V)
+- [x] Item 75: src/content/blog/fixed-price-vs-time-and-materials.md, headcount neutral topic
+- [x] Item 76: angle grounded in a live search, the unoccupied position is risk allocation
+- [x] Item 77: limits in the middle, never in the lead
+- [x] Item 78: only the two engagement claims already public on the site
+- [x] Item 79: llms.txt line
+
+### Backlog
+- [x] Item 80: the one person agency row retires itself tonight via the pending approval timeouts
+- [ ] Item 81: owner action, set the fixed price row to drafted in the n8n data table UI,
+      otherwise the next scheduled run drafts a duplicate. The MCP surface has no row update tool.
