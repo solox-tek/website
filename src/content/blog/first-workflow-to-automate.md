@@ -1,7 +1,7 @@
 ---
 title: "How to pick the first workflow to automate"
 description: "A practical filter for choosing your first automation project. Where to look, what to skip, and why the boring workflow usually wins."
-publishDate: 2026-07-30
+publishDate: 2026-07-26
 tags: ["ai automation", "process"]
 draft: false
 ---
