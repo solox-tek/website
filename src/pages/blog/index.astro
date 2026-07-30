@@ -1,0 +1,104 @@
+---
+// Solox Tek — Blog index. Static, no framework runtime.
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+const fmtDate = (d) => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+---
+<Layout
+  title="Blog · Solox Tek"
+  description="Notes from production: practical writing on AI automation, workflows, and engineering from the Solox Tek team."
+  path="/blog/"
+>
+  <script type="application/ld+json" is:inline slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://solox-tek.com/blog/#breadcrumbs",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://solox-tek.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://solox-tek.com/blog/" }
+        ]
+      },
+      {
+        "@type": "Blog",
+        "@id": "https://solox-tek.com/blog/#blog",
+        "name": "Solox Tek blog",
+        "description": "Practical writing on AI automation, workflows, and engineering.",
+        "publisher": { "@type": "Organization", "@id": "https://solox-tek.com/#organization", "name": "Solox Tek", "url": "https://solox-tek.com/" },
+        "blogPost": posts.map((p) => ({
+          "@type": "BlogPosting",
+          "headline": p.data.title,
+          "url": "https://solox-tek.com/blog/" + p.slug + "/",
+          "datePublished": p.data.publishDate.toISOString().slice(0, 10)
+        }))
+      }
+    ]
+  })} />
+  <style is:global>
+.hx1:hover{transform:translateY(-3px) !important;box-shadow:0 0 0 1px rgba(143,224,255,0.4) inset,0 22px 56px rgba(27,124,192,0.62) !important;}
+.card{transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;}
+.card:hover{transform:translateY(-4px);border-color:rgba(143,224,255,0.4) !important;box-shadow:0 30px 60px rgba(0,0,0,0.32);}
+  </style>
+<div style="position:relative;background:#06121E;overflow:clip;--sx-accent:#36A9E6;">
+
+  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
+    <div style="position:absolute;top:-8%;left:-6%;width:52vw;height:52vw;max-width:720px;max-height:720px;border-radius:50%;background:radial-gradient(circle,rgba(54,169,230,0.30),transparent 64%);filter:blur(28px);animation:sxDrift1 21s ease-in-out infinite;"></div>
+    <div style="position:absolute;top:4%;right:-10%;width:46vw;height:46vw;max-width:640px;max-height:640px;border-radius:50%;background:radial-gradient(circle,rgba(47,200,200,0.18),transparent 66%);filter:blur(32px);animation:sxDrift2 25s ease-in-out infinite;"></div>
+  </div>
+  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(140,175,215,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(140,175,215,0.05) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(180deg,#000,#000 74%,transparent);-webkit-mask-image:linear-gradient(180deg,#000,#000 74%,transparent);"></div>
+
+  <!-- NAV -->
+  <Nav logoHref="/" />
+
+  <main>
+  <!-- HERO -->
+  <header style="position:relative;z-index:2;text-align:center;padding:60px clamp(20px,5vw,48px) 30px;max-width:800px;margin:0 auto;">
+    <div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.24em;color:#8FE0FF;margin-bottom:16px;">BLOG</div>
+    <h1 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(34px,5.2vw,58px);line-height:1.06;letter-spacing:-0.035em;margin:0 0 20px;color:#F6FAFE;">Notes from <span style="font-weight:600;background:linear-gradient(110deg,#8FE0FF,var(--sx-accent) 60%,#5BC7C0);-webkit-background-clip:text;background-clip:text;color:transparent;">production.</span></h1>
+    <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(15px,1.4vw,18px);line-height:1.65;color:#AEC4DC;margin:0 auto;max-width:58ch;">Practical writing on AI automation, workflows, and engineering. No hype, no thought leadership. Things we have actually run.</p>
+  </header>
+
+  <!-- POSTS -->
+  <section style="position:relative;z-index:2;padding:40px clamp(20px,5vw,48px) 20px;max-width:1120px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+      {posts.map((p) => (
+        <a href={'/blog/' + p.slug + '/'} class="card" style="display:flex;flex-direction:column;border-radius:16px;padding:26px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(150,180,215,0.16);">
+          <div style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:12.5px;letter-spacing:0.06em;color:#7E97B4;margin-bottom:12px;">{fmtDate(p.data.publishDate)}</div>
+          <h2 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:20px;line-height:1.3;color:#F6FAFE;margin:0 0 10px;">{p.data.title}</h2>
+          <p style="font-family:'Manrope Variable',sans-serif;font-size:14px;line-height:1.55;color:#AEC4DC;margin:0 0 18px;">{p.data.description}</p>
+          {p.data.tags.length > 0 && (
+            <div style="margin-top:auto;display:flex;flex-wrap:wrap;gap:8px;">
+              {p.data.tags.map((t) => (
+                <span style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:11.5px;letter-spacing:0.05em;color:#8FE0FF;border:1px solid rgba(54,169,230,0.35);border-radius:999px;padding:4px 11px;">{t}</span>
+              ))}
+            </div>
+          )}
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="position:relative;z-index:2;text-align:center;padding:60px clamp(20px,5vw,48px) 90px;max-width:720px;margin:0 auto;">
+    <h2 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(28px,4.4vw,48px);line-height:1.08;letter-spacing:-0.035em;margin:0 0 22px;color:#F6FAFE;">Have a workflow <span style="font-weight:600;background:linear-gradient(110deg,#8FE0FF,var(--sx-accent) 60%,#5BC7C0);-webkit-background-clip:text;background-clip:text;color:transparent;">in mind?</span></h2>
+    <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(15px,1.4vw,18px);line-height:1.6;color:#AEC4DC;margin:0 auto 34px;max-width:50ch;">Book a call and we'll find the workflow with the biggest payoff, then scope it.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:15px;justify-content:center;align-items:center;">
+      <a href="https://cal.com/solox-tek" data-cal-link="solox-tek" data-cal-config='{"layout":"month_view"}' class="hx1" style="display:inline-flex;align-items:center;gap:10px;padding:17px 36px;border-radius:14px;background:linear-gradient(180deg,#1B76B8,#146199);color:#fff;font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16.5px;box-shadow:0 0 0 1px rgba(143,224,255,0.25) inset,0 18px 50px rgba(27,124,192,0.5);transition:transform .25s ease,box-shadow .25s ease;">Book a free discovery call</a>
+      <span style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:13.5px;letter-spacing:0.08em;color:#7E97B4;">or <a href="mailto:contact@solox-tek.com?subject=Blog" style="color:#8FE0FF;">contact@solox-tek.com</a></span>
+    </div>
+    <p style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.04em;color:#7E97B4;margin:20px 0 0;">Your call is with a senior engineer, not a sales rep.</p>
+  </section>
+  </main>
+
+  <!-- FOOTER -->
+  <Footer />
+
+</div>
+</Layout>

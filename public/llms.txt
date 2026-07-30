@@ -7,6 +7,11 @@
 - [Home](https://solox-tek.com/): What we build, how an engagement runs (free discovery call, then a paid audit with a fixed price plan), and answers to common questions about cost, timelines, data safety, and code ownership.
 - [Services](https://solox-tek.com/services/): The full service catalog: AI automation, product engineering, DevOps and infrastructure, Web3, and paid media.
 - [Paid Media](https://solox-tek.com/paid-media/): Performance marketing on a transparent monthly retainer, from 1,300 to 3,300 EUR per month by ad spend tier, month to month, cancel anytime. Meta certified, covering Meta, Google, and TikTok.
+- [Blog](https://solox-tek.com/blog/): Practical writing on AI automation, workflows, and engineering.
+
+## Blog posts
+
+- [How to pick the first workflow to automate](https://solox-tek.com/blog/first-workflow-to-automate/): A practical filter for choosing your first automation project: where to look, what to skip, and why the boring workflow usually wins.
 
 ## Frequently asked questions
 
