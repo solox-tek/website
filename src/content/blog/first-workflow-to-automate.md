@@ -58,4 +58,4 @@ Sometimes the writing is the whole payoff. A step that exists for no reason shou
 
 This mapping step is exactly what our paid audit does. We map the workflow, find where the payoff actually is, and put a fixed price on building it. If the audit shows automation is not worth it, that conclusion is yours to keep too.
 
-If you have a workflow in mind and want a second opinion on whether it passes the filter, that is what the discovery call is for.
+If you have a workflow in mind and want a second opinion on whether it passes the filter, that is what the discovery call is for. It is free and takes 30 minutes, and it comes before the audit rather than after it. If the answer is that this particular one is not worth automating, that is a useful answer too.
