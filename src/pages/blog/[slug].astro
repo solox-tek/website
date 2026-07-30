@@ -1,0 +1,137 @@
+---
+// Solox Tek — Blog post page. Static, no framework runtime.
+// Prose styles: markdown renders to bare tags that cannot carry inline
+// styles, so `.px` below is the one documented styling exception (see
+// SPEC-blog.md, Code Style). All values from the existing palette/scale.
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const site = 'https://solox-tek.com';
+const path = '/blog/' + post.slug + '/';
+const published = post.data.publishDate.toISOString().slice(0, 10);
+const modified = (post.data.updatedDate ?? post.data.publishDate).toISOString().slice(0, 10);
+const fmtDate = (d) => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+---
+<Layout
+  title={post.data.title + ' · Solox Tek'}
+  description={post.data.description}
+  path={path}
+  ogType="article"
+  publishedTime={published}
+  modifiedTime={modified}
+  author={post.data.author}
+>
+  <script type="application/ld+json" is:inline slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": site + "/#organization",
+        "name": "Solox Tek",
+        "url": site + "/"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": site + path + "#breadcrumbs",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": site + "/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": site + "/blog/" },
+          { "@type": "ListItem", "position": 3, "name": post.data.title, "item": site + path }
+        ]
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": site + path + "#post",
+        "headline": post.data.title,
+        "description": post.data.description,
+        "datePublished": published,
+        "dateModified": modified,
+        "author": { "@id": site + "/#organization" },
+        "publisher": { "@id": site + "/#organization" },
+        "mainEntityOfPage": site + path,
+        "image": site + "/og.png",
+        "keywords": post.data.tags.join(', ')
+      }
+    ]
+  })} />
+  <style is:global>
+.hx1:hover{transform:translateY(-3px) !important;box-shadow:0 0 0 1px rgba(143,224,255,0.4) inset,0 22px 56px rgba(27,124,192,0.62) !important;}
+.px h2{font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(24px,3.2vw,34px);line-height:1.14;letter-spacing:-0.025em;color:#F5FAFE;margin:52px 0 16px;}
+.px h3{font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);line-height:1.2;letter-spacing:-0.015em;color:#F5FAFE;margin:38px 0 12px;}
+.px p{font-family:'Manrope Variable',system-ui,sans-serif;font-size:clamp(15.5px,1.3vw,18px);line-height:1.74;color:#AEC4DC;margin:0 0 20px;}
+.px ul,.px ol{font-family:'Manrope Variable',system-ui,sans-serif;font-size:clamp(15.5px,1.3vw,18px);line-height:1.74;color:#AEC4DC;margin:0 0 20px;padding-left:26px;}
+.px li{margin:0 0 8px;}
+.px strong{color:#EEF4FB;font-weight:700;}
+.px a{color:#8FE0FF;text-decoration:underline;text-underline-offset:3px;}
+.px a:hover{opacity:.8;}
+.px blockquote{margin:0 0 20px;padding:2px 0 2px 20px;border-left:3px solid rgba(54,169,230,0.55);}
+.px blockquote p{color:#C4D6EA;font-style:italic;}
+.px code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.92em;background:rgba(255,255,255,0.07);border:1px solid rgba(150,180,215,0.16);border-radius:6px;padding:2px 6px;color:#DCECF8;}
+.px pre{background:rgba(255,255,255,0.04);border:1px solid rgba(150,180,215,0.16);border-radius:12px;padding:18px 20px;overflow-x:auto;margin:0 0 20px;}
+.px pre code{background:none;border:none;padding:0;font-size:13.5px;line-height:1.6;}
+.px hr{border:none;border-top:1px solid rgba(150,180,215,0.16);margin:40px 0;}
+.px img{max-width:100%;height:auto;border-radius:12px;}
+  </style>
+<div style="position:relative;background:#06121E;overflow:clip;--sx-accent:#36A9E6;">
+
+  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
+    <div style="position:absolute;top:-8%;left:-6%;width:52vw;height:52vw;max-width:720px;max-height:720px;border-radius:50%;background:radial-gradient(circle,rgba(54,169,230,0.30),transparent 64%);filter:blur(28px);animation:sxDrift1 21s ease-in-out infinite;"></div>
+    <div style="position:absolute;top:4%;right:-10%;width:46vw;height:46vw;max-width:640px;max-height:640px;border-radius:50%;background:radial-gradient(circle,rgba(47,200,200,0.18),transparent 66%);filter:blur(32px);animation:sxDrift2 25s ease-in-out infinite;"></div>
+  </div>
+
+  <!-- NAV -->
+  <Nav logoHref="/" />
+
+  <main>
+  <!-- POST HEADER -->
+  <header style="position:relative;z-index:2;padding:clamp(50px,6vw,76px) clamp(20px,5vw,48px) 0;max-width:880px;margin:0 auto;">
+    <div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.24em;color:#8FE0FF;margin-bottom:16px;"><a href="/blog/" style="color:#8FE0FF;">BLOG</a></div>
+    <h1 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(31px,4.5vw,46px);line-height:1.14;letter-spacing:-0.03em;margin:0 0 22px;color:#F6FAFE;">{post.data.title}</h1>
+    <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(17.5px,1.9vw,23px);line-height:1.52;color:#C4D6EA;margin:0 0 30px;max-width:62ch;">{post.data.description}</p>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;font-family:'Sora Variable',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.05em;color:#7E97B4;">
+      <span>{fmtDate(post.data.publishDate)}</span>
+      {post.data.tags.length > 0 && (
+        <span style="display:flex;flex-wrap:wrap;gap:8px;">
+          {post.data.tags.map((t) => (
+            <span style="color:#8FE0FF;border:1px solid rgba(54,169,230,0.35);border-radius:999px;padding:3px 10px;font-size:11.5px;">{t}</span>
+          ))}
+        </span>
+      )}
+    </div>
+    <div aria-hidden="true" style="margin-top:clamp(28px,3.5vw,38px);border-top:1px solid rgba(150,180,215,0.14);"></div>
+  </header>
+
+  <!-- POST BODY -->
+  <section style="position:relative;z-index:2;padding:clamp(40px,5.5vw,68px) clamp(20px,5vw,48px) 10px;">
+    <article class="px" style="max-width:700px;margin:0 auto;">
+      <Content />
+    </article>
+  </section>
+
+  <!-- CTA -->
+  <section style="position:relative;z-index:2;text-align:center;padding:60px clamp(20px,5vw,48px) 90px;max-width:720px;margin:0 auto;">
+    <h2 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(28px,4.4vw,48px);line-height:1.08;letter-spacing:-0.035em;margin:0 0 22px;color:#F6FAFE;">Have a workflow <span style="font-weight:600;background:linear-gradient(110deg,#8FE0FF,var(--sx-accent) 60%,#5BC7C0);-webkit-background-clip:text;background-clip:text;color:transparent;">in mind?</span></h2>
+    <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(15px,1.4vw,18px);line-height:1.6;color:#AEC4DC;margin:0 auto 34px;max-width:50ch;">Book a call and we'll find the workflow with the biggest payoff, then scope it.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:15px;justify-content:center;align-items:center;">
+      <a href="https://cal.com/solox-tek" data-cal-link="solox-tek" data-cal-config='{"layout":"month_view"}' class="hx1" style="display:inline-flex;align-items:center;gap:10px;padding:17px 36px;border-radius:14px;background:linear-gradient(180deg,#1B76B8,#146199);color:#fff;font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16.5px;box-shadow:0 0 0 1px rgba(143,224,255,0.25) inset,0 18px 50px rgba(27,124,192,0.5);transition:transform .25s ease,box-shadow .25s ease;">Book a free discovery call</a>
+      <span style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:13.5px;letter-spacing:0.08em;color:#7E97B4;">or <a href="mailto:contact@solox-tek.com?subject=Blog" style="color:#8FE0FF;">contact@solox-tek.com</a></span>
+    </div>
+    <p style="font-family:'Sora Variable',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.04em;color:#7E97B4;margin:20px 0 0;">Your call is with a senior engineer, not a sales rep.</p>
+  </section>
+  </main>
+
+  <!-- FOOTER -->
+  <Footer />
+
+</div>
+</Layout>
