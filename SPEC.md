@@ -47,6 +47,8 @@ Match the existing idiom: semantic tag, inline style attribute, hover rules and 
 
 Copy rules: no em dashes, no en dashes, no hyphens used as asides anywhere in visible text. Prefer rewording over hyphenated compounds ("Reporting and a call every two weeks", not "Bi-weekly reporting"). US English. Sentence case headings with a closing period in heroes.
 
+No colon introduced lists. A sentence must never end in a colon followed by a run of comma separated items, because that is one of the most recognizable signatures of machine written prose and it reads as such even to people who could not name why. Added July 30, 2026 after the owner found nine instances across the first two blog posts. Fold the items into the sentence, or give them a sentence of their own, or use a real markdown list on separate lines when a reader would actually scan them. Do not overcorrect into bulleted lists everywhere, which is a stronger tell than the pattern it replaces. This binds post bodies, meta descriptions, and the generated social and validation copy alike, and it is enforced in the n8n drafting prompt as well as here.
+
 ## Phase 1 Work Items
 
 ### A. Deploy safety (do first)
