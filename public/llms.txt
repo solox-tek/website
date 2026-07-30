@@ -1,6 +1,6 @@
 # Solox Tek
 
-> Solox Tek is a senior AI automation agency. We build automation that survives production: reliable, secure, and made to scale, with over a decade of production experience. Alongside AI automation we offer product engineering, DevOps, Web3 development, and paid media management. Booking a free discovery call is the primary way to start.
+> Solox Tek is a senior AI automation agency building automation that survives production. Reliable, secure, made to scale, with over a decade in production. Alongside AI automation we offer product engineering, DevOps, Web3 development, and paid media management. Booking a free discovery call is the primary way to start.
 
 ## Pages
 
