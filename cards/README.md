@@ -1,13 +1,22 @@
 # Social cards
 
-Branded 1080x1350 images for LinkedIn posts. Portrait, because it takes the most
-vertical space in a phone feed and roughly 60 percent of LinkedIn reading happens
-there.
+Branded images for LinkedIn posts.
 
 ```bash
-./cards/render.sh              # all cards
-./cards/render.sh 3-compare    # one card
+./cards/render.sh                     # all cards, 1080x1080
+./cards/render.sh 3-compare           # one card
+SIZE=4x5 ./cards/render.sh 3-compare  # 1080x1350, saved with a -4x5 suffix
 ```
+
+**Square is the default, deliberately.** Portrait takes more room in a phone feed,
+but LinkedIn crops 4:5 slightly on desktop and anything taller gets centre cropped
+to 4:5. The crop eats the top and bottom of the frame, which is exactly where the
+logo and the footer live, so the one thing the format is supposed to buy is the
+first thing it costs. Square renders uncropped on both surfaces.
+
+Reach for `SIZE=4x5` when a card is going out mobile first and you have checked
+that losing a strip top and bottom does not matter. Keep anything load bearing
+inside the middle 80 percent of the frame either way.
 
 PNGs land next to their templates. Nothing is committed except the templates and
 this script: `assets.css` and every `.png` are build output.

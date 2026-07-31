@@ -1,7 +1,8 @@
 @import url('assets.css');
 
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{width:1080px;height:1350px;overflow:hidden;}
+/* Height follows the render window, so one template serves 1:1 and 4:5. */
+html,body{width:100vw;height:100vh;overflow:hidden;}
 
 body{
   position:relative;
@@ -9,7 +10,7 @@ body{
   font-family:'Manrope',system-ui,sans-serif;
   -webkit-font-smoothing:antialiased;
   display:flex;flex-direction:column;
-  padding:82px 78px 68px;
+  padding:74px 78px 62px;
 }
 
 /* ---- brand constants: identical on every card ---- */
