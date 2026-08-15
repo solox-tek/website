@@ -1,0 +1,44 @@
+---
+// Solox Tek 404. Astro builds this to dist/404.html, which Cloudflare Pages
+// serves with a real 404 status for any unmatched path. Without this file
+// Pages falls back to index.html and returns 200, which reads as a soft 404
+// to search engines and turns every mistyped URL into a duplicate homepage.
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<Layout
+  title="Page not found · Solox Tek"
+  description="That page does not exist. Head back to the homepage, the blog, or the services page."
+  path="/404/"
+>
+  <meta slot="head" name="robots" content="noindex, follow" />
+  <style is:global>
+.hx1:hover{transform:translateY(-3px) !important;box-shadow:0 0 0 1px rgba(143,224,255,0.4) inset,0 22px 56px rgba(27,124,192,0.62) !important;}
+  </style>
+<div style="position:relative;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;">
+
+  <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(rgba(120,170,220,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(120,170,220,0.05) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(90% 70% at 50% 30%,#000 30%,transparent 78%);-webkit-mask-image:radial-gradient(90% 70% at 50% 30%,#000 30%,transparent 78%);"></div>
+
+  <Nav logoHref="/" />
+
+  <main style="position:relative;z-index:2;flex:1;display:flex;align-items:center;justify-content:center;padding:100px clamp(20px,5vw,48px);">
+    <div style="max-width:640px;text-align:center;">
+      <div style="font-family:'Sora Variable',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8FA9C6;margin-bottom:18px;">Error 404</div>
+
+      <h1 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(32px,5.6vw,62px);line-height:1.06;letter-spacing:-0.035em;margin:0 0 22px;color:#F5FAFE;">This page <span style="font-weight:600;background:linear-gradient(110deg,#8FE0FF,#36A9E6 55%,#5BC7C0);-webkit-background-clip:text;background-clip:text;color:transparent;">does not exist.</span></h1>
+
+      <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(15.5px,1.4vw,18px);line-height:1.65;color:#A6BCD6;margin:0 auto 38px;max-width:46ch;">The link may be out of date, or the address has a typo in it. Everything we have written and everything we build is one click away.</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+        <a href="/" class="hx1" style="display:inline-flex;align-items:center;padding:15px 30px;border-radius:14px;background:linear-gradient(180deg,#1B76B8,#146199);color:#fff;font-family:'Sora Variable',sans-serif;font-weight:600;font-size:15.5px;box-shadow:0 0 0 1px rgba(143,224,255,0.25) inset,0 16px 44px rgba(27,124,192,0.46);transition:transform .25s ease,box-shadow .25s ease;">Back to the homepage</a>
+        <a href="/blog/" style="display:inline-flex;align-items:center;padding:15px 30px;border-radius:14px;background:rgba(255,255,255,0.05);border:1px solid rgba(150,180,215,0.22);color:#DCECF8;font-family:'Sora Variable',sans-serif;font-weight:600;font-size:15.5px;">Read the blog</a>
+        <a href="/services/" style="display:inline-flex;align-items:center;padding:15px 30px;border-radius:14px;background:rgba(255,255,255,0.05);border:1px solid rgba(150,180,215,0.22);color:#DCECF8;font-family:'Sora Variable',sans-serif;font-weight:600;font-size:15.5px;">See what we do</a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+</div>
+</Layout>
