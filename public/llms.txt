@@ -13,6 +13,7 @@
 
 - [How to pick the first workflow to automate](https://solox-tek.com/blog/first-workflow-to-automate/): A practical filter for choosing your first automation project. Where to look, what to skip, and why the boring workflow usually wins.
 - [Fixed price vs time and materials for a small software build](https://solox-tek.com/blog/fixed-price-vs-time-and-materials/): Both models are fine. The real question is who carries the risk of what nobody knows yet, and why a short paid audit before pricing removes it.
+- [How a construction company automated its warehouse stock tracking](https://solox-tek.com/blog/warehouse-stock-tracking-automation/): Tradesmen at Limo Mont send a message when they take something from the warehouse. Stock updates itself, and low items trigger a reorder email.
 
 ## Frequently asked questions
 

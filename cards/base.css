@@ -1,0 +1,47 @@
+@import url('assets.css');
+
+*{box-sizing:border-box;margin:0;padding:0;}
+/* Height follows the render window, so one template serves 1:1 and 4:5. */
+html,body{width:100vw;height:100vh;overflow:hidden;}
+
+body{
+  position:relative;
+  background:#06121E;
+  font-family:'Manrope',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  display:flex;flex-direction:column;
+  padding:74px 78px 62px;
+}
+
+/* ---- brand constants: identical on every card ---- */
+.glow1,.glow2,.grid{position:absolute;pointer-events:none;}
+.glow1{top:-14%;left:-16%;width:820px;height:820px;border-radius:50%;
+  background:radial-gradient(circle,rgba(54,169,230,.30),transparent 64%);filter:blur(30px);}
+.glow2{bottom:-18%;right:-20%;width:760px;height:760px;border-radius:50%;
+  background:radial-gradient(circle,rgba(47,200,200,.17),transparent 66%);filter:blur(34px);}
+.grid{inset:0;
+  background-image:linear-gradient(rgba(140,175,215,.055) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(140,175,215,.055) 1px,transparent 1px);
+  background-size:60px 60px;
+  -webkit-mask-image:linear-gradient(180deg,#000,#000 72%,transparent);}
+
+header,main,footer{position:relative;z-index:2;}
+
+header{display:flex;align-items:center;gap:15px;}
+header i{width:38px;height:38px;background:var(--logo) center/contain no-repeat;display:block;}
+header b{font-family:'Sora';font-weight:600;font-size:20px;letter-spacing:.17em;color:#EEF4FB;}
+
+.eyebrow{font-family:'Sora';font-weight:600;font-size:17px;letter-spacing:.22em;
+  text-transform:uppercase;color:#8FE0FF;margin-top:52px;}
+
+main{flex:1;display:flex;flex-direction:column;justify-content:flex-start;padding:52px 0 0;}
+body.mid main{justify-content:center;padding:0;}
+
+h1{font-family:'Sora';font-weight:600;color:#F5FAFE;letter-spacing:-.032em;line-height:1.08;}
+.accent{color:#8FE0FF;}
+.dim{color:#AEC4DC;}
+
+footer{display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid rgba(150,180,215,.16);padding-top:26px;}
+footer span{font-family:'Sora';font-weight:500;font-size:19px;letter-spacing:.03em;color:#7E97B4;}
+footer em{font-style:normal;color:#8FE0FF;}
