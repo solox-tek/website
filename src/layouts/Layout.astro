@@ -44,9 +44,23 @@ body{margin:0;background:#06121E;color:#EEF4FB;font-family:'Manrope Variable',sy
 a{color:inherit;text-decoration:none;}
 @keyframes sxDrift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.12)}}
 @keyframes sxDrift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-46px,28px) scale(1.08)}}
+/* FAQ open and close animation, shared by the homepage and paid media accordions.
+   Native details snaps the panel open instantly while the plus icon rotates over
+   250ms, and that mismatch is what reads as jarring. Matching the two fixes it.
+   interpolate-size is what makes the auto keyword animatable. Browsers without
+   ::details-content support fall back to the instant open, nothing breaks.
+
+   If you verify this and conclude it does not work, check how you are clicking.
+   A synthetic summary.click() from the console flips the open attribute without
+   running the transition, so getComputedStyle and getAnimations both report a
+   hard jump. Click it with a real mouse. */
+:root{interpolate-size:allow-keywords;}
+.faq details::details-content{block-size:0;overflow:hidden;transition:block-size .25s ease,content-visibility .25s allow-discrete;}
+.faq details[open]::details-content{block-size:auto;}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important;}
   html{scroll-behavior:auto;}
+  .faq details::details-content{transition:none;}
 }
   </style>
 </head>
