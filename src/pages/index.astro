@@ -94,8 +94,6 @@ const faqs = [
     <div data-orb="0.16" style="position:absolute;top:46%;left:30%;width:50vw;height:50vw;max-width:680px;max-height:680px;will-change:transform;"><div style="width:100%;height:100%;border-radius:50%;background:radial-gradient(circle,rgba(70,120,235,0.2),transparent 65%);filter:blur(34px);animation:sxDrift3 27s ease-in-out infinite;"></div></div>
   </div>
 
-  <!-- blueprint grid -->
-  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;opacity:var(--sx-grid,1);background-image:linear-gradient(rgba(140,175,215,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(140,175,215,0.05) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(180deg,#000,#000 68%,transparent);-webkit-mask-image:linear-gradient(180deg,#000,#000 68%,transparent);"></div>
 
   <!-- NAV -->
   <Nav fixed={true} logoHref="#top" />
@@ -103,20 +101,17 @@ const faqs = [
   <main>
   <!-- HERO -->
   <header id="top" style="position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px clamp(20px,5vw,48px) 100px;">
-    <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;mask-image:radial-gradient(120% 95% at 50% 42%,#000 42%,transparent 82%);-webkit-mask-image:radial-gradient(120% 95% at 50% 42%,#000 42%,transparent 82%);opacity:.7;">
-      <canvas id="sb-net" style="position:absolute;inset:0;display:block;"></canvas>
-    </div>
     <div style="position:relative;z-index:2;max-width:1000px;">
       <h1 style="font-family:'Sora Variable',sans-serif;font-weight:300;font-size:clamp(42px,7.6vw,96px);line-height:1.04;letter-spacing:-0.035em;margin:0 0 30px;color:#F5FAFE;">AI automation that<br><span style="font-weight:600;background:linear-gradient(110deg,#8FE0FF,var(--sx-accent,#36A9E6) 55%,#5BC7C0);-webkit-background-clip:text;background-clip:text;color:transparent;">survives production.</span></h1>
       <p style="font-family:'Manrope Variable',sans-serif;font-weight:400;font-size:clamp(17px,1.55vw,21px);line-height:1.66;color:#AEC4DC;max-width:60ch;margin:0 auto 42px;">A senior engineering team with over a decade of production experience. We build automation you actually own: reliable, secure, and made to scale. Not a black box that breaks the moment your business changes.</p>
       <div style="display:flex;flex-wrap:wrap;gap:15px;justify-content:center;">
         <a href="https://cal.com/solox-tek" data-cal-link="solox-tek" data-cal-config='{"layout":"month_view"}' class="hx1" style="display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:14px;background:linear-gradient(180deg,#1B76B8,#146199);color:#fff;font-family:'Sora Variable',sans-serif;font-weight:600;font-size:16px;box-shadow:0 0 0 1px rgba(143,224,255,0.25) inset,0 16px 44px rgba(27,124,192,0.46);transition:transform .25s ease,box-shadow .25s ease;">Book a free discovery call</a>
-        <a href="#process" class="hx2" style="display:inline-flex;align-items:center;gap:9px;padding:16px 28px;border-radius:14px;border:1px solid rgba(150,180,215,0.26);background:rgba(255,255,255,0.02);color:#D6E4F2;font-family:'Sora Variable',sans-serif;font-weight:500;font-size:16px;transition:border-color .25s ease,background .25s ease,transform .25s ease;">See how we work <span style="color:var(--sx-accent,#36A9E6);">→</span></a>
+        <a href="#process" class="hx2" style="display:inline-flex;align-items:center;gap:9px;padding:16px 28px;border-radius:14px;border:1px solid rgba(150,180,215,0.26);background:rgba(255,255,255,0.02);color:#D6E4F2;font-family:'Sora Variable',sans-serif;font-weight:500;font-size:16px;transition:border-color .25s ease,background .25s ease,transform .25s ease;">See how we work</a>
       </div>
       <div style="margin-top:54px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px 26px;font-family:'Sora Variable',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.04em;color:#7E97B4;">
         <span style="color:#A6BDD6;">10+ years in production</span>
         <span style="width:4px;height:4px;border-radius:50%;background:rgba(54,169,230,0.6);"></span>
-        <span style="color:#A6BDD6;">You own the code</span>
+        <span style="color:#A6BDD6;">You own what we build</span>
       </div>
     </div>
     <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:28px;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:'Sora Variable',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.34em;color:#6F87A4;animation:sxBobB 2.6s ease-in-out infinite;">
@@ -191,7 +186,7 @@ const faqs = [
           <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(15.5px,1.3vw,18px);line-height:1.68;color:#A6BCD6;margin:0;">We automate your pipeline end to end: lead capture, enrichment, scoring, personalized outreach, CRM sync, and follow up, with our GTM specialists shaping the strategy.</p>
         </a>
       </div>
-      <p data-reveal style="text-align:center;font-family:'Manrope Variable',sans-serif;font-size:clamp(15px,1.3vw,18px);line-height:1.6;color:#92A9C6;margin:30px auto 0;max-width:70ch;">Built like real software. Owned end to end, and made to scale. <a href="/services" style="color:#8FE0FF;font-weight:600;">See all AI automation services →</a></p>
+      <p data-reveal style="text-align:center;font-family:'Manrope Variable',sans-serif;font-size:clamp(15px,1.3vw,18px);line-height:1.6;color:#92A9C6;margin:30px auto 0;max-width:70ch;">Built like real software. Owned end to end, and made to scale. <a href="/services" style="color:#8FE0FF;font-weight:600;">See all AI automation services</a></p>
     </div>
   </section>
 
