@@ -20,7 +20,7 @@ The profit on a job is what you charged, minus the material that went out to it,
 
 They had the first one. The invoice exists, it is issued, it is paid. That part of the arithmetic was never in doubt.
 
-The other two were not recorded against any particular job. Material left the warehouse and became a general expense. Wages were paid, correctly, and dissolved into payroll. Both showed up at year end as one large figure each, which is the right shape for a tax return and the wrong shape for a question like whether the school roof was worth doing.
+The other two were not recorded against any particular job. Material left the warehouse and became a general expense. Wages were paid, correctly, and dissolved into payroll. Both showed up at year end as one large figure each, which is the right shape for a tax return and the wrong shape for the question of whether one particular roof paid for itself.
 
 So the work was to make the second and third numbers exist per job. The second one was already half done.
 

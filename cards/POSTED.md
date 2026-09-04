@@ -6,6 +6,7 @@ archetype stays visible. Add a row when something goes out.
 | Date | Blog post | Platform | Card | Notes |
 | --- | --- | --- | --- | --- |
 | 2026-07-30 | [first-workflow-to-automate](https://solox-tek.com/blog/first-workflow-to-automate/) | LinkedIn | `1-checklist` | Image uploaded natively, URL in the first comment |
+| 2026-09-04 | [warehouse-stock-tracking-automation](https://solox-tek.com/blog/warehouse-stock-tracking-automation/) | LinkedIn | `5-flow` | Image uploaded natively, URL in the first comment. Date is when it was logged, adjust if it went out earlier |
 | | [fixed-price-vs-time-and-materials](https://solox-tek.com/blog/fixed-price-vs-time-and-materials/) | none yet | `3-compare` | Held back from LinkedIn on purpose, see below |
 
 ## Why the fixed price post is not on LinkedIn
