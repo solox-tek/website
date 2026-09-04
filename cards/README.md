@@ -28,8 +28,10 @@ a typeface and a footer are recognized in the feed before a word is read. So the
 brand is fixed in `base.css` and only the composition changes per card.
 
 **Constants**, never edited per card: the `#06121E` background with the same
-radial glow and grid the site uses, Sora for display, Manrope for body, `#8FE0FF`
-as the accent, the logo lockup, the footer rule.
+radial glow, Sora for display, Manrope for body, `#8FE0FF` as the accent, and
+the logo lockup. The grid and the footer were removed in September 2026. The
+site had already dropped its own grid, and the footer repeated branding the
+header already carries.
 
 **Composition**, chosen per post. The five templates are archetypes, not slots:
 
