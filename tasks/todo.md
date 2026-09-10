@@ -28,10 +28,10 @@ Status: IN PROGRESS (build started September 10, 2026). Phase D waits for the de
   - Acceptance: faqs array edited only; nine details and nine Question objects in the spec's order; new answers pass the copy rules
   - Verify: npm run build; counts 9 and 9; order printed by the node one liner in plan.md; validator.schema.org clean; open and close each new item
   - Files: src/pages/index.astro
-- [ ] Checkpoint B: build clean; copy gates empty on dist; homepage body checked at desktop and 375px with console clean and Cal popup working; four commits; owner skim recommended
+- [x] Checkpoint B: build clean; copy gates empty on dist; homepage body checked at desktop and 375px with console clean and Cal popup working; four commits; owner skim recommended
 
 ## Phase C: Decision free remainder
-- [ ] Task 6: Hero subheadline, meta description, Organization description (items 84, 82 in part)
+- [x] Task 6: Hero subheadline, meta description, Organization description (items 84, 82 in part)
   - Acceptance: hero paragraph verbatim, chips and buttons unchanged; meta description is the 156 character string; Organization description updated; both keep "AI automation agency"
   - Verify: npm run build; grep the meta tag and check length 156; copy gates empty; hero at 375px
   - Files: src/pages/index.astro
