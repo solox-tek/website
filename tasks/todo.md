@@ -35,7 +35,7 @@ Status: IN PROGRESS (build started September 10, 2026). Phase D waits for the de
   - Acceptance: hero paragraph verbatim, chips and buttons unchanged; meta description is the 156 character string; Organization description updated; both keep "AI automation agency"
   - Verify: npm run build; grep the meta tag and check length 156; copy gates empty; hero at 375px
   - Files: src/pages/index.astro
-- [ ] Task 7: Services page (items 92, 93, 94)
+- [x] Task 7: Services page (items 92, 93, 94)
   - Acceptance: featured card "AI Agents and Automation" with tagline and four points; hero subline; 152 character meta description; ItemList first name follows
   - Verify: npm run build; grep -c 'AI Agents and Automation' dist/services/index.html >= 2; copy gates empty; /services/ at both widths
   - Files: src/pages/services.astro
