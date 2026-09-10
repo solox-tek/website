@@ -230,6 +230,7 @@ The wording under each item is final draft copy. The owner approves or edits it 
 - Is client data safe? Data stays in the client's accounts and a model receives only the minimum it needs.
 - Do you improve the process or only automate it? Both, and the process comes first. We map how the work flows, cut the steps that exist out of habit, and automate what remains.
 - Who maintains what is built? Solox Tek monitors and supports its builds, and hands over clean documented code.
+- What happens on the discovery call? A free 30 minute call to map your workflows and pick the process with the biggest payoff. If automation is not the right fix yet, Solox Tek says so.
 
 ## Contact
 

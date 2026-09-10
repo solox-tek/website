@@ -1,13 +1,20 @@
 # Solox Tek
 
-> Solox Tek is a senior AI automation agency building automation that survives production. Reliable, secure, made to scale, with over a decade in production. Alongside AI automation we offer product engineering, DevOps, Web3 development, and paid media management. Booking a free discovery call is the primary way to start.
+> Solox Tek is a senior AI automation agency that builds custom AI agents for companies, wires them into the tools they already use, and improves the process around them. Reliable, secure, owned by the client, with over a decade in production. Alongside agents and automation we offer product engineering, DevOps, Web3 development, and paid media management. Booking a free discovery call is the primary way to start.
 
 ## Pages
 
-- [Home](https://solox-tek.com/): What we build, how an engagement runs (free discovery call, then a paid audit with a fixed price plan), and answers to common questions about cost, timelines, data safety, and code ownership.
-- [Services](https://solox-tek.com/services/): The full service catalog: AI automation, product engineering, DevOps and infrastructure, Web3, and paid media.
+- [Home](https://solox-tek.com/): Custom AI agents and automation, the teams we build for (engineering, marketing and sales, operations, leadership), how an engagement runs (free discovery call, then a paid audit with a fixed price plan), and answers to common questions about agents, cost, timelines, data safety, and code ownership.
+- [Services](https://solox-tek.com/services/): The full service catalog. AI agents and automation, product engineering, DevOps and infrastructure, Web3, and paid media.
 - [Paid Media](https://solox-tek.com/paid-media/): Performance marketing on a transparent monthly retainer, from 1,300 to 3,300 EUR per month by ad spend tier, month to month, cancel anytime. Meta certified, covering Meta, Google, and TikTok.
 - [Blog](https://solox-tek.com/blog/): Practical writing on AI automation, workflows, and engineering.
+
+## Who we build agents for
+
+- Engineering teams get agents that triage incoming bugs, draft the first pass of a review, write release notes from merged work, and keep tickets in sync with what shipped.
+- Marketing and sales teams get agents that qualify and enrich leads, draft follow ups, keep the CRM current without manual entry, and turn campaign data into readable reports.
+- Operations teams get agents that read invoices, orders, and messages from the field and act on them inside existing systems, with a person asked only when a case is unusual.
+- Leadership teams get agents that answer questions straight from company data, such as which jobs made money, what is stuck, and what changed this week.
 
 ## Blog posts
 
@@ -18,11 +25,15 @@
 
 ## Frequently asked questions
 
-- What does an AI automation agency do? We connect your tools, automate repetitive processes, and add AI where it removes real work. Everything we build is owned by the client.
+- What does an AI automation agency do? We connect your tools, automate repetitive processes, and add AI where it removes real work, usually as a custom AI agent that reads, decides, and acts inside the client's systems. Everything we build is owned by the client.
+- What is a custom AI agent, and how is it different from a chatbot? A chatbot answers questions. An agent does work inside your systems, follows rules you set, and asks a person when a case is unusual. Custom means it is built around your process and your tools.
+- Which teams do you build agents for? Any team with a repeatable process and a bottleneck. Operations and the back office, engineering, marketing, sales, and leadership.
 - How much does an AI automation project cost? Every build is fixed scope and fixed price, set after a short paid audit. The free discovery call comes first.
 - How long until something is live? A first workflow is usually in production within a few weeks.
 - Is client data safe? Data stays in the client's accounts and a model receives only the minimum it needs.
+- Do you improve the process or only automate it? Both, and the process comes first. We map how the work flows, cut the steps that exist out of habit, and automate what remains.
 - Who maintains what is built? Solox Tek monitors and supports its builds, and hands over clean documented code.
+- What happens on the discovery call? A free 30 minute call to map your workflows and pick the process with the biggest payoff. If automation is not the right fix yet, Solox Tek says so.
 
 ## Contact
 

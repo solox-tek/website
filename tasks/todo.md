@@ -39,7 +39,7 @@ Status: IN PROGRESS (build started September 10, 2026). Phase D waits for the de
   - Acceptance: featured card "AI Agents and Automation" with tagline and four points; hero subline; 152 character meta description; ItemList first name follows
   - Verify: npm run build; grep -c 'AI Agents and Automation' dist/services/index.html >= 2; copy gates empty; /services/ at both widths
   - Files: src/pages/services.astro
-- [ ] Task 8: llms.txt (item 95)
+- [x] Task 8: llms.txt (item 95)
   - Acceptance: spec version in place; teams section present; nine FAQ short forms; no dash or glyph
   - Verify: dash grep on public/llms.txt empty; mirror check count 9; npm run build; grep -c 'Who we build agents for' dist/llms.txt = 1
   - Files: public/llms.txt
