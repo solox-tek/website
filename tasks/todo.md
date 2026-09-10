@@ -1,7 +1,7 @@
 # Todo: Custom AI agents positioning
 
 Branch: feat/ai-agents-positioning. One commit per task, message names the spec item. Details, gates, and risks in tasks/plan.md; copy in SPEC-ai-agents.md (items 82 to 96).
-Status: PHASES A TO C DONE (September 10, 2026), nine commits on the branch, nothing pushed. Phase D waits for the decision gate. No PR by owner instruction (commits only, preview for review).
+Status: DONE (September 10, 2026). Phases A to C shipped; Phase D skipped by owner decision (H1 and title kept, og.png unchanged); merged to main by fast forward and pushed on owner instruction, no PR.
 
 ## Phase A: Setup
 - [x] Task 1: Branch and baseline
@@ -47,30 +47,30 @@ Status: PHASES A TO C DONE (September 10, 2026), nine commits on the branch, not
 - [x] Checkpoint C: build clean; all copy gates empty on dist and llms.txt; JSON-LD on / and /services/ parses with FAQPage 9 and ItemList first item renamed (local check, online validator not run); browser pass both pages both widths, console clean, Cal modal opens; seven task commits
 
 ## Decision gate (owner, one line each)
-- [ ] 1. H1: Option A "Custom AI agents that survive production." or keep the current H1
-- [ ] 2. Title: Option A (53 characters) or keep the current title
-- [ ] 3. Share image: design source available (Route A) or render from the repo palette (Route B, ask first)
+- [x] 1. H1: keep the current H1 (owner, September 10, 2026)
+- [x] 2. Title: keep the current title (owner, September 10, 2026)
+- [x] 3. Share image: not needed, H1 unchanged
 - Rule: Option A for the H1 requires the new og.png; without it the H1 stays. No answer before Task 11 means the PR opens with Phase D pending.
 
 ## Phase D: Decision gated hero (Option A)
-- [ ] Task 9: H1 and title (items 83, 82 title)
+- [x] Task 9: SKIPPED, owner kept the current H1 and title
   - Acceptance: H1 "Custom AI agents that / survive production." with existing span styling; title is the 53 character Option A string; "AI automation agency" still in meta, JSON-LD, and Why us
   - Verify: npm run build; title grep and length 53; grep -c 'AI automation agency' dist/index.html >= 3; hero at both widths
   - Files: src/pages/index.astro
   - Depends on: decision gate answer 1 and 2
-- [ ] Task 10: Share image regeneration (item 96, ASK FIRST)
+- [x] Task 10: SKIPPED, not needed without an H1 change
   - Acceptance: public/og.png 1200 by 630, under 300KB, same palette and type, new headline and subline; Route B commits cards/og.html with the render command in a comment; owner approved the side by side
   - Verify: file public/og.png shows 1200 x 630; size under 307200 bytes; npm run build; visual comparison with git show main:public/og.png
   - Files: public/og.png, cards/og.html (Route B), SPEC-ai-agents.md (Project Structure amendment)
   - Depends on: Task 9, owner approval
-- [ ] Checkpoint D: title under 60; H1 and og.png agree; share previews after deploy
+- [x] Checkpoint D: not applicable, hero unchanged
 
 ## Phase E: Release
-- [~] Task 11: Final gates run and green (September 10, 2026); PR NOT opened, owner asked for commits only; complete after Phase D
+- [x] Task 11: Final gates green; owner approved in the preview; pushed to main directly on owner instruction, no PR (September 10, 2026)
   - Acceptance: every copy and structure gate from the spec passes; spec Success Criteria ticked below; PR open from the branch, nothing pushed to main directly
   - Verify: npm run build; three copy gates empty; structure gates 9, 9, 1, title line; browser pass / and /services/ at both widths with Cal popup; live check and share previews after deploy
   - Files: tasks/todo.md
-- [ ] Checkpoint E: owner tested locally, PR merged, deploy verified
+- [x] Checkpoint E: owner approved in the preview, main pushed, live deploy checked in the session
 
 ## Spec success criteria (tick at Task 11)
 - [x] "custom AI agents" appears in the hero (H1 or subheadline) and in the title or meta description
@@ -81,4 +81,4 @@ Status: PHASES A TO C DONE (September 10, 2026), nine commits on the branch, not
 - [x] "AI automation agency" still in homepage meta description, Organization JSON-LD, and Why us
 - [x] the only percentage on the homepage is the existing 20%+ observation
 - [x] all copy gates empty; build passes; browser pass at desktop and 375px on both pages
-- [ ] Open Questions 1 to 4 answered and every capability example in items 86, 87, 90 confirmed before the PR (PENDING: owner has not answered yet)
+- [x] Open Questions 1 to 4 answered (keep H1, keep title, examples as drafted, nine FAQ) and the branch approved as built on September 10, 2026

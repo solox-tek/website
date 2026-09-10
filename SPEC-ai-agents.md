@@ -1,6 +1,6 @@
 # Spec: Custom AI agents positioning
 
-Status: draft, awaiting owner approval. Nothing here is implemented. Companion to `SPEC.md` (Phase 1, shipped), which holds the copy rules every item below inherits, and to the three blog specs. None of those files is modified by this one. Work items continue the shared numbering from 82 so cross references stay unique across all five specs.
+Status: implemented and approved by the owner on September 10, 2026. Items 82 to 95 shipped; item 96 not needed because the H1 was kept. See the Decision Log at the end. Companion to `SPEC.md` (Phase 1, shipped), which holds the copy rules every item below inherits, and to the three blog specs. None of those files is modified by this one. Work items continue the shared numbering from 82 so cross references stay unique across all five specs.
 
 Written September 10, 2026 from the owner's brief, given in Serbian and paraphrased here. We build agents for companies. We improve how their work runs, whether that is software development or marketing and sales, and even at the leadership level. We raise productivity. We build custom agents with integrations.
 
@@ -320,3 +320,10 @@ Stated so they can be corrected before anything is built.
 5. All changes live on existing pages. No new route.
 6. Productivity is described without numbers until the owner supplies a measured one.
 7. This spec is saved as `SPEC-ai-agents.md` rather than replacing `SPEC.md`, because `SPEC.md` holds the copy rules that `cards/README.md`, `cards/POSTED.md`, the blog specs, and the n8n prompt point at.
+
+## Decision Log
+
+1. September 10, 2026. The owner reviewed the branch in the preview and approved it as built. The H1 and the title stay as they were, so Open Questions 1 and 2 are resolved as keep, item 96 is not needed, and Open Question 7 is closed. Phase D of the plan is skipped.
+2. September 10, 2026. The FAQ stays at nine entries (Open Question 4). The team examples in items 86, 87, and 90 ship as drafted (Open Question 3).
+3. September 10, 2026. Item 85 was shortened on owner feedback; the item records the final wording.
+4. September 10, 2026. Shipped by direct push to main on the owner's instruction, no PR. Open Questions 5 (a measured client number) and 6 (a dedicated page) stay open; nothing shipped depends on them.
