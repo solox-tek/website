@@ -21,7 +21,7 @@ Status: PHASES A TO C DONE (September 10, 2026), nine commits on the branch, not
   - Verify: npm run build; grep -c 'id="teams"' dist/index.html = 1; computed grid tracks 2 then 1 via resize_window; scrollWidth equals innerWidth at 375px
   - Files: src/pages/index.astro
 - [x] Task 4: Supporting copy in problem, why us, and what you get (items 85, 88, 89)
-  - Acceptance: problem paragraph appended; why us paragraph replaced, colon list gone; six rows in what you get with the divider moved
+  - Acceptance: problem paragraph names the teams in its first sentence (shortened on owner feedback, September 10, 2026); why us paragraph replaced, colon list gone; six rows in what you get with the divider moved
   - Verify: npm run build; grep -c 'a faster version of the old one' dist/index.html = 1; grep -c 'software team:' dist/index.html = 0; preview at both widths
   - Files: src/pages/index.astro
 - [x] Task 5: FAQ grows to nine entries (item 90)

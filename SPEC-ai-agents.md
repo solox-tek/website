@@ -120,9 +120,9 @@ The wording under each item is final draft copy. The owner approves or edits it 
 
 ### B. Homepage body
 
-85. Problem section paragraph. Keep the current two sentences and append:
+85. Problem section paragraph. Keep the two sentences and fold the teams into the first one, so the paragraph stays the same length beside the diagram. Shortened September 10, 2026 on owner feedback: an appended two sentence version read as too much text next to the diagram.
 
-    `And it is not only the back office. Engineers lose their week to triage and status updates, marketing to reporting, sales to keeping the CRM honest, and the leadership team to chasing numbers nobody has in one place.`
+    `Most teams, from engineering to sales to leadership, lose hours every day moving data around by hand, entering the same thing into three different tools, and waiting on approvals that could run on their own. The tools don't talk to each other, and the quick automations bolted on top tend to fall apart the moment real volume shows up.`
 
 86. What we do section (`#what`). Retitle, replace both card texts, fix the link line. Markup and hover classes unchanged; the cards keep linking to `/services`.
 

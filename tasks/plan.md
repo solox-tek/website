@@ -138,10 +138,10 @@ Tasks 2 to 7 are independent of each other. They run sequentially in one session
 
 ### Task 4: Supporting copy in problem, why us, and what you get
 
-**Description:** Spec items 85, 88, 89. Three copy edits in `index.astro`. Append the two team sentences to the `#problem` paragraph. Replace the `#why` paragraph with the spec's version, which removes the colon list. In `#get`, rename the first row to `Agents and workflows that run reliably`, add a sixth row `A process that makes sense, not just a faster version of the old one`, and move the missing bottom border from row five to row six so the list still closes the way it does today.
+**Description:** Spec items 85, 88, 89. Three copy edits in `index.astro`. Fold the teams into the first sentence of the `#problem` paragraph (shortened on owner feedback, September 10, 2026; the appended version was too long beside the diagram). Replace the `#why` paragraph with the spec's version, which removes the colon list. In `#get`, rename the first row to `Agents and workflows that run reliably`, add a sixth row `A process that makes sense, not just a faster version of the old one`, and move the missing bottom border from row five to row six so the list still closes the way it does today.
 
 **Acceptance criteria:**
-- [ ] Problem paragraph ends with `chasing numbers nobody has in one place.`
+- [ ] Problem paragraph opens with `Most teams, from engineering to sales to leadership,` and keeps its two sentence length
 - [ ] Why us paragraph contains `builds agents the way a software team builds software` and no longer contains `builds like a software team:`
 - [ ] What you get shows six rows, dividers between every pair, none under the last
 
