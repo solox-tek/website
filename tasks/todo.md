@@ -1,15 +1,15 @@
 # Todo: Custom AI agents positioning
 
 Branch: feat/ai-agents-positioning. One commit per task, message names the spec item. Details, gates, and risks in tasks/plan.md; copy in SPEC-ai-agents.md (items 82 to 96).
-Status: NOT STARTED (planned September 10, 2026). Phase D waits for the decision gate.
+Status: IN PROGRESS (build started September 10, 2026). Phase D waits for the decision gate.
 
 ## Phase A: Setup
-- [ ] Task 1: Branch and baseline
+- [x] Task 1: Branch and baseline
   - Acceptance: branch checked out; build passes; baseline recorded below
   - Verify: npm run build; git branch --show-current
   - Files: tasks/todo.md
-  - Baseline: title length __ (expect 62); Question count __ (expect 6); details count __ (expect 6); copy gates on current dist: __
-- [ ] Checkpoint A: build passes on the branch, baseline filled in
+  - Baseline: title length 62 characters (expect 62); Question count 6 (expect 6); details count 6 (expect 6); copy gates on current dist: all four empty
+- [x] Checkpoint A: build passes on the branch, baseline filled in
 
 ## Phase B: Homepage body
 - [ ] Task 2: What we do section carries the agents message (item 86)
