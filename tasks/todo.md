@@ -16,7 +16,7 @@ Status: IN PROGRESS (build started September 10, 2026). Phase D waits for the de
   - Acceptance: new H2, two card titles and paragraphs, link text, all verbatim from the spec; markup and hrefs unchanged
   - Verify: npm run build; grep -c 'Custom AI agents with integrations' dist/index.html = 1; copy gates empty; hover and link still work
   - Files: src/pages/index.astro
-- [ ] Task 3: Teams section (item 87)
+- [x] Task 3: Teams section (item 87)
   - Acceptance: one id="teams" between #why and #work with four cards; two by two at desktop, one column at 375px, no horizontal scroll; reveal works without script changes
   - Verify: npm run build; grep -c 'id="teams"' dist/index.html = 1; computed grid tracks 2 then 1 via resize_window; scrollWidth equals innerWidth at 375px
   - Files: src/pages/index.astro
