@@ -1,7 +1,7 @@
 # Todo: Custom AI agents positioning
 
 Branch: feat/ai-agents-positioning. One commit per task, message names the spec item. Details, gates, and risks in tasks/plan.md; copy in SPEC-ai-agents.md (items 82 to 96).
-Status: IN PROGRESS (build started September 10, 2026). Phase D waits for the decision gate.
+Status: PHASES A TO C DONE (September 10, 2026), nine commits on the branch, nothing pushed. Phase D waits for the decision gate. No PR by owner instruction (commits only, preview for review).
 
 ## Phase A: Setup
 - [x] Task 1: Branch and baseline
@@ -44,7 +44,7 @@ Status: IN PROGRESS (build started September 10, 2026). Phase D waits for the de
   - Verify: dash grep on public/llms.txt empty; mirror check count 9; npm run build; grep -c 'Who we build agents for' dist/llms.txt = 1
   - Files: public/llms.txt
   - Depends on: Tasks 3, 5, 7
-- [ ] Checkpoint C: build clean; all copy gates empty on dist and llms.txt; validator clean for / and /services/; browser pass both pages both widths; seven commits
+- [x] Checkpoint C: build clean; all copy gates empty on dist and llms.txt; JSON-LD on / and /services/ parses with FAQPage 9 and ItemList first item renamed (local check, online validator not run); browser pass both pages both widths, console clean, Cal modal opens; seven task commits
 
 ## Decision gate (owner, one line each)
 - [ ] 1. H1: Option A "Custom AI agents that survive production." or keep the current H1
@@ -66,19 +66,19 @@ Status: IN PROGRESS (build started September 10, 2026). Phase D waits for the de
 - [ ] Checkpoint D: title under 60; H1 and og.png agree; share previews after deploy
 
 ## Phase E: Release
-- [ ] Task 11: Final gates and PR
+- [~] Task 11: Final gates run and green (September 10, 2026); PR NOT opened, owner asked for commits only; complete after Phase D
   - Acceptance: every copy and structure gate from the spec passes; spec Success Criteria ticked below; PR open from the branch, nothing pushed to main directly
   - Verify: npm run build; three copy gates empty; structure gates 9, 9, 1, title line; browser pass / and /services/ at both widths with Cal popup; live check and share previews after deploy
   - Files: tasks/todo.md
 - [ ] Checkpoint E: owner tested locally, PR merged, deploy verified
 
 ## Spec success criteria (tick at Task 11)
-- [ ] "custom AI agents" appears in the hero (H1 or subheadline) and in the title or meta description
-- [ ] engineering, marketing, sales, and leadership each appear in visible homepage copy
-- [ ] nine FAQ entries, nine identical JSON-LD questions
-- [ ] services featured card and ItemList both say "AI Agents and Automation"
-- [ ] llms.txt names custom AI agents, lists four teams, mirrors nine FAQ questions
-- [ ] "AI automation agency" still in homepage meta description, Organization JSON-LD, and Why us
-- [ ] the only percentage on the homepage is the existing 20%+ observation
-- [ ] all copy gates empty; build passes; browser pass at desktop and 375px on both pages
-- [ ] Open Questions 1 to 4 answered and every capability example in items 86, 87, 90 confirmed before the PR
+- [x] "custom AI agents" appears in the hero (H1 or subheadline) and in the title or meta description
+- [x] engineering, marketing, sales, and leadership each appear in visible homepage copy
+- [x] nine FAQ entries, nine identical JSON-LD questions
+- [x] services featured card and ItemList both say "AI Agents and Automation"
+- [x] llms.txt names custom AI agents, lists four teams, mirrors nine FAQ questions
+- [x] "AI automation agency" still in homepage meta description, Organization JSON-LD, and Why us
+- [x] the only percentage on the homepage is the existing 20%+ observation
+- [x] all copy gates empty; build passes; browser pass at desktop and 375px on both pages
+- [ ] Open Questions 1 to 4 answered and every capability example in items 86, 87, 90 confirmed before the PR (PENDING: owner has not answered yet)
