@@ -12,7 +12,7 @@ Status: IN PROGRESS (build started September 10, 2026). Phase D waits for the de
 - [x] Checkpoint A: build passes on the branch, baseline filled in
 
 ## Phase B: Homepage body
-- [ ] Task 2: What we do section carries the agents message (item 86)
+- [x] Task 2: What we do section carries the agents message (item 86)
   - Acceptance: new H2, two card titles and paragraphs, link text, all verbatim from the spec; markup and hrefs unchanged
   - Verify: npm run build; grep -c 'Custom AI agents with integrations' dist/index.html = 1; copy gates empty; hover and link still work
   - Files: src/pages/index.astro
