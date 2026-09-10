@@ -1,94 +1,84 @@
-# Todo: Solox Tek Website Improvements, Phase 1
+# Todo: Custom AI agents positioning
 
-Branch: feat/site-review-improvements. One commit per task. Details in tasks/plan.md.
-Status: ALL TASKS COMPLETE (July 28, 2026). Awaiting owner local test, then PR.
+Branch: feat/ai-agents-positioning. One commit per task, message names the spec item. Details, gates, and risks in tasks/plan.md; copy in SPEC-ai-agents.md (items 82 to 96).
+Status: NOT STARTED (planned September 10, 2026). Phase D waits for the decision gate.
 
-## Phase A: Foundation
-- [x] Task 1: Commit the pending Nav/Footer refactor
-- [x] Task 2: Create Layout.astro and migrate all three pages
-- [x] Task 3: Make Nav self contained and sticky on inner pages
-- [x] Checkpoint A: build clean, visuals unchanged, three clean commits
+## Phase A: Setup
+- [ ] Task 1: Branch and baseline
+  - Acceptance: branch checked out; build passes; baseline recorded below
+  - Verify: npm run build; git branch --show-current
+  - Files: tasks/todo.md
+  - Baseline: title length __ (expect 62); Question count __ (expect 6); details count __ (expect 6); copy gates on current dist: __
+- [ ] Checkpoint A: build passes on the branch, baseline filled in
 
-## Phase B: Copy and Conversion
-- [x] Task 4: Resolve the discovery naming conflict
-- [x] Task 5: Paid media copy and pricing clarity
-- [x] Task 6: Copy polish batch
-- [x] Task 7: Fix dead ends and internal links
-- [x] Checkpoint B: browser pass, dash grep on dist clean
+## Phase B: Homepage body
+- [ ] Task 2: What we do section carries the agents message (item 86)
+  - Acceptance: new H2, two card titles and paragraphs, link text, all verbatim from the spec; markup and hrefs unchanged
+  - Verify: npm run build; grep -c 'Custom AI agents with integrations' dist/index.html = 1; copy gates empty; hover and link still work
+  - Files: src/pages/index.astro
+- [ ] Task 3: Teams section (item 87)
+  - Acceptance: one id="teams" between #why and #work with four cards; two by two at desktop, one column at 375px, no horizontal scroll; reveal works without script changes
+  - Verify: npm run build; grep -c 'id="teams"' dist/index.html = 1; computed grid tracks 2 then 1 via resize_window; scrollWidth equals innerWidth at 375px
+  - Files: src/pages/index.astro
+- [ ] Task 4: Supporting copy in problem, why us, and what you get (items 85, 88, 89)
+  - Acceptance: problem paragraph appended; why us paragraph replaced, colon list gone; six rows in what you get with the divider moved
+  - Verify: npm run build; grep -c 'a faster version of the old one' dist/index.html = 1; grep -c 'software team:' dist/index.html = 0; preview at both widths
+  - Files: src/pages/index.astro
+- [ ] Task 5: FAQ grows to nine entries (item 90)
+  - Acceptance: faqs array edited only; nine details and nine Question objects in the spec's order; new answers pass the copy rules
+  - Verify: npm run build; counts 9 and 9; order printed by the node one liner in plan.md; validator.schema.org clean; open and close each new item
+  - Files: src/pages/index.astro
+- [ ] Checkpoint B: build clean; copy gates empty on dist; homepage body checked at desktop and 375px with console clean and Cal popup working; four commits; owner skim recommended
 
-## Phase C: FAQ
-- [x] Task 8: Homepage FAQ section with FAQPage JSON-LD
-- [x] Task 9: Paid media FAQ with FAQPage JSON-LD
+## Phase C: Decision free remainder
+- [ ] Task 6: Hero subheadline, meta description, Organization description (items 84, 82 in part)
+  - Acceptance: hero paragraph verbatim, chips and buttons unchanged; meta description is the 156 character string; Organization description updated; both keep "AI automation agency"
+  - Verify: npm run build; grep the meta tag and check length 156; copy gates empty; hero at 375px
+  - Files: src/pages/index.astro
+- [ ] Task 7: Services page (items 92, 93, 94)
+  - Acceptance: featured card "AI Agents and Automation" with tagline and four points; hero subline; 152 character meta description; ItemList first name follows
+  - Verify: npm run build; grep -c 'AI Agents and Automation' dist/services/index.html >= 2; copy gates empty; /services/ at both widths
+  - Files: src/pages/services.astro
+- [ ] Task 8: llms.txt (item 95)
+  - Acceptance: spec version in place; teams section present; nine FAQ short forms; no dash or glyph
+  - Verify: dash grep on public/llms.txt empty; mirror check count 9; npm run build; grep -c 'Who we build agents for' dist/llms.txt = 1
+  - Files: public/llms.txt
+  - Depends on: Tasks 3, 5, 7
+- [ ] Checkpoint C: build clean; all copy gates empty on dist and llms.txt; validator clean for / and /services/; browser pass both pages both widths; seven commits
 
-## Phase D: SEO
-- [x] Task 10: Agency wording and llms.txt
-- [x] Task 11: Inner page structured data
-- [x] Task 12: Compress og.png (508KB to 49KB)
-- [x] Checkpoint C: structured data present, llms.txt current, share image light
+## Decision gate (owner, one line each)
+- [ ] 1. H1: Option A "Custom AI agents that survive production." or keep the current H1
+- [ ] 2. Title: Option A (53 characters) or keep the current title
+- [ ] 3. Share image: design source available (Route A) or render from the repo palette (Route B, ask first)
+- Rule: Option A for the H1 requires the new og.png; without it the H1 stays. No answer before Task 11 means the PR opens with Phase D pending.
 
-## Phase E: Accessibility
-- [x] Task 13: Semantic structure pass
-- [x] Task 14: Small accessibility fixes
-- [x] Task 15: CTA contrast fix
-- [x] Task 16: Reduced motion support
-- [x] Checkpoint D: outline ordered, contrast passing, motion respected
+## Phase D: Decision gated hero (Option A)
+- [ ] Task 9: H1 and title (items 83, 82 title)
+  - Acceptance: H1 "Custom AI agents that / survive production." with existing span styling; title is the 53 character Option A string; "AI automation agency" still in meta, JSON-LD, and Why us
+  - Verify: npm run build; title grep and length 53; grep -c 'AI automation agency' dist/index.html >= 3; hero at both widths
+  - Files: src/pages/index.astro
+  - Depends on: decision gate answer 1 and 2
+- [ ] Task 10: Share image regeneration (item 96, ASK FIRST)
+  - Acceptance: public/og.png 1200 by 630, under 300KB, same palette and type, new headline and subline; Route B commits cards/og.html with the render command in a comment; owner approved the side by side
+  - Verify: file public/og.png shows 1200 x 630; size under 307200 bytes; npm run build; visual comparison with git show main:public/og.png
+  - Files: public/og.png, cards/og.html (Route B), SPEC-ai-agents.md (Project Structure amendment)
+  - Depends on: Task 9, owner approval
+- [ ] Checkpoint D: title under 60; H1 and og.png agree; share previews after deploy
 
-## Phase F: Performance
-- [x] Task 17: Font inlining and Cal.com defer (also fixed the booking popup: the embed never intercepted clicks)
-- [x] Task 18: Homepage animation performance
-- [x] Task 19: Per tier Cal.com intent
+## Phase E: Release
+- [ ] Task 11: Final gates and PR
+  - Acceptance: every copy and structure gate from the spec passes; spec Success Criteria ticked below; PR open from the branch, nothing pushed to main directly
+  - Verify: npm run build; three copy gates empty; structure gates 9, 9, 1, title line; browser pass / and /services/ at both widths with Cal popup; live check and share previews after deploy
+  - Files: tasks/todo.md
+- [ ] Checkpoint E: owner tested locally, PR merged, deploy verified
 
-## Phase G: Trust Content
-- [x] Task 20: Who you talk to lines and Meta credential
-- [x] Task 21: Limo Mont case study strip
-
-## Phase H: Hygiene and Final Sweep
-- [x] Task 22: Repo hygiene
-- [x] Task 23: Final verification sweep (30 automated gates green, mobile and desktop browser pass, console clean)
-
-## Blocked / Out of Scope
-- Cloudflare Web Analytics beacon: owner dashboard action pending
-- chimp3 case study: optional, not requested
-- Cal.com event types are named in Serbian ("Sastanak od 15 Min"): rename in the Cal.com dashboard to match the English site
-
-## Phase 2: Blog and topic validation (July 30, 2026)
-
-Branch: feat/blog-revision. Specs: SPEC-blog.md, SPEC-blog-writer.md, SPEC-blog-revision.md.
-Items 41 to 65 shipped earlier the same day. Items 66 to 77 are from SPEC-blog-revision.md.
-
-### Site side (SPEC-blog.md, items 41 to 53)
-- [x] Items 41 to 53: content collection, blog index, post page, prose block, JSON-LD, feed, nav and footer links, llms.txt
-
-### n8n Blog Writer (SPEC-blog-writer.md, items 54 to 65)
-- [x] Items 54 to 64: workflow, backlog data table, live web search validation, Telegram approval
-- [ ] Item 65: record real cost from the Anthropic console after one full cycle
-
-### Validation advice quality (SPEC-blog-revision.md)
-- [x] Item 66: Angle line no longer recommends leading with the seller's weaknesses
-- [x] Item 67: AI Overview line weighs phrasing resilience and names the citation risk
-- [x] Item 68: entity recognition check on proposed category labels
-- [x] Item 69: assessment wired into the drafting prompt
-- [x] Item 70: verified by manual execution 432. Found and fixed a second bug on the way: maxTokens 1024 truncated the response before the Verdict line could be generated, now 2048
-
-### Post rewrite (SPEC-blog-revision.md) — CANCELLED, false premise
-- [-] Items 71 to 74: cancelled. The post positioned Solox Tek as one person. The owner
-      confirmed it is a team, which the live site has said all along. Both drafts discarded.
-      The ordering rule from item 72 and the softening rule from item 74 carried into item 78.
-
-### Correction sweep (unplanned, from the same finding)
-- [x] Removed the one person claim from the live validation prompt in n8n, where it was
-      shaping every assessment, and added a rule forbidding the node from assuming company size
-- [x] Corrected the claim in SPEC-blog.md and SPEC-blog-writer.md
-- [x] Recorded the propagation path and two preventive rules in SPEC-blog-revision.md Decision Log 7
-
-### Replacement post (SPEC-blog-revision.md bucket V)
-- [x] Item 75: src/content/blog/fixed-price-vs-time-and-materials.md, headcount neutral topic
-- [x] Item 76: angle grounded in a live search, the unoccupied position is risk allocation
-- [x] Item 77: limits in the middle, never in the lead
-- [x] Item 78: only the two engagement claims already public on the site
-- [x] Item 79: llms.txt line
-
-### Backlog
-- [x] Item 80: the one person agency row retires itself tonight via the pending approval timeouts
-- [ ] Item 81: owner action, set the fixed price row to drafted in the n8n data table UI,
-      otherwise the next scheduled run drafts a duplicate. The MCP surface has no row update tool.
+## Spec success criteria (tick at Task 11)
+- [ ] "custom AI agents" appears in the hero (H1 or subheadline) and in the title or meta description
+- [ ] engineering, marketing, sales, and leadership each appear in visible homepage copy
+- [ ] nine FAQ entries, nine identical JSON-LD questions
+- [ ] services featured card and ItemList both say "AI Agents and Automation"
+- [ ] llms.txt names custom AI agents, lists four teams, mirrors nine FAQ questions
+- [ ] "AI automation agency" still in homepage meta description, Organization JSON-LD, and Why us
+- [ ] the only percentage on the homepage is the existing 20%+ observation
+- [ ] all copy gates empty; build passes; browser pass at desktop and 375px on both pages
+- [ ] Open Questions 1 to 4 answered and every capability example in items 86, 87, 90 confirmed before the PR

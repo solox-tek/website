@@ -1,194 +1,376 @@
-# Implementation Plan: Solox Tek Website Improvements, Phase 1
+# Implementation Plan: Custom AI agents positioning
 
-Source spec: SPEC.md (repo root). Branch: feat/site-review-improvements. PR only after the owner tests locally.
+Source spec: `SPEC-ai-agents.md` (repo root), work items 82 to 96. Branch: `feat/ai-agents-positioning`. One commit per task. PR only after the owner has tested the branch locally, the convention Phase 1 and the blog followed. This file and `tasks/todo.md` replace the Phase 1 planning files, which were complete; the old versions live on in git history.
 
 ## Overview
 
-Implement the July 2026 review findings: shared Layout, copy and conversion fixes, FAQ sections with structured data, SEO and accessibility passes, performance fixes, approved trust content (Limo Mont, Meta credential), and repo hygiene. Visual language and pricing numbers stay unchanged.
+Make the site say that Solox Tek builds custom AI agents for companies, wires them into the tools the company already uses, and improves the process around them, for engineering, marketing and sales, operations, and leadership teams. Everything is copy and markup on two existing pages plus `llms.txt`, with the hero H1 and the share image as the one decision dependent piece. Visual language, engagement model, pricing, nav, and the Limo Mont case study do not change. All copy is already drafted in the spec; the build reproduces it verbatim.
+
+## Decision defaults
+
+The spec's open questions 1 to 4 were not answered before planning. The plan is written for the recommended options, which are H1 Option A (`Custom AI agents that survive production.`), title Option A, nine FAQ entries, and the team examples as drafted. Every task that depends on those answers sits in Phase D behind an explicit decision gate, because regenerating `og.png` is an ask first boundary in the spec and the H1 cannot change without it (the share image would contradict the page). Phases A, B, C, and E are unaffected by the answers and ship regardless. A one line answer from the owner releases Phase D; without one, the PR opens with Phase D listed as pending.
 
 ## Architecture Decisions
 
-- No test framework. A 3 page static Astro site earns verification through build gates, browser checks, and grep gates on dist output, per SPEC.md Testing Strategy. Each task's Verify section is its test.
-- New src/layouts/Layout.astro owns head, reset, fonts, Cal loader, and (later) analytics. Pages keep their per page styles and scripts.
-- Canonical URL form: with trailing slash, matching the sitemap. Derived centrally in Layout.
-- Cloudflare Web Analytics beacon (spec item 31) is NOT in this plan: blocked on an owner dashboard action. Everything else from SPEC.md Phase 1 and 2 is included, except the optional chimp3 case study (spec item 40, owner has not asked for it).
+- No test framework. Verification is the build gate, grep gates on `dist` output, the in app browser preview (`astro-dev` on port 4325 from `.claude/launch.json`), and the schema.org validator. Same approach as Phase 1, recorded in the spec's Testing Strategy.
+- Slice by message, not by file layer. Each homepage task lands one visible message completely, copy and markup together, and leaves the page coherent at every commit. `llms.txt` is one task near the end because its acceptance criterion is a mirror of the final page text, and mirroring in progress copy would only be verified twice.
+- The Teams cards are `div` elements with `data-reveal`, no hover class and no href, because there is no team specific page to land on. Grid track `minmax(min(100%,420px),1fr)` gives two by two at the 1120px content width and one column at 375px without overflow. Plain `minmax(300px,1fr)` would render three plus one on desktop, which is why the spec pins the value.
+- The reveal script collects every `[data-reveal]` element once at load (`index.astro`, the `querySelectorAll('[data-reveal]')` call in the page script), so the new section animates with no script change. Reduced motion handling is inherited from `Layout.astro`.
+- The Teams section is the only task with layout risk, so it lands early (Task 3) to fail fast. Copy only tasks follow.
+- The FAQ change touches the `faqs` array only. The accordion and the FAQPage JSON-LD both read from it, so visible text and structured data cannot drift; the verification is a count and an order check, not a diff.
+- Share image (Task 10) reuses the headless Chrome approach from `cards/render.sh` at 1200 by 630, from a committed template so the image is reproducible next time. The current `og.png` has no source in the repo, which is exactly the problem Open Question 7 names. This adds one file under `cards/`, which the spec's Project Structure listed as untouched; the spec gets amended when the task is approved (see Spec amendments).
+
+## Dependency Graph
+
+```
+Task 1  branch and baseline
+  ├── Task 2  What we do rewrite                      (index.astro)
+  ├── Task 3  Teams section                           (index.astro)
+  ├── Task 4  problem, why us, what you get copy      (index.astro)
+  ├── Task 5  FAQ array to nine entries               (index.astro)
+  ├── Task 6  hero subheadline, meta, Organization    (index.astro)
+  ├── Task 7  services page                           (services.astro)
+  └── Task 8  llms.txt  ← needs final wording from Tasks 3, 5, 7
+Decision gate (owner answers Q1, Q2, Q7)
+  └── Task 9  H1 and title (Option A)                 (index.astro)
+        └── Task 10 og.png regeneration, ask first    (public/og.png, cards/og.html)
+Task 11 final gates and PR  ← everything above
+```
+
+Tasks 2 to 7 are independent of each other. They run sequentially in one session because they edit the same file, but any order works.
 
 ## Task List
 
-### Phase A: Foundation
+### Phase A: Setup
 
-Task 1: Commit the pending Nav/Footer refactor
-- Description: Stage and commit the already made local changes: src/components/Nav.astro, src/components/Footer.astro, and the three modified pages (includes the earlier "Ad spend up to 30,000 EUR" fix). Deploy safety: pages import the components, so they must land together.
-- Acceptance: git status clean apart from planning artifacts; build passes.
-- Verify: npm run build; all three pages render in the browser.
-- Dependencies: none. Files: src/components/Nav.astro, src/components/Footer.astro, src/pages/index.astro, src/pages/services.astro, src/pages/paid-media.astro. Scope: M (commit only, no new edits).
+- [ ] Task 1: Branch and baseline
+- Checkpoint A: build passes on the new branch, baseline recorded
 
-Task 2: Create Layout.astro and migrate all three pages
-- Description: New src/layouts/Layout.astro with props title, description, path, optional image. Renders charset, viewport, favicon, canonical and og:url from path with trailing slash, full OG and Twitter set (og:site_name Solox Tek, twitter:site @SoloxTek, og:image with dimensions), shared reset and sxDrift keyframes, font imports, Cal.com loader. Pages keep only page specific head bits (JSON-LD stays in pages for now).
-- Acceptance: all three pages use Layout; inner pages gain the full Twitter/OG set; canonical and og:url end with a slash on inner pages; no duplicated reset/fonts/Cal loader remains in pages.
-- Verify: npm run build; diff of each built page head against the pre change head shows only intended differences; browser check of all three pages.
-- Dependencies: Task 1. Files: src/layouts/Layout.astro (new), 3 pages. Scope: M.
+### Phase B: Homepage body
 
-Task 3: Make Nav self contained and sticky on inner pages
-- Description: Move the nav scroll state JS from index.astro into Nav.astro, emitted only when fixed. Non fixed variant becomes position sticky with the scrolled background style. Delete any remaining duplicated .hx0/.navlink hover rules from pages.
-- Acceptance: homepage nav behavior unchanged; on services and paid media the Book a call pill stays visible when scrolling; no page level duplicate hover rules remain.
-- Verify: npm run build; browser scroll check on all three pages.
-- Dependencies: Task 2. Files: src/components/Nav.astro, 3 pages. Scope: S.
+- [ ] Task 2: What we do section carries the agents message
+- [ ] Task 3: Teams section
+- [ ] Task 4: Supporting copy in problem, why us, and what you get
+- [ ] Task 5: FAQ grows to nine entries
+- Checkpoint B: homepage body verified at desktop and 375px, copy gates clean
 
-Checkpoint A: build clean, three pages visually identical to before except sticky inner nav, git log has three clean commits.
+### Phase C: Decision free remainder
 
-### Phase B: Copy and Conversion
+- [ ] Task 6: Hero subheadline, meta description, Organization description
+- [ ] Task 7: Services page
+- [ ] Task 8: llms.txt
+- Checkpoint C: both pages and llms.txt pass every gate, structured data validates
 
-Task 4: Resolve the discovery naming conflict
-- Description: Engagement step 1 renamed to "Audit and roadmap" with body opening "After the free call, a paid and focused audit of one workflow, with a plan ranked by ROI." Closing homepage CTA button restores "free". Services CTA sentence becomes "Book a call and we'll find the workflow with the biggest payoff, then scope it."
-- Acceptance: the word discovery no longer describes a paid step anywhere; closing CTA says free; services sentence has its noun.
-- Verify: grep for "Discovery &" in src returns nothing; browser read of both sections.
-- Dependencies: Task 2. Files: index, services. Scope: S.
+### Phase D: Decision gated hero (Option A)
 
-Task 5: Paid media copy and pricing clarity
-- Description: "Bi weekly reporting and call" becomes "Reporting and a call every two weeks". Merge the two near duplicate testing bullets into "Structured A/B testing of creatives, copy, and audiences". Hero claim becomes "Meta certified, with over 15 years in performance marketing across Meta, Google, and TikTok." Growth bullet becomes "Conversion tracking and pixel management". Footnote: "Setup and tracking implementation is 450 EUR one time on all plans, waived with a 6 month commitment." Add "Month to month. Cancel anytime." Custom plan pill: "We'll build you a custom plan." Meta description aligned with the hero wording.
-- Acceptance: all seven strings updated exactly; prices unchanged; tier bullet counts still render cleanly.
-- Verify: build; browser read of hero, tiers, fine print.
-- Dependencies: Task 2. Files: paid-media. Scope: S.
+- Decision gate: owner confirms H1 Option A, title Option A, and how og.png is sourced
+- [ ] Task 9: H1 and title
+- [ ] Task 10: Share image regeneration (ask first)
+- Checkpoint D: title under 60 characters, og.png 1200 by 630 under 300KB, share preview matches the page
 
-Task 6: Copy polish batch
-- Description: Rewrite the Why us paragraph so it stops repeating the hero. Parallel noun forms in the lead automation list. DeFi line explains itself ("we build DeFi systems where a bug costs real money"). Reframe the 20%+ stat caption as first party observation. Standardize "over a decade" everywhere. Footer copyright "© 2026 Solox Tek". "built to best practices" on paid media.
-- Acceptance: no sentence appears verbatim on two pages; no unsourced claim presented as an external stat.
-- Verify: build; browser read; grep for the old phrases returns nothing.
-- Dependencies: Task 2. Files: index, services, paid-media, Footer. Scope: S.
+### Phase E: Release
 
-Task 7: Fix dead ends and internal links
-- Description: Homepage What we do cards link to /services. Add a "See all services" line with a descriptive anchor under the cards. Featured AI Automation card on services gets a next step link to /#process.
-- Acceptance: cards are real anchors with the existing hover style intact; new links work.
-- Verify: build; click through in the browser.
-- Dependencies: Task 2. Files: index, services. Scope: S.
+- [ ] Task 11: Final gates and PR
+- Checkpoint E: every success criterion in the spec ticked, owner tested locally, PR open
 
-Checkpoint B: full browser pass of all copy changes, zero dashes in rendered output (grep the dist HTML).
+## Tasks
 
-### Phase C: FAQ
+### Task 1: Branch and baseline
 
-Task 8: Homepage FAQ section with FAQPage JSON-LD
-- Description: New FAQ section between What you get and the closing CTA, native details/summary accordion styled to the existing language, 6 owner approved questions and answers (agency, cost, timeline, data safety, maintenance, what happens on the call). FAQPage node merged into the existing JSON-LD @graph, text mirrored exactly.
-- Acceptance: visible text and JSON-LD match verbatim; section heading is an h2; accordion works without JS.
-- Verify: build; browser interaction; paste built JSON-LD into a schema validator mentally checked against schema.org FAQPage shape.
-- Dependencies: Task 4 (copy consistency). Files: index. Scope: M.
+**Description:** Create `feat/ai-agents-positioning` from `main`, build, and record the numbers the later gates compare against so nothing pre existing gets blamed on this work. Baseline goes into the Task 1 entry of `tasks/todo.md`. Take one desktop screenshot of the homepage from the preview for the before and after.
 
-Task 9: Paid media FAQ with FAQPage JSON-LD
-- Description: Short FAQ between How it works and the CTA: account and pixel ownership (client owns), contract terms (month to month, cancel anytime), time to first results, what happens near the spend cap. FAQPage JSON-LD added.
-- Acceptance: same bar as Task 8.
-- Verify: same as Task 8.
-- Dependencies: Task 5. Files: paid-media. Scope: S.
+**Acceptance criteria:**
+- [ ] Branch exists and is checked out; `git status` shows only the untracked spec and the planning files
+- [ ] `npm run build` passes
+- [ ] Baseline recorded: current title length (62), FAQ `Question` count in `dist/index.html` (6), `<details>` count (6), and the output of the three copy gates on the current `dist` (expected empty; anything printed is noted as pre existing)
 
-### Phase D: SEO
+**Verification:**
+- [ ] Build succeeds: `npm run build`
+- [ ] Manual check: `git branch --show-current` prints the branch name
 
-Task 10: Agency wording and llms.txt
-- Description: "AI automation agency" enters the homepage title, meta description, Organization JSON-LD description, and once in the Why us body. Rewrite public/llms.txt: all three pages one line each, retainer range 1,300 to 3,300 EUR, free call CTA, FAQ mirrored.
-- Acceptance: grep finds agency in all four homepage locations; llms.txt lists three URLs in canonical form.
-- Verify: build; grep dist.
-- Dependencies: Tasks 6, 8. Files: index, public/llms.txt. Scope: S.
+**Dependencies:** None
 
-Task 11: Inner page structured data
-- Description: paid-media gets Service with OfferCatalog of the three tiers (price, priceCurrency EUR, spend cap in description) plus BreadcrumbList. services gets BreadcrumbList plus ItemList of the five service names. Same is:inline JSON.stringify pattern as index.
-- Acceptance: valid JSON-LD, prices match the visible tiers exactly.
-- Verify: build; JSON parses; spot check against schema.org types.
-- Dependencies: Task 5. Files: services, paid-media. Scope: S.
+**Files likely touched:** `tasks/todo.md` (baseline notes only)
 
-Task 12: Compress og.png
-- Description: Reduce public/og.png (currently 508KB) under 300KB, target under 150KB, no visible loss at 1200x630.
-- Acceptance: file under 300KB, dimensions unchanged, looks identical at social preview size.
-- Verify: ls -l; visual open.
-- Dependencies: none. Files: public/og.png. Scope: XS.
+**Estimated scope:** XS
 
-Checkpoint C: structured data present on all pages, llms.txt current, share image light.
+### Task 2: What we do section carries the agents message
 
-### Phase E: Accessibility
+**Description:** Spec item 86. In `#what`, replace the H2 text, both card titles and paragraphs, and the link text under the grid with the spec's wording, verbatim. Markup, the `hx3` and `hx4` hover classes, the `data-reveal` attributes, and both `/services` hrefs stay as they are. The colon list in the first card goes with the old text.
 
-Task 13: Semantic structure pass
-- Description: Section labels become h2, card, tier, and step titles become h3 (margin 0, identical visuals). Every page wraps content in main. Paid media pricing grid gets h2 "Pricing and packages" (can be visually subtle but must exist; simplest is converting the existing PAID MEDIA MANAGEMENT label).
-- Acceptance: each page has one h1 and an ordered outline; main landmark on every page; zero visual diff.
-- Verify: build; browser screenshot comparison; accessibility tree read.
-- Dependencies: Tasks 8, 9 (their headings join the outline). Files: 3 pages. Scope: M.
+**Acceptance criteria:**
+- [ ] H2 reads `Custom AI agents and automation that` with `hold up in production.` inside the bold span
+- [ ] Card titles are `Custom AI agents with integrations` and `Process improvement and automation`, paragraphs match the spec word for word
+- [ ] Link text is `See all AI agent and automation services`; no sentence in the section ends in a colon followed by a comma separated list
 
-Task 14: Small accessibility fixes
-- Description: alt="" on logo images inside links that contain the wordmark (Nav and Footer). Padding on footer social icons for a 29px tap target. Scroll cue color to #6F87A4.
-- Acceptance: single accessible name per link; tap targets 29px or more; cue contrast 4.5 or better.
-- Verify: build; accessibility tree; computed ratio.
-- Dependencies: Task 3. Files: Nav, Footer, index. Scope: XS.
+**Verification:**
+- [ ] Build succeeds: `npm run build`
+- [ ] `grep -c 'Custom AI agents with integrations' dist/index.html` prints 1
+- [ ] Copy gates from the spec print nothing on `dist`
+- [ ] Manual check in the preview: both cards still lift on hover and open `/services`
 
-Task 15: CTA contrast fix
-- Description: Primary CTA gradient darkened to linear-gradient(180deg,#1B76B8,#146199) on all pages; light #36A9E6 tones stay in ring and glow only. MOST POPULAR badge recolored to pass 4.5:1.
-- Acceptance: white 16px text passes 4.5:1 against both gradient stops; buttons still read as the same design family.
-- Verify: computed ratios; screenshot.
-- Dependencies: Task 2. Files: 3 pages. Scope: S.
+**Dependencies:** Task 1
 
-Task 16: Reduced motion support
-- Description: Add to Layout global CSS: media prefers-reduced-motion reduce disables all animations and smooth scroll.
-- Acceptance: with reduced motion emulated, no animation runs and scrolling is instant; JS guards already existed and stay.
-- Verify: browser emulation of prefers-reduced-motion.
-- Dependencies: Task 2. Files: Layout. Scope: XS.
+**Files likely touched:** `src/pages/index.astro`
 
-Checkpoint D: axe style pass on all three pages shows no regressions, screenshots match pre change visuals except the darker CTA.
+**Estimated scope:** XS
 
-### Phase F: Performance
+### Task 3: Teams section
 
-Task 17: Font inlining and Cal.com defer
-- Description: astro.config.mjs gets vite build assetsInlineLimit 0. Cal loader in Layout becomes lazy: injected on first pointerover, focusin, or touchstart on any [data-cal-link], with a load timeout fallback.
-- Acceptance: built CSS contains no data:font URI; embed.js absent from the network log until a CTA interaction, popup still opens.
-- Verify: grep dist CSS for data:font; browser network log before and after hover.
-- Dependencies: Task 2. Files: astro.config.mjs, Layout. Scope: S.
+**Description:** Spec item 87. Insert `<section id="teams">` between the closing tag of `#why` and the `<!-- CASE STUDY -->` comment so the Limo Mont strip follows it as proof. Copy the `#what` section's padding and centered header block (`data-reveal`, max width 780px), H2 `Any team,` with `one bottleneck at a time.` in the span, the lead sentence in the same style as the line under the What grid, then the four card grid from the spec's Code Style snippet. Cards are `div` elements with `data-reveal`, no hover class, no href.
 
-Task 18: Homepage animation performance
-- Description: Orb parallax moves to transform on new wrapper divs (keyframes keep the orb's own transform). Hero canvas rAF loop gated by an IntersectionObserver, cancelled off screen. Stat counter gets inline-block, min-width 2ch, text-align right, tabular-nums.
-- Acceptance: no marginLeft/marginTop writes in the parallax path; canvas loop stops when hero is off screen; counter no longer shifts siblings while counting.
-- Verify: code inspection; browser scroll test; visual counter check.
-- Dependencies: Task 2. Files: index. Scope: S.
+**Acceptance criteria:**
+- [ ] Exactly one `id="teams"` in the built page, with h3s `Engineering`, `Marketing and sales`, `Operations`, `Leadership` and the spec's paragraph text verbatim
+- [ ] Desktop renders two columns by two rows; at 375px one column, and the document is not wider than the viewport
+- [ ] The section fades in like its neighbours with no script change, and stays static under `prefers-reduced-motion`
 
-Task 19: Per tier Cal.com intent
-- Description: Each paid media tier button gets data-cal-config with a notes prefill naming the tier; the custom plan pill likewise.
-- Acceptance: opening the popup from each button carries the tier name into the booking notes.
-- Verify: browser open of each tier popup, inspect the prefilled field.
-- Dependencies: Task 5. Files: paid-media. Scope: XS.
+**Verification:**
+- [ ] Build succeeds: `npm run build`
+- [ ] `grep -c 'id="teams"' dist/index.html` prints 1
+- [ ] Preview at desktop, then `resize_window` to mobile: the grid's computed `gridTemplateColumns` has two tracks at desktop and one at 375px; `document.documentElement.scrollWidth === window.innerWidth` is true at 375px
+- [ ] Manual check: scroll through the section once at each width, console clean
 
-### Phase G: Trust Content (owner approved)
+**Dependencies:** Task 1
 
-Task 20: Who you talk to lines and Meta credential
-- Description: Under the closing CTAs: engineering pages get "Your call is with a senior engineer, not a sales rep."; paid media gets "Your intro call is with the Meta certified specialist who runs the campaigns, not a sales rep." plus the Meta Certified Digital Marketing Associate credential linking the Credly badge near the hero claim. No personal name in copy.
-- Acceptance: lines render under all three closing CTAs; Credly link opens the badge; no name appears.
-- Verify: build; browser.
-- Dependencies: Tasks 4, 5. Files: index, services, paid-media. Scope: S.
+**Files likely touched:** `src/pages/index.astro`
 
-Task 21: Limo Mont case study strip
-- Description: Compact named case study between Why us and How we work on the homepage: family transport business Limo Mont (limomont.rs), full modernization, digitalized bookkeeping, automated internal processes, AI agent answering pricing and service questions from their own data. Qualitative only, no invented numbers. Styled like the existing cards.
-- Acceptance: strip renders, link works, copy is dash free and metric free.
-- Verify: build; browser desktop and mobile.
-- Dependencies: Task 6. Files: index. Scope: S.
+**Estimated scope:** S
 
-### Phase H: Hygiene and Final Sweep
+### Task 4: Supporting copy in problem, why us, and what you get
 
-Task 22: Repo hygiene
-- Description: git rm --cached solox-tek-linkedin-banner.png. README updated to the three page plus components structure, scaffolding removed. Dead code out of index.astro: sxPulseB keyframes, data-screen-label, _cleanup array and pushes.
-- Acceptance: banner untracked, README accurate, grep finds none of the three dead identifiers.
-- Verify: git status; grep; build.
-- Dependencies: Task 18 (same file region as _cleanup). Files: README, index, git index. Scope: S.
+**Description:** Spec items 85, 88, 89. Three copy edits in `index.astro`. Append the two team sentences to the `#problem` paragraph. Replace the `#why` paragraph with the spec's version, which removes the colon list. In `#get`, rename the first row to `Agents and workflows that run reliably`, add a sixth row `A process that makes sense, not just a faster version of the old one`, and move the missing bottom border from row five to row six so the list still closes the way it does today.
 
-Task 23: Final verification sweep
-- Description: Full gate run from SPEC.md: build, dash grep on dist HTML (em dash, en dash check), browser pass of all three pages at desktop and 375px with console clean, Cal popup from every CTA location, JSON-LD parse check, og.png size, head inspection per page. Fix anything found, or stop and report if a fix is not obvious.
-- Acceptance: every SPEC.md success criterion except the analytics beacon (blocked on owner) checks green.
-- Verify: the sweep itself.
-- Dependencies: all. Files: as needed. Scope: S.
+**Acceptance criteria:**
+- [ ] Problem paragraph ends with `chasing numbers nobody has in one place.`
+- [ ] Why us paragraph contains `builds agents the way a software team builds software` and no longer contains `builds like a software team:`
+- [ ] What you get shows six rows, dividers between every pair, none under the last
+
+**Verification:**
+- [ ] Build succeeds: `npm run build`
+- [ ] `grep -c 'a faster version of the old one' dist/index.html` prints 1 and `grep -c 'software team:' dist/index.html` prints 0
+- [ ] Manual check in the preview: the six row list at desktop and 375px
+
+**Dependencies:** Task 1
+
+**Files likely touched:** `src/pages/index.astro`
+
+**Estimated scope:** XS
+
+### Task 5: FAQ grows to nine entries
+
+**Description:** Spec item 90. Edit the `faqs` array in the frontmatter only. Change the first answer, insert the chatbot question and the teams question after it, insert the process question after the data safety question, and leave the rest untouched. Final order is the nine entry list in the spec. No markup or JSON-LD edit; both follow the array.
+
+**Acceptance criteria:**
+- [ ] Nine `<details>` elements and nine `Question` objects in the built page, questions in the spec's order
+- [ ] Visible text and JSON-LD text are identical for every entry (guaranteed by the shared array; confirmed by the validator)
+- [ ] Every new answer passes the copy rules: no dash, no colon list, no number
+
+**Verification:**
+- [ ] Build succeeds: `npm run build`
+- [ ] `grep -o '"@type":"Question"' dist/index.html | wc -l` prints 9 and `grep -c '<details' dist/index.html` prints 9
+- [ ] Order check: `node -e 'const h=require("fs").readFileSync("dist/index.html","utf8");const m=h.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);const g=JSON.parse(m[1])["@graph"].find(x=>x["@type"]==="FAQPage");g.mainEntity.forEach((q,i)=>console.log(i+1,q.name))'`
+- [ ] Paste `dist/index.html` into validator.schema.org: FAQPage with nine questions, zero errors
+- [ ] Manual check: open and close each new item in the preview, the animation matches the existing ones
+
+**Dependencies:** Task 1
+
+**Files likely touched:** `src/pages/index.astro`
+
+**Estimated scope:** XS
+
+### Checkpoint B: Homepage body
+
+- [ ] `npm run build` clean
+- [ ] Copy gates print nothing on `dist`
+- [ ] Homepage body reviewed in the preview at desktop and 375px, console clean, Cal popup still opens from the nav and the hero
+- [ ] Four commits, one per task, each message naming the spec item
+- [ ] Recommended: owner skims the preview before Phase C, since this is the bulk of the visible change
+
+### Task 6: Hero subheadline, meta description, Organization description
+
+**Description:** Spec items 84 and the decision free parts of 82. Replace the hero paragraph under the H1 with the spec's subheadline. In the `<Layout>` call change `description` to the 156 character meta description. In the JSON-LD `@graph`, change the Organization `description`. The title and the H1 are not touched here; they belong to Task 9.
+
+**Acceptance criteria:**
+- [ ] Hero paragraph matches the spec verbatim and both trust chips and both buttons are unchanged
+- [ ] Meta description is exactly the spec string (156 characters) and still contains `AI automation agency`
+- [ ] Organization description matches the spec and still contains `AI automation agency`
+
+**Verification:**
+- [ ] Build succeeds: `npm run build`
+- [ ] `grep -o '<meta name="description" content="[^"]*"' dist/index.html` shows the new string; a `node -e` length check prints 156
+- [ ] Copy gates print nothing on `dist`
+- [ ] Manual check: hero reads correctly at 375px, nothing wraps oddly
+
+**Dependencies:** Task 1
+
+**Files likely touched:** `src/pages/index.astro`
+
+**Estimated scope:** XS
+
+### Task 7: Services page
+
+**Description:** Spec items 92, 93, 94. Change the hero subline, the featured entry of the `engineering` array (`name`, `tagline`, four `points`), and the `description` prop of `<Layout>`. The ItemList JSON-LD is generated from the array and updates itself. The title stays `Services · Solox Tek`.
+
+**Acceptance criteria:**
+- [ ] Featured card is titled `AI Agents and Automation` with the spec's tagline and four points; the `See how we work` link is still there
+- [ ] Hero subline starts with `Custom AI agents and automation are our core.`
+- [ ] Meta description is the spec's 152 character string; ItemList's first item is named `AI Agents and Automation`
+
+**Verification:**
+- [ ] Build succeeds: `npm run build`
+- [ ] `grep -c 'AI Agents and Automation' dist/services/index.html` prints at least 2 (card and JSON-LD)
+- [ ] Copy gates print nothing on `dist`
+- [ ] Manual check: `/services/` in the preview at desktop and 375px, tick marks and card layout unchanged
+
+**Dependencies:** Task 1
+
+**Files likely touched:** `src/pages/services.astro`
+
+**Estimated scope:** XS
+
+### Task 8: llms.txt
+
+**Description:** Spec item 95. Replace `public/llms.txt` with the version in the spec. It needs the final wording of the Teams cards (Task 3), the nine FAQ questions (Task 5), and the service name (Task 7), which is why it comes after them. Blog post lines are carried over unchanged.
+
+**Acceptance criteria:**
+- [ ] Summary line names custom AI agents, integrations, and process improvement
+- [ ] A `## Who we build agents for` section lists the four teams, and every one of the nine homepage FAQ questions has a short form under `## Frequently asked questions`
+- [ ] No dash, no arrow glyph, no hyphenated compound in the file
+
+**Verification:**
+- [ ] `grep -n -e '—' -e '–' public/llms.txt` prints nothing
+- [ ] Mirror check: for each `q:` in the `faqs` array, its question text (or the shortened form the spec gives) appears in `llms.txt`; count is 9
+- [ ] `npm run build` and `grep -c 'Who we build agents for' dist/llms.txt` prints 1
+
+**Dependencies:** Tasks 3, 5, 7
+
+**Files likely touched:** `public/llms.txt`
+
+**Estimated scope:** XS
+
+### Checkpoint C: Decision free work complete
+
+- [ ] `npm run build` clean
+- [ ] All three copy gates print nothing on `dist` and `public/llms.txt`
+- [ ] `validator.schema.org` clean for `/` (Organization, WebSite, FAQPage with nine) and `/services/` (BreadcrumbList, ItemList with the new first name)
+- [ ] Browser pass on `/` and `/services/` at desktop and 375px, console clean, Cal popup from nav, hero, and closing CTA
+- [ ] Seven commits so far, one per task
+
+### Decision gate before Phase D
+
+The owner answers, in one line each:
+
+1. H1: Option A (`Custom AI agents that survive production.`) or keep the current H1.
+2. Title: Option A (`Solox Tek · Custom AI agents that survive production.`, 53 characters) or keep the current title.
+3. Share image: is the design source for `og.png` available, or do we render a new one from the repo palette (Task 10, ask first)?
+
+If the answer to 1 is Option A, Tasks 9 and 10 both run; the H1 does not change without the image. If the answer is keep, Phase D is skipped and the spec's decision log records it. If no answer arrives before Task 11, the PR opens with Phase D listed as pending.
+
+### Task 9: H1 and title
+
+**Description:** Spec item 83 and the title in item 82, Option A. Change the H1 to `Custom AI agents that<br><span ...>survive production.</span>` keeping the existing span styling, and the `title` prop of `<Layout>` to the 53 character Option A string. Nothing else in the hero moves.
+
+**Acceptance criteria:**
+- [ ] H1 renders on two lines at desktop with `survive production.` in bold, and wraps cleanly at 375px
+- [ ] `<title>` is exactly the spec string and under 60 characters
+- [ ] `AI automation agency` still appears in the meta description, Organization description, and the Why us paragraph
+
+**Verification:**
+- [ ] Build succeeds: `npm run build`
+- [ ] `grep -o '<title>[^<]*</title>' dist/index.html` shows the new title; a `node -e` length check prints 53
+- [ ] `grep -c 'AI automation agency' dist/index.html` prints at least 3
+- [ ] Manual check: hero at desktop and 375px in the preview
+
+**Dependencies:** Decision gate (Option A)
+
+**Files likely touched:** `src/pages/index.astro`
+
+**Estimated scope:** XS
+
+### Task 10: Share image regeneration (ask first)
+
+**Description:** Spec item 96. Only with Option A. Two routes, the owner picks at the decision gate. Route A: the owner exports a new `og.png` from the original design file with headline `Custom AI agents that survive production.` and subline `Custom AI agents you own. Reliable, secure, built to scale.`; we verify dimensions and size and commit it. Route B: add `cards/og.html`, a 1200 by 630 template that imports `cards/base.css` and reproduces the current layout (logo lockup top left, two line headline with the second line in the accent gradient, dim subline), render it with the same headless Chrome call `cards/render.sh` uses but with `--window-size=1200,630 --screenshot=public/og.png`, then quantize to an 8 bit palette so the file stays small. Compare side by side with the old image before replacing it; the owner approves the comparison before the commit.
+
+**Acceptance criteria:**
+- [ ] `public/og.png` is 1200 by 630, under 300KB (target under 150KB), same palette and type as before, new headline and subline, no hyphenated compound in the text
+- [ ] Route B only: `cards/og.html` is committed with a one line comment giving the render command, and `assets.css` and PNG outputs stay gitignored
+- [ ] The owner has approved the side by side before the file is replaced
+
+**Verification:**
+- [ ] `file public/og.png` reports `1200 x 630`; `ls -l public/og.png` under 307200 bytes
+- [ ] Build succeeds: `npm run build`; `dist/og.png` is the new file
+- [ ] Manual check: open the PNG and the old one side by side (git stash or `git show main:public/og.png > /tmp/old-og.png`)
+
+**Dependencies:** Task 9, owner approval
+
+**Files likely touched:** `public/og.png`, `cards/og.html` (Route B), `SPEC-ai-agents.md` (Project Structure amendment, Route B)
+
+**Estimated scope:** S
+
+### Checkpoint D: Hero decision landed
+
+- [ ] Title under 60 characters, H1 and og.png say the same thing
+- [ ] After deploy: one LinkedIn and one X share preview of the homepage show the new image and title
+
+### Task 11: Final gates and PR
+
+**Description:** Run every gate from the spec's Testing Strategy on the finished branch, tick the spec's Success Criteria in `tasks/todo.md`, and open the PR to `main`. The PR description links the spec items each commit implements and lists Phase D as done or pending. The owner tests the branch locally with `npm run dev` before merging. After the Cloudflare deploy, verify the live homepage, services page, and `llms.txt`, and run the share previews.
+
+**Acceptance criteria:**
+- [ ] Every command in the spec's Copy gates and Structure gates prints the expected result
+- [ ] Every line of the spec's Success Criteria is ticked, or marked pending with the reason (Phase D)
+- [ ] PR open against `main` from `feat/ai-agents-positioning`, no direct push to `main`
+
+**Verification:**
+- [ ] Build succeeds: `npm run build`
+- [ ] Copy gates: the three grep commands from the spec print nothing
+- [ ] Structure gates: 9, 9, 1, and the title length line from the spec
+- [ ] Browser pass on `/` and `/services/` at desktop and 375px, console clean, Cal popup opens from nav, hero, and closing CTA
+- [ ] After deploy: live `/`, `/services/`, and `/llms.txt` match `dist`; share previews checked
+
+**Dependencies:** Tasks 1 to 8, plus 9 and 10 if released
+
+**Files likely touched:** `tasks/todo.md`
+
+**Estimated scope:** XS
+
+### Checkpoint E: Complete
+
+- [ ] All acceptance criteria met
+- [ ] Owner tested locally and approved
+- [ ] PR merged, deploy verified live
 
 ## Risks and Mitigations
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Layout migration changes rendered head subtly | Med | Per page head diff in Task 2 verify |
-| Heading tag swaps shift typography | Med | Explicit margin 0 and font inheritance, screenshot compare in Task 13 |
-| Cal defer breaks the popup for fast clickers | Med | href fallback already navigates to cal.com; timeout fallback pre warms |
-| og.png tooling unavailable locally | Low | Try sips, then npx sharp based one off script in scratchpad |
-| JSON-LD drift from visible text later | Low | Success criterion pins verbatim mirroring; noted in SPEC boundaries |
+| Teams grid renders three plus one at desktop | Medium | Use `minmax(min(100%,420px),1fr)` as the spec pins; check computed track count at desktop and 375px in Task 3 |
+| Owner reads the Engineering or Marketing and sales examples as shipped client work | Medium | The lead sentence frames them as places we usually find the payoff; Checkpoint B invites the owner to skim; spec Open Question 3 stays open until answered |
+| og.png rebuilt from the palette does not match the original closely enough | Medium | Side by side comparison with the old PNG, owner approves before commit; fallback is keeping the current H1 (Option B) so image and page agree |
+| Phase D held for a decision while the PR is open | Low | PR description lists Phase D as pending; it lands as a follow up commit on the same branch before merge |
+| New FAQ strings break the JSON-LD | Low | `JSON.stringify` escapes everything; the validator check in Task 5 confirms |
+| Copy gate false positive from the em dash in the frontmatter comment of `index.astro` | Low | Gates run on `dist` HTML, where comments do not ship; the `src/pages` gate only looks for the hyphenated compounds |
+| Longer homepage slows the page | Low | Only static text is added, no images or scripts; the section uses the same reveal mechanism as the rest |
+| Section order shift breaks an anchor | Low | No id changes; the hero button targets `#process`, which is untouched |
 
-## Out of Scope
+## Parallelization
 
-- Cloudflare Web Analytics beacon: waiting on owner dashboard action (SPEC item 31).
-- chimp3 case study (SPEC item 40): optional, owner has not requested it.
-- Any pricing number change, new pages, or new dependencies.
+Single session, sequential. Tasks 2 to 7 are independent and could be split across sessions, but they edit two files on one branch and the whole batch is small, so the merge risk is not worth it.
+
+## Spec amendments to make during the build
+
+- Record the decision gate answers in a Decision Log section of `SPEC-ai-agents.md` (Open Questions 1, 2, 4, 7).
+- If Task 10 takes Route B, add `cards/og.html` to the spec's Project Structure and remove `cards/` from the untouched list.
+- If the owner cuts the FAQ to eight (Open Question 4), update item 90, Task 5's counts, and the `llms.txt` mirror.
+
+## Open Questions
+
+Carried from the spec, with the default this plan assumes.
+
+1. H1 Option A. Default: yes.
+2. Title Option A. Default: yes.
+3. Team examples confirmed. Default: as drafted; swap on request.
+4. FAQ count nine. Default: nine.
+5. A measured client number. Default: none, copy stays qualitative.
+6. Dedicated `/ai-agents/` page. Default: no, out of scope.
+7. Share image source. Default: Route B, rendered from the repo palette, only after approval.
