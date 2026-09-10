@@ -24,7 +24,7 @@ Status: IN PROGRESS (build started September 10, 2026). Phase D waits for the de
   - Acceptance: problem paragraph appended; why us paragraph replaced, colon list gone; six rows in what you get with the divider moved
   - Verify: npm run build; grep -c 'a faster version of the old one' dist/index.html = 1; grep -c 'software team:' dist/index.html = 0; preview at both widths
   - Files: src/pages/index.astro
-- [ ] Task 5: FAQ grows to nine entries (item 90)
+- [x] Task 5: FAQ grows to nine entries (item 90)
   - Acceptance: faqs array edited only; nine details and nine Question objects in the spec's order; new answers pass the copy rules
   - Verify: npm run build; counts 9 and 9; order printed by the node one liner in plan.md; validator.schema.org clean; open and close each new item
   - Files: src/pages/index.astro
