@@ -22,11 +22,12 @@
 - [Fixed price vs time and materials for a small software build](https://solox-tek.com/blog/fixed-price-vs-time-and-materials/): Both models are fine. The real question is who carries the risk of what nobody knows yet, and why a short paid audit before pricing removes it.
 - [How a construction company automated its warehouse stock tracking](https://solox-tek.com/blog/warehouse-stock-tracking-automation/): Tradesmen at Limo Mont send a message when they take something from the warehouse. Stock updates itself, and low items trigger a reorder email.
 - [Profitable overall, blind on every individual job](https://solox-tek.com/blog/per-project-profitability/): Limo Mont priced by instinct, and it worked. Now the invoice, the material, and the hours meet in one place, and every job has a number.
+- [Chatbot, automation, or AI agent: what are you buying?](https://solox-tek.com/blog/chatbot-automation-or-ai-agent/): Need an answer, a repeatable process, or a system that can work out the next step? Here is how to choose.
 
 ## Frequently asked questions
 
 - What does an AI automation agency do? We connect your tools, automate repetitive processes, and add AI where it removes real work, usually as a custom AI agent that reads, decides, and acts inside the client's systems. Everything we build is owned by the client.
-- What is a custom AI agent, and how is it different from a chatbot? A chatbot answers questions. An agent does work inside your systems, follows rules you set, and asks a person when a case is unusual. Custom means it is built around your process and your tools.
+- What is a custom AI agent, and how is it different from a chatbot? A chatbot answers questions. An automation runs steps you define. An agent works out its next steps and chooses its tools based on what it finds, within permissions and approval rules set for the job. A chat window can sit in front of any of them. Custom means it is built around your process and your tools, not a generic assistant with your logo on it.
 - Which teams do you build agents for? Any team with a repeatable process and a bottleneck. Operations and the back office, engineering, marketing, sales, and leadership.
 - How much does an AI automation project cost? Every build is fixed scope and fixed price, set after a short paid audit. The free discovery call comes first.
 - How long until something is live? A first workflow is usually in production within a few weeks.
