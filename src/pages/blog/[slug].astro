@@ -66,21 +66,48 @@ const fmtDate = (d) => d.toLocaleDateString('en-US', { month: 'long', day: 'nume
   })} />
   <style is:global>
 .hx1:hover{transform:translateY(-3px) !important;box-shadow:0 0 0 1px rgba(143,224,255,0.4) inset,0 22px 56px rgba(27,124,192,0.62) !important;}
-.px h2{font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(24px,3.2vw,34px);line-height:1.14;letter-spacing:-0.025em;color:#F5FAFE;margin:52px 0 16px;}
-.px h3{font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);line-height:1.2;letter-spacing:-0.015em;color:#F5FAFE;margin:38px 0 12px;}
-.px p{font-family:'Manrope Variable',system-ui,sans-serif;font-size:clamp(15.5px,1.3vw,18px);line-height:1.74;color:#AEC4DC;margin:0 0 20px;}
-.px ul,.px ol{font-family:'Manrope Variable',system-ui,sans-serif;font-size:clamp(15.5px,1.3vw,18px);line-height:1.74;color:#AEC4DC;margin:0 0 20px;padding-left:26px;}
-.px li{margin:0 0 8px;}
+.px{font-family:'Manrope Variable',system-ui,sans-serif;font-size:clamp(17px,1.4vw,19px);line-height:1.8;color:#AEC4DC;overflow-wrap:break-word;}
+.px h2{font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(25px,3.2vw,32px);line-height:1.25;letter-spacing:-0.025em;color:#F5FAFE;margin:64px 0 24px;padding-top:32px;border-top:1px solid rgba(150,180,215,0.16);scroll-margin-top:110px;text-wrap:balance;}
+.px h3{font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(20px,2.2vw,24px);line-height:1.3;letter-spacing:-0.015em;color:#F5FAFE;margin:40px 0 16px;scroll-margin-top:110px;}
+.px p{margin:0 0 24px;}
+.px > p:first-child{font-size:clamp(20px,2vw,23px);line-height:1.6;color:#DCECF8;}
+.px ul,.px ol{margin:0 0 28px;padding-left:28px;}
+.px li{padding-left:8px;margin:0 0 16px;}
+.px ol > li{padding-top:16px;padding-bottom:20px;margin:0;border-bottom:1px solid rgba(150,180,215,0.16);}
+.px ol > li:last-child{border-bottom:0;}
+.px li::marker{color:#8FE0FF;font-weight:700;}
 .px strong{color:#EEF4FB;font-weight:700;}
 .px a{color:#8FE0FF;text-decoration:underline;text-underline-offset:3px;}
 .px a:hover{opacity:.8;}
-.px blockquote{margin:0 0 20px;padding:2px 0 2px 20px;border-left:3px solid rgba(54,169,230,0.55);}
-.px blockquote p{color:#C4D6EA;font-style:italic;}
+.px a:focus-visible{outline:2px solid #8FE0FF;outline-offset:5px;border-radius:2px;}
+.px blockquote{margin:36px 0;padding:24px 28px;border-left:3px solid #36A9E6;background:rgba(54,169,230,0.08);border-radius:0 12px 12px 0;}
+.px blockquote p{color:#DCECF8;font-size:clamp(19px,2vw,22px);font-weight:600;line-height:1.6;margin:0;}
 .px code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.92em;background:rgba(255,255,255,0.07);border:1px solid rgba(150,180,215,0.16);border-radius:6px;padding:2px 6px;color:#DCECF8;}
 .px pre{background:rgba(255,255,255,0.04);border:1px solid rgba(150,180,215,0.16);border-radius:12px;padding:18px 20px;overflow-x:auto;margin:0 0 20px;}
 .px pre code{background:none;border:none;padding:0;font-size:13.5px;line-height:1.6;}
 .px hr{border:none;border-top:1px solid rgba(150,180,215,0.16);margin:40px 0;}
 .px img{max-width:100%;height:auto;border-radius:12px;}
+.px .px-compare{margin:0 0 28px;padding:28px;border:1px solid rgba(143,224,255,0.25);border-radius:12px;background:rgba(54,169,230,0.06);}
+.px .px-compare figcaption{font-family:'Sora Variable',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#AEC4DC;margin-bottom:24px;}
+.px .px-compare dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;}
+.px .px-compare dl > div{padding:0 20px;border-left:1px solid rgba(150,180,215,0.2);}
+.px .px-compare dl > div:first-child{padding-left:0;border-left:0;}
+.px .px-compare dl > div:last-child{padding-right:0;}
+.px .px-compare dt{font-family:'Sora Variable',sans-serif;font-size:17px;font-weight:600;margin:0 0 16px;}
+.px .px-compare dd{margin:0;font-size:15px;line-height:1.6;}
+.px .px-compare dd strong{display:block;font-weight:600;margin-bottom:8px;}
+.px .px-compare dd span{display:block;}
+@media (max-width:600px){
+  .px h2{margin-top:48px;padding-top:28px;}
+  .px blockquote{padding:20px;}
+  .px .px-compare{padding:24px 20px;}
+  .px .px-compare dl{grid-template-columns:1fr;}
+  .px .px-compare dl > div,.px .px-compare dl > div:first-child,.px .px-compare dl > div:last-child{padding:20px 0;border-left:0;border-top:1px solid rgba(150,180,215,0.2);}
+  .px .px-compare dl > div:first-child{padding-top:0;border-top:0;}
+  .px .px-compare dl > div:last-child{padding-bottom:0;}
+  .px .px-compare dt{margin-bottom:8px;}
+  .px .px-compare dd strong{margin-bottom:4px;}
+}
   </style>
 <div style="position:relative;background:#06121E;overflow:clip;--sx-accent:#36A9E6;">
 
@@ -94,9 +121,9 @@ const fmtDate = (d) => d.toLocaleDateString('en-US', { month: 'long', day: 'nume
 
   <main>
   <!-- POST HEADER -->
-  <header style="position:relative;z-index:2;padding:clamp(50px,6vw,76px) clamp(20px,5vw,48px) 0;max-width:880px;margin:0 auto;">
+  <header style="position:relative;z-index:2;padding:clamp(40px,5vw,64px) clamp(20px,5vw,48px) 0;max-width:776px;margin:0 auto;">
     <div style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.24em;color:#8FE0FF;margin-bottom:16px;"><a href="/blog/" style="color:#8FE0FF;">BLOG</a></div>
-    <h1 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(31px,4.5vw,46px);line-height:1.14;letter-spacing:-0.03em;margin:0 0 22px;color:#F6FAFE;">{post.data.title}</h1>
+    <h1 style="font-family:'Sora Variable',sans-serif;font-weight:600;font-size:clamp(31px,4.5vw,46px);line-height:1.18;letter-spacing:-0.03em;margin:0 0 24px;color:#F6FAFE;text-wrap:balance;">{post.data.title}</h1>
     <p style="font-family:'Manrope Variable',sans-serif;font-size:clamp(17.5px,1.9vw,23px);line-height:1.52;color:#C4D6EA;margin:0 0 30px;max-width:62ch;">{post.data.description}</p>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;font-family:'Sora Variable',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.05em;color:#7E97B4;">
       <span>{fmtDate(post.data.publishDate)}</span>
@@ -112,8 +139,8 @@ const fmtDate = (d) => d.toLocaleDateString('en-US', { month: 'long', day: 'nume
   </header>
 
   <!-- POST BODY -->
-  <section style="position:relative;z-index:2;padding:clamp(40px,5.5vw,68px) clamp(20px,5vw,48px) 10px;">
-    <article class="px" style="max-width:700px;margin:0 auto;">
+  <section style="position:relative;z-index:2;padding:clamp(32px,4vw,48px) clamp(20px,5vw,48px) 10px;">
+    <article class="px" style="max-width:680px;margin:0 auto;">
       <Content />
     </article>
   </section>
