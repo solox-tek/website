@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>When an automation breaks, who finds out?</title>
+  <link rel="stylesheet" href="base.css">
+  <style>
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+    .col{border:1px solid rgba(150,180,215,.17);border-radius:20px;padding:46px 36px 48px;background:rgba(255,255,255,.032);}
+    .col.alt{border-color:rgba(54,169,230,.42);background:rgba(54,169,230,.07);}
+    .col h2{font-family:'Sora';font-weight:600;font-size:42px;color:#F5FAFE;margin-bottom:22px;letter-spacing:-.02em;}
+    .col p{font-size:30px;line-height:1.48;color:#AEC4DC;margin-bottom:28px;}
+    .col b{font-family:'Sora';font-weight:600;font-size:28px;letter-spacing:-.015em;line-height:1.35;color:#8FE0FF;display:block;}
+    .close{font-family:'Sora';font-weight:500;font-size:38px;line-height:1.4;letter-spacing:-.025em;color:#AEC4DC;margin-top:54px;}
+    .close b{font-weight:600;color:#F5FAFE;}
+  </style>
+</head>
+<body>
+  <div class="glow1" aria-hidden="true"></div>
+  <div class="glow2" aria-hidden="true"></div>
+  <header><i aria-hidden="true"></i><b>SOLOX&nbsp;TEK</b></header>
+  <div class="eyebrow">When an automation breaks</div>
+  <main>
+    <h1 style="font-size:84px;margin-bottom:54px;">Who finds out?<br><span class="accent">And how soon?</span></h1>
+    <div class="cols">
+      <div class="col">
+        <h2>Loud failure</h2>
+        <p>The run stops and an error appears somewhere.</p>
+        <b>Easy, if someone sees it.</b>
+      </div>
+      <div class="col alt">
+        <h2>Quiet failure</h2>
+        <p>Nothing errors. The result is wrong, or never arrives.</p>
+        <b>No alarm goes off.</b>
+      </div>
+    </div>
+    <p class="close">A failure alert cannot fire<br>for <b>a run that never started</b>.</p>
+  </main>
+</body>
+</html>
