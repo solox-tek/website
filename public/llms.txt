@@ -23,6 +23,7 @@
 - [How a construction company automated its warehouse stock tracking](https://solox-tek.com/blog/warehouse-stock-tracking-automation/): Tradesmen at Limo Mont send a message when they take something from the warehouse. Stock updates itself, and low items trigger a reorder email.
 - [Profitable overall, blind on every individual job](https://solox-tek.com/blog/per-project-profitability/): Limo Mont priced by instinct, and it worked. Now the invoice, the material, and the hours meet in one place, and every job has a number.
 - [Chatbot, automation, or AI agent: what are you buying?](https://solox-tek.com/blog/chatbot-automation-or-ai-agent/): Need an answer, a repeatable process, or a system that can work out the next step? Here is how to choose.
+- [When an automation breaks, who finds out?](https://solox-tek.com/blog/automation-breaks-who-finds-out/): The costly failure is rarely the error message. It is the run that never happened, or the wrong number nobody checked. Here is how to catch both.
 
 ## Frequently asked questions
 
